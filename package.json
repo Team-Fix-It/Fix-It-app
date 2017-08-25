@@ -1,0 +1,27 @@
+{
+  "name": "fix-it",
+  "version": "1.0.0",
+  "description": "Fix-It Tech is a full-stack web application to schedule events and manage attendance. Volunteers will register their skills and RSVP to events, which will allow administrators to match volunteers to problems and accurately schedule volunteers for upcoming events. The application will be primarily an admin-orientated application with ambitions to be more public facing in the future.",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "angular-animate": "^1.6.6",
+    "angular-aria": "^1.6.6",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.6",
+    "angular-route": "^1.6.6",
+    "angular-xeditable": "^0.8.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "path": "^0.12.7",
+    "pg": "^7.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon server/server.js",
+    "start": "node server/server.js"
+  },
+  "author": "Alec Sands, Anne Kennedy, Ben Haesemeyer, Emily Kuplic",
+  "license": "ISC"
+}

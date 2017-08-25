@@ -4,19 +4,19 @@ Fix-It Tech is a full-stack web application to schedule events and manage attend
 
 ## Technologies Used
 
-Node
-Express
-AngularJS
-Angular Material
-PostgreSQL
-Heroku
-Google Maps API
-Google Auth Firebase
-Firebase UI
-SweetAlerts2
-HTML5
-CSS3
-Sass
+- Node
+- Express
+- AngularJS
+- Angular Material
+- PostgreSQL
+- Heroku
+- Google Maps API
+- Google Auth Firebase
+- Firebase UI
+- SweetAlerts2
+- HTML5
+- CSS3
+- Sass
 
 
 ## Getting Started

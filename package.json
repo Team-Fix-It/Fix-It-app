@@ -12,6 +12,7 @@
     "angular-route": "^1.6.6",
     "angular-xeditable": "^0.8.0",
     "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "path": "^0.12.7",

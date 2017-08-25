@@ -8,6 +8,7 @@ Fix-It Tech is a full-stack web application to schedule events and manage attend
 - Express
 - AngularJS
 - Angular Material
+- Bootstrap
 - PostgreSQL
 - Heroku
 - Google Maps API

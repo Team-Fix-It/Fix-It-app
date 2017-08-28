@@ -1,8 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 var path = require('path');
 
+router.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
 
+router.get('/auth/google/callback', passport.authenticate('google', {
+  successRedirect: '/#/home',
+  failureRedirect: '/#/home'
+}));
 
 // Handle index file separately
 // Also catches any other request not explicitly matched elsewhere

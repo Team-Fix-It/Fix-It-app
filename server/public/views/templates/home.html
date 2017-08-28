@@ -1,5 +1,9 @@
 <div class="container">
-  <h1 class="lead">Home Page</h1>
+  <h1 class="lead">Home Page!</h1>
    <p>This page will direct volunteers to sign up or login!</p>
    <p>Up coming events will be displayed below the login/sign up info!</p>
+   <!-- <div class="g-signin2" data-onsuccess="hc.service.onSignIn()"></div> -->
+   <a href="/auth/google" class="btn btn-primary"><span class="fa fa-google-plus"></span>Google</a>
 </div>
+<!-- <a href="#" ng-click="hc.service.signOut();">Sign out</a> -->
+<button class="btn btn-default" ng-click="hc.service.logout()">Log Out</button>

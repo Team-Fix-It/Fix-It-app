@@ -5,10 +5,14 @@ myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config');
   $routeProvider
-    .when('/home', {
-      templateUrl: '/views/templates/home.html',
-      controller: 'HomeController as hc',
-    })
+  .when('/home', {
+    templateUrl: '/views/templates/home.html',
+    controller: 'HomeController as hc',
+  })
+  .when('/events', {
+    templateUrl: '/views/templates/admin/newEvent.html',
+    controller: 'EventController as ec',
+  })
     .otherwise({
       redirectTo: 'home'
     });

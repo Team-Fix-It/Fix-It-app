@@ -28,7 +28,7 @@ router.get('/', function(req, res){
           } else {
             // console.log(result);
             // Send back the results
-            var data = {events: result.rows};
+            var data = {volunteers: result.rows};
             res.send(data);
           }
         }); // end query

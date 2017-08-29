@@ -8,10 +8,11 @@ var passport = require('./strategy/auth.js');
 // Route includes
 var indexRouter = require('./routes/index.router');
 
+var volunteerRouter = require('./routes/volunteer.router');
+
 var eventsRouter = require('./routes/events.router');
 
 var userRouter = require('./routes/user.router');
-
 
 var port = process.env.PORT || 5000;
 

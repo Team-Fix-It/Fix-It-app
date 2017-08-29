@@ -43,7 +43,7 @@ router.get('/', function(req, res){
 }); // end of GET
 
 // Create a new event
-router.post('/create', function(req, res){
+router.post('/create/', function(req, res){
   var ev = req.body;
   console.log('Post route called to event of', ev);
   // errorConnecting is bool, db is what we query against,
@@ -56,11 +56,11 @@ router.post('/create', function(req, res){
       // if(req.isAuthenticated()) {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = 'INSERT INTO "events" ("event_name", "event_location", "event_description", "starting", "ending", "date")' +
+      var queryText = 'INSERT INTO "events" ("event_name", "event_location", "event_description", "starting_time", "ending_time", "event_date")' +
       ' VALUES ($1, $2, $3, $4, $5, $6);';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText,[ev.event_name, ev.event_location, ev.event_description, ev.starting,
-        ev.ending, ev.date], function(errorMakingQuery, result){
+      db.query(queryText,[ev.event_name, ev.event_location, ev.event_description, ev.starting_time,
+        ev.ending_time, ev.event_date], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);

@@ -1,14 +1,16 @@
 Database Name: fix-it_tech
 
+Last Updated: 8/28 @ 4:44pm
+
 CREATE TABLE volunteers (
     id serial PRIMARY KEY,
     first_name character varying(35) NOT NULL,
     last_name character varying(35) NOT NULL,
-    email character varying(45) NOT NULL,
-    phone character varying (20) NOT NULL,
-	  organization character varying (35) NOT NULL,
+    email character varying(45) NOT NULL UNIQUE,
+    phone character varying (20),
+	  organization character varying (35),
     role integer,
-    status character varying  NOT NULL,
+    status character varying,
     created timestamp DEFAULT current_timestamp,
     modified timestamp DEFAULT current_timestamp
 );
@@ -20,9 +22,10 @@ CREATE TABLE events (
     id serial PRIMARY KEY,
     event_name character varying(50) NOT NULL,
    	event_location character varying NOT NULL,
-    event_description character varying(500) NOT NULL,
-    starting timestamp,
-    ending timestamp
+    event_description character varying(3000) NOT NULL,
+    event_date date NOT NULL,
+    starting_time timestamp NOT NULL,
+    ending_time timestamp NOT NULL
 );
 
 CREATE TABLE proficiency (
@@ -44,7 +47,7 @@ INSERT INTO "proficiency" (level) VALUES
 CREATE TABLE rsvp (
     id serial PRIMARY KEY,
     event_id integer REFERENCES events ON DELETE CASCADE,
-    volunteer_id integer REFERENCES volunteers,
+    volunteer_id integer REFERENCES volunteers ON DELETE CASCADE,
     response character varying(25) NOT NULL
 );
 
@@ -63,4 +66,19 @@ CREATE TABLE attendance (
 
 );
 
-Dummy Data
+CREATE TABLE email (
+	id serial PRIMARY KEY,
+	first_name character varying(35) NOT NULL,
+	last_name character varying(35) NOT NULL,
+	email character varying(50) NOT NULL,
+	added_date timestamp DEFAULT current_timestamp
+);
+
+--Volunteer Dummy Data
+INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
+('Fordo', 'Baggins', 'fordo@gmail.com', '612-123-4567', 'The Shire', 2, 'active');
+
+INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
+('Legolas', 'Too good for a last name', 'legolas@yahoo.com', '612-456-4567', 'Elves of Northern Mirkwood', 2, 'inactive');
+
+--

@@ -1,12 +1,13 @@
-myApp.controller('EventController', function(Service, $location, $http) {
+myApp.controller('EventController', function($location, $http, UserAuthService) {
   console.log('EventController loaded');
-  var ec = this;
-  ec.Service = Service;
+  var vm = this;
+  vm.Service = UserAuthService;
 
-  ec.addEvent = function(){
+  vm.addEvent = function(newEvent){
     console.log('addEvent function clicked');
     //Here is the post request to send new event values to database
-    $http.post('/events', ec.newEvent)
+    console.log(newEvent);
+    $http.post('/events/create', newEvent)
     .then(function(response){
       console.log('added event', response);
     });

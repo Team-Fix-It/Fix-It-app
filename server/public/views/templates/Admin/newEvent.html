@@ -1,19 +1,18 @@
-<div ng-include="'views/partials/nav.html'"></div>
 <div class="newEvent">
 
 <label for="title">Title: </label>
-<input type="text" ng-model="ec.newEvent.title" id="title" placeholder="Title"/>
+<input type="text" ng-model="newEvent.event_name" id="title" placeholder="Title"/><br>
 <label for="location">Location: </label>
-<input type="text" ng-model="ec.newEvent.location" id="location" placeholder="Location"/>
+<input type="text" ng-model="newEvent.event_location" id="location" placeholder="Location"/><br>
 <label for="date">Date: </label>
-<input type="text" ng-model="ec.newEvent.date" id="date" placeholder="Date"/>
-<label for="startingTime">Starting Time: </label>
-<input type="text" ng-model="ec.newEvent.startingTime" id="startingTime" placeholder="Starting Time"/>
-<label for="endingTime">Ending Time: </label>
-<input type="text" ng-model="ec.newEvent.endingTime" id="endingTime" placeholder="Ending Time"/>
+<input type="date" ng-model="newEvent.date" id="date" placeholder="Starting Time"/><br>
+<label for="starting">Starting Time: </label>
+<input type="time" ng-model="newEvent.starting" id="starting" placeholder="Starting Time"/><br>
+<label for="ending">Ending Time: </label>
+<input type="time" ng-model="newEvent.ending" id="ending" placeholder="Ending Time"/><br>
 <label for="description">Description: </label>
-<input type="text" ng-model="ec.newEvent.description" id="description" placeholder="Description"/>
+<input type="text" ng-model="newEvent.event_description" id="description" placeholder="Description"/><br>
 
-<md-button md-raised ng-click="ec.addEvent()">Submit</button>
+<md-button class="md-raised md-primary" ng-click="ec.addEvent(newEvent)">Submit</button>
 
 </div>

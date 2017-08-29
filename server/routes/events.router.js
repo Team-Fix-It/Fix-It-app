@@ -43,7 +43,7 @@ router.get('/', function(req, res){
 }); // end of GET
 
 // Create a new event
-    router.post('/create/', function(req, res){
+    router.post('/create', function(req, res){
       var ev = req.body;
       console.log('Post route called to event of', ev);
       // errorConnecting is bool, db is what we query against,

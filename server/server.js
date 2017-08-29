@@ -7,6 +7,7 @@ var passport = require('./strategy/auth.js');
 
 // Route includes
 var indexRouter = require('./routes/index.router');
+var eventsRouter = require('./routes/events.router');
 
 var port = process.env.PORT || 5000;
 
@@ -27,6 +28,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // Serve back static files
 app.use(express.static('./server/public'));
+
+app.use('/events', eventsRouter);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);

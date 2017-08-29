@@ -8,6 +8,9 @@ var passport = require('./strategy/auth.js');
 // Route includes
 var indexRouter = require('./routes/index.router');
 
+
+var volunteerRouter = require('./routes/volunteer.router');
+
 var port = process.env.PORT || 5000;
 
 passport.serializeUser(function(user, done) {

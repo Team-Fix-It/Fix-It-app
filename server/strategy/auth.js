@@ -45,7 +45,8 @@ passport.use(new GoogleStrategy({
     clientID:     "396924246406-bgm6bms48jd1r6eph6vr6j2ipt20v52r.apps.googleusercontent.com",
     clientSecret: "BYc0D8vtcrmRfbESq45McDPL",
     callbackURL: "http://localhost:5000/auth/google/callback",
-    passReqToCallback   : true
+    passReqToCallback   : true,
+    prompt: "select_account"
   },function(req, accessToken, refreshToken, profile, done){
       console.log("THIS IS THE PROFILE", profile);
       console.log("THIS IS THE PROFILE ID", profile.id);

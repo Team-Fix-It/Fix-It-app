@@ -1,0 +1,38 @@
+<div class="container">
+
+  <md-input-container>
+            <label>Sort Events</label>
+            <md-select ng-model="">
+              <md-option ng-repeat="event in ec.events" ng-value="" ng-disabled="">
+                {{}}
+              </md-option>
+            </md-select>
+  </md-input-container>
+
+  <h2>Events Table</h2>
+  <p>Our event history can be viewed here</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Fix-It February</td>
+        <td>Minneapolis</td>
+        <td>02/03/2017</td>
+        <td>5:00 PM</td>
+        <td>8:00 PM</td>
+        <td><md-button class="md-raised">Edit</md-button></td>
+        <td><md-button class="md-raised">Delete</md-button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

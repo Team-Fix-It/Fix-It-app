@@ -13,6 +13,10 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: '/views/templates/admin/newEvent.html',
     controller: 'EventController as ec',
   })
+  .when('/eventlist', {
+    templateUrl: '/views/templates/admin/eventList.html',
+    controller: 'EventController as ec',
+  })
     .otherwise({
       redirectTo: 'home'
     });

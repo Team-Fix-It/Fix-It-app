@@ -1,6 +1,6 @@
 Database Name: fix-it_tech
 
-Last Updated: 8/28 @ 4:44pm
+Last Updated: 8/29 @ 10:44am
 
 CREATE TABLE volunteers (
     id serial PRIMARY KEY,
@@ -76,7 +76,7 @@ CREATE TABLE email (
 
 --Volunteer Dummy Data
 INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
-('Fordo', 'Baggins', 'fordo@gmail.com', '612-123-4567', 'The Shire', 2, 'active');
+('Frodo', 'Baggins', 'fordo@gmail.com', '612-123-4567', 'The Shire', 2, 'active');
 
 INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
 ('Legolas', 'Too good for a last name', 'legolas@yahoo.com', '612-456-4567', 'Elves of Northern Mirkwood', 2, 'inactive');

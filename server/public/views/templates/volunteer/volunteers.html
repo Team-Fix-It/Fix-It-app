@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Company</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Skills</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="people in vc.volunteersObject">
+          <td>{{people.first_name}}</td>
+          <td>{{people.last_name}}</td>
+          <td>{{people.email}}</td>
+          <td><td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

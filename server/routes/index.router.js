@@ -5,10 +5,12 @@ var path = require('path');
 
 router.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
 
-router.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/#/home',
-  failureRedirect: '/#/home'
-}));
+router.get('/auth/google/callback',
+  passport.authenticate('google'),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 // Handle index file separately
 // Also catches any other request not explicitly matched elsewhere

@@ -14,11 +14,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="people in vc.volunteersObject">
+        <tr ng-repeat="people in vc.volunteersObject.volunteers">
           <td>{{people.first_name}}</td>
           <td>{{people.last_name}}</td>
           <td>{{people.email}}</td>
-          <td><td>
+          <td>{{people.phone}}<td>
+          <td>{{people.organization}}<td>
+          <td>{{people.role}}<td>
+          <td>{{people.status}}<td>
+          <td><button type="button" name="button">Skills</button><td>
           </tr>
         </tbody>
       </table>

@@ -1,0 +1,21 @@
+<!--Only ADMIN can add a new volunteer to the database-->
+<div class="addVolunteer">
+
+<label for="first-name">First Name: </label>
+<input type="text" ng-model="volunteer.first_name" id="firstName" placeholder="First Name"/><br>
+<label for="last-name">Last Name: </label>
+<input type="text" ng-model="volunteer.last_name" id="lastName" placeholder="Last Name"/><br>
+<label for="email">Email: </label>
+<input type="text" ng-model="volunteer.email" id="email" placeholder="Email"/><br>
+<label for="phone">Phone: </label>
+<input type="text" ng-model="volunteer.phone" id="phone" placeholder="Phone"/><br>
+<label for="organization">Organization: </label>
+<input type="text" ng-model="volunteer.organization" id="organization" placeholder="Organization"/><br>
+<label for="role">Role: </label>
+<input type="text" ng-model="volunteer.role" id="role" placeholder="Role"/><br>
+<label for="status">Status: </label>
+<input type="text" ng-model="volunteer.status" id="status" placeholder="Status"/><br>
+
+<md-button class="md-raised md-primary" ng-click="vc.addVolunteer(volunteer)">Submit</button>
+
+</div>

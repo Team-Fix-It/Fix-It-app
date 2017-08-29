@@ -1,7 +1,8 @@
-myApp.controller('EventController', function($location, $http, UserAuthService) {
+myApp.controller('EventController', function($location, $http, UserAuthService, EventService) {
   console.log('EventController loaded');
   var vm = this;
   vm.Service = UserAuthService;
+  vm.data = EventService.data;
 
   getEvents();
 

@@ -1,7 +1,8 @@
-myApp.controller('EventController', function($location, $http, UserAuthService) {
+myApp.controller('EventController', function($location, $http, UserAuthService, EventService) {
   console.log('EventController loaded');
   var vm = this;
   vm.Service = UserAuthService;
+  vm.data = EventService.data;
 
   getEvents();
 
@@ -19,8 +20,8 @@ myApp.controller('EventController', function($location, $http, UserAuthService) 
   vm.editEvent = function(selectedEvent){
     console.log( 'in editEvents functon', selectedEvent);
     // ajax call to server to get tasks
-    $http.put('/events/edit', vm.data).then(function(selectedEvent){
-      editEvent();
+    $http.put('/events/edit', selectedEvent).then(function(selectedEvent){
+      getEvents();
     }); // end success
   }; // end editEvent
 

@@ -1,0 +1,64 @@
+<div class="container">
+  <!--
+  <md-input-container>
+  <label>Sort Events</label>
+  <md-select ng-model="">
+  <md-option ng-repeat="event in ec.events" ng-value="" ng-disabled="">
+  {{}}
+</md-option>
+</md-select>
+</md-input-container> -->
+
+<h2>Events Table</h2>
+<p>Our event history can be viewed here</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="event in ec.eventObject.events">
+      <!-- Table Columns that are now Xeditable -->
+      <td class=" hidden-sm hidden-xs">
+        <span ng-show="!eventform.$visible"  editable-text="event.event_name" e-class="event_name" e-form="eventform" class="hidden-sm hidden-xs" >{{event.event_name}}</span>
+      </td>
+      <td class=" hidden-sm hidden-xs">
+        <span ng-show="!eventform.$visible"  editable-text="event.event_location" e-class="event_location" e-form="eventform" class="hidden-sm hidden-xs" >{{event.event_location}}</span>
+      </td>
+      <td class=" hidden-sm hidden-xs">
+        <span ng-show="!eventform.$visible"  editable-text="event.event_date" e-ui-mask="mm/dd/yyyy" e-class="event_date" e-form="eventform" class="hidden-sm hidden-xs" >{{event.event_date}}</span>
+      </td>
+      <td class=" hidden-sm hidden-xs">
+        <span ng-show="!eventform.$visible"  editable-text="event.starting_time" e-class="starting_time" e-form="eventform" class="hidden-sm hidden-xs" >{{event.starting_time}}</span>
+      </td>
+      <td class=" hidden-sm hidden-xs">
+        <span ng-show="!eventform.$visible"  editable-text="event.ending_time" e-class="ending_time" e-form="eventform" class="hidden-sm hidden-xs" >{{event.ending_time}}</span>
+      </td>
+      <!-- Action Buttons -->
+      <td class="hidden-sm hidden-xs">
+        <form onaftersave="ec.editEvent(event)" editable-form name="eventform" ng-show="eventform.$visible" >
+          <button type="submit" ng-disabled="eventform.$waiting" class="btn btn-link">
+            Save
+          </button>
+          <button type="button" ng-disabled="eventform.$waiting" ng-click="eventform.$cancel()" class="btn btn-link">
+            Cancel
+          </button>
+        </form>
+        <div ng-show="!eventform.$visible">
+          <button type="button" class="btn btn-link" ng-click="eventform.$show()">
+            Edit
+            <button type="button" class="btn btn-link" name="button" ng-click="ec.deleteThisEvent(event)">
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -94,10 +94,10 @@ router.post('/create/', function(req, res){
         // We connected to the database!!!
         // Now we're going to GET things from the db
         var queryText = 'UPDATE "events" SET "event_name"=$1, "event_location"=$2, "event_description"=$3, ' +
-        '"starting"=$3, "ending"=$4, "date"=$5 WHERE "id"= $6' ;
+        '"starting_time"=$4, "ending_time"=$5, "event_date"=$6 WHERE "id"= $7' ;
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText,[details.selectedEvent.event_name, details.selectedEvent.event_description, details.selectedEvent.starting,
-          details.selectedEvent.ending, details.selectedEvent.date, details.selectedEvent.id], function(errorMakingQuery, result){
+        db.query(queryText,[details.event_name, details.event_location, details.event_description, details.starting_time,
+          details.ending_time, details.event_date, details.id], function(errorMakingQuery, result){
             done();
             if(errorMakingQuery) {
               console.log('Attempted to query with', queryText);

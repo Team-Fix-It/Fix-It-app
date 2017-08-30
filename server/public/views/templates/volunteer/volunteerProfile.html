@@ -1,0 +1,138 @@
+<div class="volunteerProfile">
+<h1>Fix-It - Setup Your Volunteer Profile!</h1>
+
+<label for="first_name">First Name: </label>
+<input type="text" ng-model="newVolunteer.first_name" id="first_name" placeholder="First Name"/>
+<label for="last_name">Last Name: </label>
+<input type="text" ng-model="newVolunteer.last_name" id="last_name" placeholder="Last Name"/>
+<label for="email">Email: </label>
+<input type="email" ng-model="newVolunteer.email" id="email" placeholder="Email"/><br>
+<label for="phone">Phone: </label>
+<input type="text" ng-model="newVolunteer.phone" id="phone" placeholder="Phone"/>
+<label for="organization">Organization: </label>
+<input type="text" ng-model="newVolunteer.organization" id="organization" placeholder="Organization"/><br>
+<label for="heard_about">How did you hear about Fix-it? </label>
+<input type="text" ng-model="newVolunteer.heard_about" id="heard_about"/><br>
+<label for="follow_up">Are you willing to consider follow-up events? </label>
+<input type="text" ng-model="newVolunteer.follow_up" id="follow_up"/><br>
+<label for="why_volunteer">Why are you interested in volunteering with Fix-It? </label>
+<input type="text" ng-model="newVolunteer.why_volunteer" id="why_volunteer"/><br>
+<label for="previous_experience">Do you have previous IT experience? If so, what? </label>
+<input type="text" ng-model="newVolunteer.previous_experience" id="previous_experience"/><br>
+
+<h2>What are your current tech skills?</h2>
+<md-radio-group ng-model="vc.skill.windows" layout="row">
+<div flex style="max-width:400px;" layout-align="start center">Windows</div>
+<md-radio-button name="windows" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="windows" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="windows" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="windows" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.mac" layout="row">
+<div flex style="max-width:400px;">Mac OS</div>
+<md-radio-button name="mac" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="mac" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="mac" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="mac" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.linux" layout="row">
+<div flex style="max-width:400px;">Linux</div>
+<md-radio-button name="linux" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="linux" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="linux" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="linux" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.data" layout="row">
+<div flex style="max-width:400px;">Data Back Up and Recovery</div>
+<md-radio-button name="data" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="data" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="data" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="data" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.malware" layout="row">
+<div flex style="max-width:400px;">Malware, Anti-Virus</div>
+<md-radio-button name="malware" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="malware" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="malware" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="malware" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.security" layout="row">
+<div flex style="max-width:400px;">Security and User Privacy</div>
+<md-radio-button name="security" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="security" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="security" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="security" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.system" layout="row">
+<div flex style="max-width:400px;">System Performance</div>
+<md-radio-button name="system" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="system" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="system" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="system" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.user" layout="row">
+<div flex style="max-width:400px;">User Support for Email, Internet, MS Office, Google Apps</div>
+<md-radio-button name="user" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="user" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="user" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="user" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.hardware" layout="row">
+<div flex style="max-width:400px;">Hardware Repair and Peripheral Connections</div>
+<md-radio-button name="hardware" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="hardware" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="hardware" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="hardware" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.smartphone" layout="row">
+<div flex style="max-width:400px;">Smartphone Repair and User Support</div>
+<md-radio-button name="smartphone" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="smartphone" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="smartphone" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="smartphone" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.network" layout="row">
+<div flex style="max-width:400px;">Network</div>
+<md-radio-button name="network" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="network" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="network" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="network" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.database" layout="row">
+<div flex style="max-width:400px;">Database</div>
+<md-radio-button name="database" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="database" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="database" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="database" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.programming" layout="row">
+<div flex style="max-width:400px;">Programming</div>
+<md-radio-button name="programming" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="programming" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="programming" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="programming" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.webDevelopment" layout="row">
+<div flex style="max-width:400px;">Web Development</div>
+<md-radio-button name="webDevelopment" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="webDevelopment" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="webDevelopment" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="webDevelopment" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.projectManagement" layout="row">
+<div flex style="max-width:400px;">Project Management</div>
+<md-radio-button name="projectManagement" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="projectManagement" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="projectManagement" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="projectManagement" value="4">None</md-radio-button>
+</md-radio-group>
+<md-radio-group ng-model="vc.skill.eventManagement" layout="row">
+<div flex style="max-width:400px;">Event Management</div>
+<md-radio-button name="eventManagement" value="1">High (3 or more years)</md-radio-button>
+<md-radio-button name="eventManagement" value="2">Medium (1 to 3 years)</md-radio-button>
+<md-radio-button name="eventManagement" value="3">Low (1 year or less)</md-radio-button>
+<md-radio-button name="eventManagement" value="4">None</md-radio-button>
+</md-radio-group>
+<md-button class="md-raised md-primary">Create Your Profile!</md-button>
+
+</div>

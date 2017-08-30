@@ -1,6 +1,6 @@
 Database Name: fix-it_tech
 
-Last Updated: 8/29 @ 10:44am
+Last Updated: 8/29 @ 3:26pm
 
 CREATE TABLE volunteers (
     id serial PRIMARY KEY,
@@ -12,7 +12,11 @@ CREATE TABLE volunteers (
     role integer,
     status character varying,
     created timestamp DEFAULT current_timestamp,
-    modified timestamp DEFAULT current_timestamp
+    modified timestamp DEFAULT current_timestamp,
+    heard_about character varying(200),
+    follow_up character varying(20),
+    why_volunteer character varying(200),
+    previous_experience character varying(200)
 );
 
 ALTER TABLE volunteers ALTER COLUMN role SET DEFAULT 2;

@@ -16,13 +16,8 @@ var userRouter = require('./routes/user.router');
 
 var port = process.env.PORT || 5000;
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
+// Passport Session Configuration
+app.use(sessionConfig);
 
 app.use(passport.initialize());
 app.use(passport.session());

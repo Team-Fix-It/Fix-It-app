@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
     // send back user object from database
     console.log('logged in', req.user);
     var userInfo = {
-      username : req.user.username,
+      email : req.user.email,
       role: req.user.role
     };
     res.send(userInfo);
@@ -26,9 +26,11 @@ router.get('/', function(req, res) {
 
 // clear all server session information about this user
 router.get('/logout', function(req, res) {
+  console.log('req.user before logout:', req.user);
   // Use passport's built-in method to log out the user
   console.log('Logged out');
   req.logOut();
+  console.log('req.user after logout:', req.user);
   res.sendStatus(200);
 });
 

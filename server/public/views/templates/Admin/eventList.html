@@ -19,6 +19,7 @@
       <th>Date</th>
       <th>Start Time</th>
       <th>End Time</th>
+      <th>Check In</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -40,6 +41,7 @@
       <td class=" hidden-sm hidden-xs">
         <span ng-show="!eventform.$visible"  editable-text="event.ending_time" e-class="ending_time" e-form="eventform" class="hidden-sm hidden-xs" >{{event.ending_time}}</span>
       </td>
+      <td><button type="button" name="button" ng-click="ec.storeThisEvent(event)">Check In</button></td>
       <!-- Action Buttons -->
       <td class="hidden-sm hidden-xs">
         <form onaftersave="ec.editEvent(event)" editable-form name="eventform" ng-show="eventform.$visible" >

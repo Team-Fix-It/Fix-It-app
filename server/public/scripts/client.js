@@ -9,7 +9,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: '/views/templates/home.html',
     controller: 'HomeController as hc',
   })
-  .when('/events', {
+  .when('/events/add', {
     templateUrl: '/views/templates/admin/newEvent.html',
     controller: 'EventController as ec',
   })
@@ -17,7 +17,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: '/views/templates/volunteer/volunteers.html',
     controller: 'VolunteersController as vc',
   })
-  .when('/eventlist', {
+  .when('/events', {
     templateUrl: '/views/templates/admin/eventList.html',
     controller: 'EventController as ec',
   })

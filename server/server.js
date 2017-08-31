@@ -14,6 +14,7 @@ var eventsRouter = require('./routes/events.router');
 
 var userRouter = require('./routes/user.router');
 
+
 var port = process.env.PORT || 5000;
 
 // Passport Session Configuration

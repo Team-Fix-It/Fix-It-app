@@ -8,3 +8,17 @@
 </div>
 <!-- <a href="#" ng-click="hc.service.logout();">Sign out</a> -->
 <button class="btn btn-default" ng-click="hc.service.logout()">Log Out</button>
+
+<!--Landing page Stuff-->
+<h1>Fix-It</h1>
+<md-button class="md-raised md-primary" type="button" name="button">Sign-Up To Volunteer</md-button>
+<md-button class="md-raised md-primary" type="button" name="button">Subscribe To Our Newsletter</md-button>
+
+  <md-subheader class="md-no-sticky">Upcoming Events</md-subheader>
+  <md-list-item class="secondary-button-padding" ng-repeat="event in hc.eventObject.events"
+  ng-if="event.event_date >= today">
+    <p>{{event.event_name}}</p>
+    <p>{{event.event_location}}</p>
+    <p>{{event.event_date | date}}</p>
+    <md-button class="md-secondary" ng-click="doSecondaryAction($event)">View Details</md-button>
+  </md-list-item>

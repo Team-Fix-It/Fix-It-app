@@ -13,6 +13,10 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: '/views/templates/admin/newEvent.html',
     controller: 'EventController as ec',
   })
+  .when('/events/checkIn', {
+    templateUrl: '/views/templates/admin/eventCheckIn.html',
+    controller: 'EventCheckInController as ecic',
+  })
   .when('/volunteers', {
     templateUrl: '/views/templates/volunteer/volunteers.html',
     controller: 'VolunteersController as vc',

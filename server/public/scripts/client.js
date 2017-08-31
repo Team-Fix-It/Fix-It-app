@@ -20,7 +20,7 @@ myApp.config(function($routeProvider, $locationProvider) {
 
   .when('/volunteerProfile', {
     templateUrl: '/views/templates/volunteer/volunteerProfile.html',
-    controller: 'VolunteersController as vs',
+    controller: 'VolunteersController as vc',
   })
   .when('/volunteers/add', {
     templateUrl: '/views/templates/admin/addVolunteers.html',

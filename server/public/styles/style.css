@@ -55,6 +55,12 @@ body, html {
   border-radius: 0px;
   font-weight: bold;
 }
+._md-nav-button-text {
+  color: #00B8D4;
+}
+md-nav-bar md-nav-ink-bar {
+  background: #00B8D4
+}
 
 ul {
   list-style-type: none;

@@ -4,13 +4,15 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
 
   vm.event = 'Event Name';
   vm.Service = UserAuthService;
-  vm.volunteers = ['Alec', 'Anne', 'Emily', 'Ben'];
   vm.isDisabled = false;
   vm.simulateQuery = false;
   vm.isDisabled = false;
+  vm.allVolunteers = '';
+  vm.volunteers = loadAll();
+  vm.verbose = false;
 
   // list of `state` value/display objects
-  vm.volunteers = loadAll();
+
   vm.querySearch   = querySearch;
   vm.selectedItemChange = selectedItemChange;
   vm.searchTextChange   = searchTextChange;
@@ -18,6 +20,8 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
   vm.volunteersObject = {};
 
   getVolunteers();
+
+  console.log('vm.allVolunteers:', vm.allVolunteers);
 
   function newVolunteer(volunteer) {
     alert("Sorry!" + volunteer + " isn't currently in the database. You can add them now.");
@@ -32,6 +36,9 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
    * remote dataservice call.
    */
   function querySearch (query) {
+    if (vm.verbose) {
+      console.log('all volunteers in query:', vm.allVolunteers);
+    }
     var results = query ? vm.volunteers.filter( createFilterFor(query) ) : vm.volunteers,
         deferred;
     if (vm.simulateQuery) {
@@ -44,7 +51,9 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
   }
 
   function searchTextChange(text) {
-    $log.info('Text changed to ' + text);
+    if (vm.verbose) {
+      $log.info('Text changed to ' + text);
+    }
   }
 
   function selectedItemChange(item) {
@@ -55,9 +64,7 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
    * Build `states` list of key/value pairs
    */
   function loadAll() {
-    var allVolunteers = 'Alec, Anne, Emily, Ben';
-
-    return allVolunteers.split(/, +/g).map( function (volunteer) {
+    return vm.allVolunteers.split(/, +/g).map( function (volunteer) {
       return {
         value: volunteer.toLowerCase(),
         display: volunteer
@@ -72,7 +79,8 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
     var lowercaseQuery = angular.lowercase(query);
 
     return function filterFn(volunteer) {
-      return (volunteer.value.indexOf(lowercaseQuery) === 0);
+      return (volunteer.value.indexOf(lowercaseQuery) >= 0);
+      // return (volunteer.value.indexOf(lowercaseQuery) === 0);
     };
   }
 
@@ -80,8 +88,19 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
     console.log( 'in getVolunteers function' );
     // ajax call to server to get tasks
     $http.get('/volunteers').then(function(response){
+      var allVolunteers = '';
       vm.volunteersObject = response.data;
+      for (var i = 0; i < vm.volunteersObject.volunteers.length; i++) {
+        if (i != (vm.volunteersObject.volunteers.length - 1)) {
+          allVolunteers = allVolunteers + vm.volunteersObject.volunteers[i].first_name + ' ' + vm.volunteersObject.volunteers[i].last_name + ', ';
+        } else if (i == (vm.volunteersObject.volunteers.length - 1)) {
+          allVolunteers = allVolunteers + vm.volunteersObject.volunteers[i].first_name + ' ' + vm.volunteersObject.volunteers[i].last_name;
+        }
+      }
+      console.log('all volunteers for autocomplete:', allVolunteers);
       console.log('events.controller vmvolunteersObject', vm.volunteersObject);
+      vm.allVolunteers = allVolunteers;
+      vm.volunteers = loadAll();
     }); // end success
   } // end getEvents
 });

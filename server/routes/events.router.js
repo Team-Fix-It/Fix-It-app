@@ -183,4 +183,37 @@ router.post('/create/', function(req, res){
         }); // end pool
     });
 
+    router.get('/attendance/:id', function(req, res) {
+      var eventId = req.params.id;
+      console.log('getting attendance:', eventId);
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          //method that passport puts on the req object returns T or F
+          // Now we're going to GET things from the db
+          // var queryText = 'SELECT * FROM "attendance" WHERE "event_id" = $1;';
+          var queryText = 'SELECT * FROM "attendance" JOIN "volunteers" ON "attendance"."volunteer_id" = "volunteers"."id" WHERE "event_id" = $1;';
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText, [eventId], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query:', errorMakingQuery);
+              res.sendStatus(500);
+            } else {
+              // console.log(result);
+              // Send back the results
+              var data = {events: result.rows};
+              res.send(data);
+            }
+          }); // end query
+
+        } // end else
+      }); // end pool
+    });
+
+    // SELECT * FROM "orders" JOIN "line_items" ON "orders"."id" = "line_items"."order_id";
+
     module.exports = router;

@@ -26,11 +26,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Jim</td>
-      <td>Jim</td>
-      <td>Jim</td>
-      <td>Jim</td>
+    <tr ng-repeat="volunteer in ecic.currentAttendance.events">
+      <td>{{volunteer.first_name}}</td>
+      <td>{{volunteer.last_name}}</td>
+      <td>{{volunteer.email}}</td>
+      <td>Delete</td>
     </tr>
   </tbody>
 

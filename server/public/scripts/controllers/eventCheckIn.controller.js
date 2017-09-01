@@ -21,10 +21,21 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
   vm.volunteersObject = {};
   vm.attendanceObject = {};
   vm.addAttendance = addAttendance;
+  vm.currentAttendance = {};
 
   getVolunteers();
+  getCurrentAttendance();
 
-  console.log('vm.allVolunteers:', vm.allVolunteers);
+  if (vm.verbose) {
+    console.log('vm.allVolunteers:', vm.allVolunteers);
+  }
+
+  function getCurrentAttendance() {
+    $http.get('/events/attendance/' + vm.eventService.currentEvent.id).then(function(response) {
+      console.log('response on get attendance:', response);
+      vm.currentAttendance = response.data;
+    });
+  }
 
   function newVolunteer(volunteer) {
     alert("Sorry!" + volunteer + " isn't currently in the database. You can add them now.");
@@ -63,14 +74,18 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
     $log.info('Item changed to ' + JSON.stringify(item));
     vm.attendanceObject.volunteer = item;
     vm.attendanceObject.event = vm.eventService.currentEvent;
-    console.log('vm.attendanceObject:', vm.attendanceObject);
+    if (vm.verbose) {
+      console.log('vm.attendanceObject:', vm.attendanceObject);
+    }
 
   }
 
   function addAttendance() {
-    console.log('adding attendance');
     $http.post('/events/attendance', vm.attendanceObject).then( function(response) {
-      console.log('Recieved a response from the attendance POST route:', response);
+      if (vm.verbose) {
+        console.log('Recieved a response from the attendance POST route:', response);
+      }
+      getCurrentAttendance();
     });
   }
 
@@ -88,7 +103,9 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
       currentVolunteer.id = vm.volunteersObject.volunteers[i].id;
       volunteers.push(currentVolunteer);
     }
-    console.log('volunteers:', volunteers);
+    if (vm.verbose) {
+      console.log('volunteers:', volunteers);
+    }
     return volunteers;
   }
 
@@ -105,7 +122,6 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
   }
 
   function getVolunteers(){
-    console.log( 'in getVolunteers function' );
     // ajax call to server to get tasks
     $http.get('/volunteers').then(function(response){
       var allVolunteers = '';
@@ -117,8 +133,10 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
           allVolunteers = allVolunteers + vm.volunteersObject.volunteers[i].first_name + ' ' + vm.volunteersObject.volunteers[i].last_name;
         }
       }
-      console.log('all volunteers for autocomplete:', allVolunteers);
-      console.log('events.controller vmvolunteersObject', vm.volunteersObject);
+      if (vm.verbose) {
+        console.log('all volunteers for autocomplete:', allVolunteers);
+        console.log('events.controller vmvolunteersObject', vm.volunteersObject);
+      }
       vm.allVolunteers = allVolunteers;
       vm.volunteers = loadAll();
     }); // end success

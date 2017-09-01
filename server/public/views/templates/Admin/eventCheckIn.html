@@ -1,23 +1,25 @@
 <h1>Who attended this event?</h1>
 <h3>{{ecic.event}}</h3>
 <md-autocomplete
-          ng-disabled="ecic.isDisabled"
-          md-selected-item="ecic.selectedItem"
-          md-search-text-change="ecic.searchTextChange(ecic.searchText)"
-          md-search-text="ecic.searchText"
-          md-selected-item-change="ecic.selectedItemChange(item)"
-          md-items="item in ecic.querySearch(ecic.searchText)"
-          md-item-text="item.display"
-          md-min-length="0"
-          placeholder="Which volunteer attended this event?">
-        <md-item-template>
-          <span md-highlight-text="ecic.searchText" md-highlight-flags="^i">{{item.display}}</span>
-        </md-item-template>
-        <md-not-found>
-          No states matching "{{ecic.searchText}}" were found.
-          <a ng-click="ecic.newVolunteer(ecic.searchText)">Create a new one!</a>
-        </md-not-found>
-      </md-autocomplete>
+    ng-disabled="ecic.isDisabled"
+    md-selected-item="ecic.selectedItem"
+    md-search-text-change="ecic.searchTextChange(ecic.searchText)"
+    md-search-text="ecic.searchText"
+    md-selected-item-change="ecic.selectedItemChange(item)"
+    md-items="item in ecic.querySearch(ecic.searchText)"
+    md-item-text="item.display"
+    md-min-length="0"
+    placeholder="Which volunteer attended this event?">
+  <md-item-template>
+    <span md-highlight-text="ecic.searchText" md-highlight-flags="^i">{{item.display}}</span>
+  </md-item-template>
+  <!-- <md-not-found>
+    No states matching "{{ecic.searchText}}" were found.
+    <a ng-click="ecic.newVolunteer(ecic.searchText)">Create a new one!</a>
+  </md-not-found> -->
+</md-autocomplete>
+
+<md-button class="md-primary md-raised">Add Volunteer to Attendance</md-button>
 
 <!-- <md-autocomplete
           ng-disabled="ecic.isDisabled"

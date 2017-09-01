@@ -1,14 +1,15 @@
-myApp.controller('EventCheckInController', function($location, $http, UserAuthService, $timeout, $q, $log) {
+myApp.controller('EventCheckInController', function($location, $http, EventService, UserAuthService, $timeout, $q, $log) {
   console.log('EventCheckInController loaded');
   var vm = this;
 
   vm.event = 'Event Name';
   vm.Service = UserAuthService;
+  vm.eventService = EventService;
   vm.isDisabled = false;
   vm.simulateQuery = false;
   vm.isDisabled = false;
   vm.allVolunteers = '';
-  vm.volunteers = loadAll();
+  // vm.volunteers = loadAll();
   vm.verbose = false;
 
   // list of `state` value/display objects
@@ -18,6 +19,7 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
   vm.searchTextChange   = searchTextChange;
   vm.newVolunteer = newVolunteer;
   vm.volunteersObject = {};
+  vm.attendanceObject = {};
 
   getVolunteers();
 
@@ -58,18 +60,27 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
 
   function selectedItemChange(item) {
     $log.info('Item changed to ' + JSON.stringify(item));
+    vm.attendanceObject.volunteer = item;
+    vm.attendanceObject.event = vm.eventService.currentEvent;
+    console.log('vm.attendanceObject:', vm.attendanceObject);
   }
 
   /**
    * Build `states` list of key/value pairs
    */
   function loadAll() {
-    return vm.allVolunteers.split(/, +/g).map( function (volunteer) {
-      return {
-        value: volunteer.toLowerCase(),
-        display: volunteer
-      };
-    });
+    var volunteers = [];
+    for (var i = 0; i < vm.volunteersObject.volunteers.length; i++) {
+      var currentVolunteer = {};
+      var name = vm.volunteersObject.volunteers[i].first_name + ' ' + vm.volunteersObject.volunteers[i].last_name;
+      currentVolunteer.value = name.toLowerCase();
+      currentVolunteer.display = name;
+      currentVolunteer.email = vm.volunteersObject.volunteers[i].email;
+      currentVolunteer.id = vm.volunteersObject.volunteers[i].id;
+      volunteers.push(currentVolunteer);
+    }
+    console.log('volunteers:', volunteers);
+    return volunteers;
   }
 
   /**

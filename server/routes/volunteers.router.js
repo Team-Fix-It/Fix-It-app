@@ -80,6 +80,12 @@ router.post('/add', function(req, res){
   // }
 }); // end of POST
 
+
+//Post for the admin to add a new volunteer to the database
+router.put('/edit', function(req, res){
+  var av = req.body;
+  console.log('Post route called to', av);
+
 //post route for volunteer to add their own profile
 router.post('/newVolunteer', function(req, res){
   var newVolunteer = req.body;
@@ -107,7 +113,9 @@ router.post('/newVolunteer', function(req, res){
           } else {
             // console.log(result);
             // Send back the results
+
             var data = {newVolunteer: result.rows};
+
             res.send(data);
           }
         }); // end query
@@ -155,7 +163,5 @@ router.post('/skill', function(req, res){
   //   res.sendStatus(401);
   // }
 }); // end of POST
-
-
 
 module.exports = router;

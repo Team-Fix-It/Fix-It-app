@@ -8,3 +8,46 @@
 </div>
 <!-- <a href="#" ng-click="hc.service.logout();">Sign out</a> -->
 <button class="btn btn-default" ng-click="hc.service.logout()">Log Out</button>
+
+<!--Landing page Stuff-->
+<h1>Fix-It</h1>
+<md-button class="md-raised md-primary" type="button" name="button">Sign-Up To Volunteer</md-button>
+  <div class="dialog-newsletter-content" layout="row" layout-wrap layout-margin layout-align="center">
+<md-button class="md-raised md-primary" type="button" name="button" ng-click="hc.newsletterSignup(ev)">Subscribe To Our Newsletter</md-button>
+</div>
+
+<!--Prompt ?-->
+<div style="visibility: hidden">
+    <div class="md-dialog-container" id="myDialog">
+      <md-dialog layout-padding>
+        <h2>Pre-Rendered Dialog</h2>
+        <p>
+          This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its
+          template on each opening.
+          <br/><br/>
+          The Dialog Element is a static element in the DOM, which is just visually hidden.<br/>
+          Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close
+          we restore the element back into its old DOM position.
+        </p>
+      </md-dialog>
+    </div>
+  </div>
+
+<!--Event Cards-->
+<md-card ng-repeat="event in hc.eventObject.events">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{event.event_name}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>Location: {{event.event_location}}</p>
+          <p>Date: {{event.event_date | date}}</p>
+          <p>Time: {{event.starting_time}} - {{event.ending_time}}</p>
+          <p>Description: {{event.event_description}}</p>
+        </md-card-content>
+        <md-card-actions layout="column" layout-align="start">
+          <md-button>Submit A Ticket</md-button>
+          <md-button>Volunteers Login to RSVP</md-button>
+        </md-card-actions>
+      </md-card>

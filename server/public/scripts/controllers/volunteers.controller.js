@@ -27,6 +27,14 @@ getVolunteers();
       }); // end success
     };
 
+
+    vm.updateVolunteer = function (volunteer){
+      console.log( 'in updateVolunteer function' );
+      // ajax call to server to get tasks
+      $http.put('/volunteers', volunteer).then(function(response){
+        console.log('volunteer.controller vm.volunteerObject');
+      }); // end success
+
     vm.volunteerProfileAdd = function (newVolunteer, skill){
       console.log( 'in volunteerProfileAdd' );
       console.log(skill);

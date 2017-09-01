@@ -37,6 +37,21 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: '/views/templates/admin/addVolunteers.html',
     controller: 'VolunteersController as vc',
   })
+  .when('/events/rsvp', {
+    templateUrl: '/views/templates/admin/eventRSVP.html',
+  })
+  .when('/about', {
+    templateUrl: '/views/templates/Footer/about.html',
+    controller: 'VolunteersController as vc',
+  })
+  .when('/resources', {
+    templateUrl: '/views/templates/Footer/resources.html',
+    controller: 'VolunteersController as vc',
+  })
+  .when('/sponsors', {
+    templateUrl: '/views/templates/Footer/sponsors.html',
+    controller: 'VolunteersController as vc',
+  })
     .otherwise({
       redirectTo: 'home'
     });

@@ -148,5 +148,39 @@ router.post('/create/', function(req, res){
       }); // end of DELETE - admin event delete
     });
 
+    router.post('/attendance', function(req, res) {
+      var attendanceObject = req.body;
+      console.log('recieved object on attendance route:', attendanceObject);
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.', req.body);
+          res.sendStatus(500);
+        } else {
+          // if(req.isAuthenticated()) {
+          // We connected to the database!!!
+          // Now we're going to GET things from the db
+          var queryText = 'INSERT INTO "attendance" ("volunteer_id", "event_id")' +
+          ' VALUES ($1, $2);';
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText,[attendanceObject.volunteer.id, attendanceObject.event.id], function(errorMakingQuery, result){
+              done();
+              if(errorMakingQuery) {
+                console.log('Attempted to query with', queryText);
+                console.log('Error making query', errorMakingQuery);
+                res.sendStatus(500);
+              } else {
+                // console.log(result);
+                // Send back the results
+                console.log('result from the db:', result);
+                var data = {attendance: result.rows};
+                res.send(data);
+              }
+            }); // end query
+            // } else {
+            //   res.sendStatus(401);
+            // }
+          } // end if
+        }); // end pool
+    });
 
     module.exports = router;

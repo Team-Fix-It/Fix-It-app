@@ -20,6 +20,7 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
   vm.newVolunteer = newVolunteer;
   vm.volunteersObject = {};
   vm.attendanceObject = {};
+  vm.addAttendance = addAttendance;
 
   getVolunteers();
 
@@ -63,6 +64,14 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
     vm.attendanceObject.volunteer = item;
     vm.attendanceObject.event = vm.eventService.currentEvent;
     console.log('vm.attendanceObject:', vm.attendanceObject);
+
+  }
+
+  function addAttendance() {
+    console.log('adding attendance');
+    $http.post('/events/attendance', vm.attendanceObject).then( function(response) {
+      console.log('Recieved a response from the attendance POST route:', response);
+    });
   }
 
   /**

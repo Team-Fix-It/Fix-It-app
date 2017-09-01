@@ -6,6 +6,11 @@ body, html {
   text-align: center;
 }
 
+.body {
+  text-align: left;
+  color: black;
+}
+
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;

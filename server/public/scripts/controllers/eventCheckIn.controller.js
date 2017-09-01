@@ -109,6 +109,14 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
     return volunteers;
   }
 
+  //Delete an event from the Events table
+  vm.removeAttendance = function(selectedVolunteer){
+    console.log( 'in deleteVolunteers function', selectedVolunteer);
+    $http.delete('/events/attendance/' + selectedVolunteer.id).then(function(response){
+      getCurrentAttendance();
+    }); // end success
+  };// end deleteThisEvent
+
   /**
    * Create filter function for a query string
    */

@@ -30,7 +30,11 @@
       <td>{{volunteer.first_name}}</td>
       <td>{{volunteer.last_name}}</td>
       <td>{{volunteer.email}}</td>
-      <td>Delete</td>
+      <td>
+        <button type="button" class="btn btn-link" name="button" ng-click="ecic.removeAttendance(volunteer)">
+          Remove
+        </button>
+      </td>
     </tr>
   </tbody>
 

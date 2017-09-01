@@ -80,4 +80,88 @@ router.post('/add', function(req, res){
   // }
 }); // end of POST
 
+
+//Post for the admin to add a new volunteer to the database
+router.put('/edit', function(req, res){
+  var av = req.body;
+  console.log('Post route called to', av);
+
+//post route for volunteer to add their own profile
+router.post('/newVolunteer', function(req, res){
+  var newVolunteer = req.body;
+  console.log('Post route called to', newVolunteer);
+  // if(req.isAuthenticated()) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.', req.body);
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
+        // Now we're going to GET things from the db
+        var queryText = 'INSERT INTO "volunteers" ("first_name", "last_name", ' +
+        '"email", "phone", "organization", "role", "status", "heard_about", "follow_up", "why_volunteer", "previous_experience")' +
+            ' VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [newVolunteer.first_name, newVolunteer.last_name, newVolunteer.email, newVolunteer.phone, newVolunteer.organization, newVolunteer.role, newVolunteer.status, newVolunteer.heard_about, newVolunteer.follow_up, newVolunteer.why_volunteer, newVolunteer.previous_experience], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            // console.log(result);
+            // Send back the results
+
+            var data = {newVolunteer: result.rows};
+
+            res.send(data);
+          }
+        }); // end query
+
+      } // end else
+    }); // end pool
+  // } else {
+  //   res.sendStatus(401);
+  // }
+}); // end of POST
+
+//post route for volunteer to add their skill levels
+router.post('/skill', function(req, res){
+  var skill = req.body;
+  console.log('Post route called to', skill);
+  // if(req.isAuthenticated()) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.', req.body);
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
+        // Now we're going to GET things from the db
+        var queryText = 'INSERT INTO "skills" ("skill") VALUES ($1);';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [skill.skill], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            console.log(result);
+            // Send back the results
+            // var data = {skill: result.rows};
+            // res.send(data);
+          }
+        }); // end query
+
+      } // end else
+    }); // end pool
+  // } else {
+  //   res.sendStatus(401);
+  // }
+}); // end of POST
+
 module.exports = router;

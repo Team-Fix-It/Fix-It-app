@@ -1,14 +1,15 @@
-myApp.controller('EventCheckInController', function($location, $http, UserAuthService, $timeout, $q, $log) {
+myApp.controller('EventCheckInController', function($location, $http, EventService, UserAuthService, $timeout, $q, $log) {
   console.log('EventCheckInController loaded');
   var vm = this;
 
   vm.event = 'Event Name';
   vm.Service = UserAuthService;
+  vm.eventService = EventService;
   vm.isDisabled = false;
   vm.simulateQuery = false;
   vm.isDisabled = false;
   vm.allVolunteers = '';
-  vm.volunteers = loadAll();
+  // vm.volunteers = loadAll();
   vm.verbose = false;
 
   // list of `state` value/display objects
@@ -18,10 +19,23 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
   vm.searchTextChange   = searchTextChange;
   vm.newVolunteer = newVolunteer;
   vm.volunteersObject = {};
+  vm.attendanceObject = {};
+  vm.addAttendance = addAttendance;
+  vm.currentAttendance = {};
 
   getVolunteers();
+  getCurrentAttendance();
 
-  console.log('vm.allVolunteers:', vm.allVolunteers);
+  if (vm.verbose) {
+    console.log('vm.allVolunteers:', vm.allVolunteers);
+  }
+
+  function getCurrentAttendance() {
+    $http.get('/events/attendance/' + vm.eventService.currentEvent.id).then(function(response) {
+      console.log('response on get attendance:', response);
+      vm.currentAttendance = response.data;
+    });
+  }
 
   function newVolunteer(volunteer) {
     alert("Sorry!" + volunteer + " isn't currently in the database. You can add them now.");
@@ -58,19 +72,50 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
 
   function selectedItemChange(item) {
     $log.info('Item changed to ' + JSON.stringify(item));
+    vm.attendanceObject.volunteer = item;
+    vm.attendanceObject.event = vm.eventService.currentEvent;
+    if (vm.verbose) {
+      console.log('vm.attendanceObject:', vm.attendanceObject);
+    }
+
+  }
+
+  function addAttendance() {
+    $http.post('/events/attendance', vm.attendanceObject).then( function(response) {
+      if (vm.verbose) {
+        console.log('Recieved a response from the attendance POST route:', response);
+      }
+      getCurrentAttendance();
+    });
   }
 
   /**
    * Build `states` list of key/value pairs
    */
   function loadAll() {
-    return vm.allVolunteers.split(/, +/g).map( function (volunteer) {
-      return {
-        value: volunteer.toLowerCase(),
-        display: volunteer
-      };
-    });
+    var volunteers = [];
+    for (var i = 0; i < vm.volunteersObject.volunteers.length; i++) {
+      var currentVolunteer = {};
+      var name = vm.volunteersObject.volunteers[i].first_name + ' ' + vm.volunteersObject.volunteers[i].last_name;
+      currentVolunteer.value = name.toLowerCase();
+      currentVolunteer.display = name;
+      currentVolunteer.email = vm.volunteersObject.volunteers[i].email;
+      currentVolunteer.id = vm.volunteersObject.volunteers[i].id;
+      volunteers.push(currentVolunteer);
+    }
+    if (vm.verbose) {
+      console.log('volunteers:', volunteers);
+    }
+    return volunteers;
   }
+
+  //Delete an event from the Events table
+  vm.removeAttendance = function(selectedVolunteer){
+    console.log( 'in deleteVolunteers function', selectedVolunteer);
+    $http.delete('/events/attendance/' + selectedVolunteer.id).then(function(response){
+      getCurrentAttendance();
+    }); // end success
+  };// end deleteThisEvent
 
   /**
    * Create filter function for a query string
@@ -85,7 +130,6 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
   }
 
   function getVolunteers(){
-    console.log( 'in getVolunteers function' );
     // ajax call to server to get tasks
     $http.get('/volunteers').then(function(response){
       var allVolunteers = '';
@@ -97,8 +141,10 @@ myApp.controller('EventCheckInController', function($location, $http, UserAuthSe
           allVolunteers = allVolunteers + vm.volunteersObject.volunteers[i].first_name + ' ' + vm.volunteersObject.volunteers[i].last_name;
         }
       }
-      console.log('all volunteers for autocomplete:', allVolunteers);
-      console.log('events.controller vmvolunteersObject', vm.volunteersObject);
+      if (vm.verbose) {
+        console.log('all volunteers for autocomplete:', allVolunteers);
+        console.log('events.controller vmvolunteersObject', vm.volunteersObject);
+      }
       vm.allVolunteers = allVolunteers;
       vm.volunteers = loadAll();
     }); // end success

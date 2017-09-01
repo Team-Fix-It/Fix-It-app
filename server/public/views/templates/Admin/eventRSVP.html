@@ -1,0 +1,157 @@
+<div class="rsvpTable">
+	<h2>RSVP Volunteers</h2>
+	<p>Volunteers who have rsvp'd to this event</p>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Company</th>
+				<th>Role</th>
+				<th>Status</th>
+				<th>Skills</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="people in vc.volunteersObject.volunteers">
+				<td>{{people.first_name}}</td>
+				<td>{{people.last_name}}</td>
+				<td>{{people.email}}</td>
+				<td>{{people.phone}}<td>
+				<td>{{people.organization}}<td>
+				<td>{{people.role}}<td>
+				<td>{{people.status}}<td>
+				<td><button type="button" name="button">Skills</button><td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+<div class="rsvpTable">
+	<h2>RSVP Skills</h2>
+	<p>Technical skills for this event</p>
+<table class="table table-hover">
+	<tr>
+		<td></td>
+		<th>High (3 or more years)</th>
+		<th>Medium (1 to 3 years)</th>
+		<th>Low (1 year or less)</th>
+		<th>Interested in learning</th>
+	</tr>
+	<tr>
+		<th>Windows</th>
+		<td>2</td>
+		<td>1</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<th>Mac OS</th>
+		<td>1</td>
+		<td>5</td>
+		<td></td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<th>Linux</th>
+		<td></td>
+		<td>2</td>
+		<td></td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<th>Data Back Up and Recovery</th>
+		<td>1</td>
+		<td>3</td>
+		<td>3</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<th>Malware, Anti-Virus</th>
+		<td>2</td>
+		<td>1</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<th>Security and User Privacy</th>
+		<td></td>
+		<td></td>
+		<td>4</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<th>System Performance</th>
+		<td>2</td>
+		<td></td>
+		<td></td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<th>User Support for Email, Internet, MS Office, Google Apps</th>
+		<td>2</td>
+		<td>1</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<th>Hardware Repair and Peripheral Connections</th>
+		<td></td>
+		<td></td>
+		<td>1</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<th>Smartphone Repair and User Support</th>
+		<td></td>
+		<td>7</td>
+		<td>2</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<th>Network</th>
+		<td></td>
+		<td>2</td>
+		<td></td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<th>Database</th>
+		<td></td>
+		<td>5</td>
+		<td></td>
+		<td>4</td>
+	</tr>
+	<tr>
+		<th>Programming</th>
+		<td>2</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<th>Web Development</th>
+		<td></td>
+		<td>1</td>
+		<td></td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<th>Project Management</th>
+		<td></td>
+		<td>1</td>
+		<td></td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<th>Event Management</th>
+		<td></td>
+		<td>1</td>
+		<td>3</td>
+		<td>5</td>
+	</tr>
+
+</table>
+
+</div>

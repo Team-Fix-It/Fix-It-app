@@ -21,13 +21,13 @@ getSkills();
       }); // end success
     } // end getEvents
 
-    vm.addVolunteer = function (volunteer){
-      console.log( 'in addVolunteer function' );
-      // ajax call to server to get tasks
-      $http.post('/volunteers/add', volunteer).then(function(response){
-        console.log('volunteer.controller vm.volunteerObject');
-      }); // end success
-    };
+    // vm.addVolunteer = function (volunteer){
+    //   console.log( 'in addVolunteer function' );
+    //   // ajax call to server to get tasks
+    //   $http.post('/volunteers/add', volunteer).then(function(response){
+    //     console.log('volunteer.controller vm.volunteerObject');
+    //   }); // end success
+    // };
 
     vm.volunteerProfileAdd = function (newVolunteer, proficiency){
       console.log( 'in volunteerProfileAdd' );

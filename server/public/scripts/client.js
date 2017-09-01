@@ -46,7 +46,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     controller: 'VolunteersController as vc',
   })
   .when('/sponsors', {
-    templateUrl: '/views/templates/admin/addVolunteers.html',
+    templateUrl: '/views/templates/Footer/sponsors.html',
     controller: 'VolunteersController as vc',
   })
     .otherwise({

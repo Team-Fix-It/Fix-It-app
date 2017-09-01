@@ -136,7 +136,7 @@ router.post('/newVolunteer', function(req, res){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
-            console.log('Error making query');
+            console.log('Error making query:', errorMakingQuery);
             res.sendStatus(500);
           } else {
             console.log('result:', result);
@@ -167,23 +167,26 @@ router.post('/skill', function(req, res){
         console.log('Error connecting to the database.', req.body);
         res.sendStatus(500);
       } else {
+        for (var i = 0; i < skill.proficiency.length; i++) {
         //method that passport puts on the req object returns T or F
         // Now we're going to GET things from the db
-        var queryText = 'INSERT INTO "skills" ("skill") VALUES ($1);';
+        var queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [skill.skill], function(errorMakingQuery, result){
+        db.query(queryText, [skill.proficiency[i].id, skill.volunteerId, skill.proficiency[i].proficiency], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
-            console.log('Error making query');
-            res.sendStatus(500);
+            console.log('Error making query:', errorMakingQuery);
+            // res.sendStatus(500);
           } else {
             console.log(result);
             // Send back the results
             // var data = {skill: result.rows};
             // res.send(data);
           }
-        }); // end query
+        });
+        } // end query
+          res.sendStatus(200);
 
       } // end else
     }); // end pool

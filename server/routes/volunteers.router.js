@@ -82,9 +82,6 @@ router.post('/add', function(req, res){
 
 
 //Post for the admin to add a new volunteer to the database
-router.put('/edit', function(req, res){
-  var av = req.body;
-  console.log('Post route called to', av);
 
 //post route for volunteer to add their own profile
 router.post('/newVolunteer', function(req, res){

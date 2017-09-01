@@ -3,12 +3,14 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
   var vm = this;
 
   vm.proficiencies = ['High','Medium','Low','None','Interested in Learning'];
+  vm.skillsObject = {};
 
   // Hard coded for now but should be the result of a query
-  vm.skills = [{skillid: 1, name: 'Mac Computer', proficiency: 4},
-               {skillid: 2, name: 'Windows Computer', proficiency: 4}];
+  // vm.skills = [{skillid: 1, name: 'Mac Computer', proficiency: 4},
+  //              {skillid: 2, name: 'Windows Computer', proficiency: 4}];
 
 getVolunteers();
+getSkills();
 
   function getVolunteers(){
       console.log( 'in getVolunteers function' );
@@ -27,17 +29,34 @@ getVolunteers();
       }); // end success
     };
 
-    vm.volunteerProfileAdd = function (newVolunteer, skill){
+    vm.volunteerProfileAdd = function (newVolunteer, proficiency){
       console.log( 'in volunteerProfileAdd' );
-      console.log(skill);
+      console.log(proficiency);
       console.log(newVolunteer);
       $http.post('/volunteers/newVolunteer', newVolunteer).then(function(response){
-        console.log('volunteer.controller vm.newVolunteer');
-      });
-      $http.post('/volunteers/skill', skill).then(function(response){
-        console.log('volunteer.controller vm.skill');
+        console.log('response:', response);
+        var newSkillProfile = {};
+        newSkillProfile.proficiency = proficiency;
+        newSkillProfile.volunteerId = response.data.newVolunteer[0].id;
+        console.log('here is the new skill profile:', newSkillProfile);
+        $http.post('/volunteers/skill', newSkillProfile).then(function(response){
+          console.log('volunteer.controller vm.skill');
+        });
       });
 
+
     };
+
+    function getSkills(){
+        console.log( 'in getVolunteers function' );
+        // ajax call to server to get tasks
+        $http.get('/volunteers/getSkills').then(function(response){
+          vm.skillsObject = response.data;
+          for (var i = 0; i < vm.skillsObject.skills.length; i++) {
+            vm.skillsObject.skills[i].proficiency = '4';
+          }
+          console.log('skills object:', vm.skillsObject);
+        }); // end success
+      } // end getEvents
 
 });

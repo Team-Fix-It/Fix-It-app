@@ -21,15 +21,17 @@
 <input type="text" ng-model="newVolunteer.previous_experience" id="previous_experience"/><br>
 
 <h2>What are your current tech skills?</h2>
-
-<md-radio-group ng-model="skill.proficiency" layout="row" ng-repeat="skill in vc.skills">
-<div flex style="max-width:400px;" layout-align="start center">{{skill.name}}</div>
-<md-radio-button name="windows" value="1">High (3 or more years)</md-radio-button>
-<md-radio-button name="windows" value="2">Medium (1 to 3 years)</md-radio-button>
-<md-radio-button name="windows" value="3">Low (1 year or less)</md-radio-button>
-<md-radio-button name="windows" value="4">None</md-radio-button>
-<md-radio-button name="windows" value="5">Interested in Learning</md-radio-button>
+  <md-radio-group ng-model="skill.proficiency" layout="row" ng-repeat="skill in vc.skillsObject.skills">
+  <div flex style="max-width:400px;" layout-align="start center">{{skill.skill}}</div>
+  <md-radio-button name="{{skill.skill}}" value="1">High (3 or more years)</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="2">Medium (1 to 3 years)</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="3">Low (1 year or less)</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="4">None</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="5">Interested in Learning</md-radio-button>
 </md-radio-group>
+
+<md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdd(newVolunteer, vc.skillsObject.skills)">Create Your Profile!</md-button>
+
 <!--<md-radio-group ng-model="skill.windows" layout="row">
 <div flex style="max-width:400px;" layout-align="start center">Windows</div>
 <md-radio-button name="windows" value="1">High (3 or more years)</md-radio-button>
@@ -159,6 +161,6 @@
 <md-radio-button name="eventManagement" value="5">Interested in Learning</md-radio-button>
 </md-radio-group>-->
 
-<md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdd(newVolunteer, skill)">Create Your Profile!</md-button>
+<!-- <md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdd(newVolunteer, skill)">Create Your Profile!</md-button> -->
 
 </div>

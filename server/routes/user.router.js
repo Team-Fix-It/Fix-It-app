@@ -29,9 +29,14 @@ router.get('/logout', function(req, res) {
   console.log('req.user before logout:', req.user);
   // Use passport's built-in method to log out the user
   console.log('Logged out');
-  req.logOut();
-  console.log('req.user after logout:', req.user);
-  res.sendStatus(200);
+  req.session.destroy(function (err) {
+    // res.redirect('/'); //Inside a callback… bulletproof!
+    console.log('req.user after logout:', req.user);
+    res.sendStatus(200);
+  });
+  // req.logOut();
+
+
 });
 
 

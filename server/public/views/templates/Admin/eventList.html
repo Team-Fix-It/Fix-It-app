@@ -22,19 +22,24 @@
     <tr ng-repeat="event in ec.eventObject.events">
       <!-- Table Columns using Xeditable -->
       <td>
-        <span ng-show="!eventform.$visible" editable-text="event.event_name" e-class="event_name" e-form="eventform">{{event.event_name}}</span>
+        <span ng-show="!eventform.$visible" editable-text="event.event_name"
+        e-class="event_name" e-form="eventform">{{event.event_name}}</span>
       </td>
       <td>
-        <span ng-show="!eventform.$visible" editable-text="event.event_location" e-class="event_location" e-form="eventform">{{event.event_location}}</span>
+        <span ng-show="!eventform.$visible" editable-text="event.event_location"
+        e-class="event_location" e-form="eventform">{{event.event_location}}</span>
       </td>
       <td>
-        <span ng-show="!eventform.$visible" editable-text="event.event_date" e-class="event_date" e-form="eventform">{{event.event_date}}</span>
+        <span ng-show="!eventform.$visible" editable-text="event.event_date"
+        e-class="event_date" e-form="eventform">{{event.event_date}}</span>
       </td>
       <td>
-        <span ng-show="!eventform.$visible" editable-text="event.starting_time" e-class="starting_time" e-form="eventform">{{event.starting_time}}</span>
+        <span ng-show="!eventform.$visible" editable-text="event.starting_time"
+        e-class="starting_time" e-form="eventform">{{event.starting_time}}</span>
       </td>
       <td>
-        <span ng-show="!eventform.$visible" editable-text="event.ending_time" e-class="ending_time" e-form="eventform">{{event.ending_time}}</span>
+        <span ng-show="!eventform.$visible" editable-text="event.ending_time"
+        e-class="ending_time" e-form="eventform">{{event.ending_time}}</span>
       </td>
       <td><button type="button" class="btn btn-link" ng-click="ec.storeThisEvent(event)">Check In</button></td>
       <!-- Action Buttons -->

@@ -3,6 +3,15 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
     console.log('HomeController created');
 
     var vm = this;
+    vm.userService = UserAuthService;
+    vm.userObject = UserAuthService.userObject;
+    vm.userUpdate = function (role) {
+      if (UserAuthService.userObject.role == role) {
+        return true;
+      } else {
+        return false;
+      }
+    };
 
     vm.service = UserAuthService;
 
@@ -64,14 +73,9 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
         vm.showNewsletterPrompt();
       };
 
-    // // Post email to email sign-up
-    // vm.addEmail = function (email){
-    //   console.log( 'in addVolunteer function' );
-    //   // ajax call to server to get tasks
-    //   $http.post('/', email).then(function(response){
-    //     console.log('home.controller vm.emailObject');
-    //   }); // end success
-    // };
+vm.volunteerRSVP = function(){
+  
+};
 
 
 });

@@ -4,7 +4,7 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable']);
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config');
-  $routeProvider
+  $routeProvider 
   .when('/home', {
     templateUrl: '/views/templates/home.html',
     controller: 'HomeController as hc',
@@ -51,6 +51,10 @@ myApp.config(function($routeProvider, $locationProvider) {
   .when('/sponsors', {
     templateUrl: '/views/templates/Footer/sponsors.html',
     controller: 'VolunteersController as vc',
+  })
+  .when('/skills', {
+    templateUrl: '/views/templates/admin/volunteerSkills.html',
+    controller: 'SkillsController as sc',
   })
     .otherwise({
       redirectTo: 'home'

@@ -1,0 +1,44 @@
+<div class="container">
+<h2>Volunteer Skills Table</h2>
+
+<!--Add a new skill input-->
+<input type="text" name="skill" value="" ng-model="newSkill">
+<button class="md-raised md-primary" type="button" name="button" ng-click="sc.addSkill(newSkill)">Add New Skill</button>
+
+<!--Skill table-->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Skill</th>
+      <th>Modify</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="skill in sc.skillsObject.skills">
+      <!-- Table Columns using Xeditable -->
+      <td>
+        <span ng-show="!eventform.$visible" editable-text="event.event_name"
+        e-class="event_name" e-form="eventform">{{skill.skill}}</span>
+      </td>
+      <!-- Action Buttons -->
+      <td>
+        <form onaftersave="ec.editSkill(skill)" editable-form name="skillform" ng-show="skillform.$visible" >
+          <button type="submit" ng-disabled="skillform.$waiting" class="btn btn-link">
+            Save
+          </button>
+          <button type="button" ng-disabled="skillform.$waiting" ng-click="eventform.$cancel()" class="btn btn-link">
+            Cancel
+          </button>
+        </form>
+        <div ng-show="!skillform.$visible">
+          <button type="button" class="btn btn-link" ng-click="skillform.$show()">
+            Edit
+            <button type="button" class="btn btn-link" name="button" ng-click="sc.deleteThisSkill(skill)">
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

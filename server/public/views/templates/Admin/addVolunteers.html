@@ -1,21 +1,35 @@
-<!--Only ADMIN can add a new volunteer to the database-->
-<div class="addVolunteer">
+<div class="volunteerProfile">
+<h1>Add Volunteer</h1>
 
-<label for="first-name">First Name: </label>
-<input type="text" ng-model="volunteer.first_name" id="firstName" placeholder="First Name"/><br>
-<label for="last-name">Last Name: </label>
-<input type="text" ng-model="volunteer.last_name" id="lastName" placeholder="Last Name"/><br>
+<label for="first_name">First Name: </label>
+<input type="text" ng-model="newVolunteer.first_name" id="first_name" placeholder="First Name"/>
+<label for="last_name">Last Name: </label>
+<input type="text" ng-model="newVolunteer.last_name" id="last_name" placeholder="Last Name"/>
 <label for="email">Email: </label>
-<input type="text" ng-model="volunteer.email" id="email" placeholder="Email"/><br>
+<input type="email" ng-model="newVolunteer.email" id="email" placeholder="Email"/><br>
 <label for="phone">Phone: </label>
-<input type="text" ng-model="volunteer.phone" id="phone" placeholder="Phone"/><br>
+<input type="text" ng-model="newVolunteer.phone" id="phone" placeholder="Phone"/>
 <label for="organization">Organization: </label>
-<input type="text" ng-model="volunteer.organization" id="organization" placeholder="Organization"/><br>
-<label for="role">Role: </label>
-<input type="text" ng-model="volunteer.role" id="role" placeholder="Role"/><br>
-<label for="status">Status: </label>
-<input type="text" ng-model="volunteer.status" id="status" placeholder="Status"/><br>
+<input type="text" ng-model="newVolunteer.organization" id="organization" placeholder="Organization"/><br>
+<label for="heard_about">How did they hear about Fix-it? </label>
+<input type="text" ng-model="newVolunteer.heard_about" id="heard_about"/><br>
+<label for="follow_up">Are they willing to consider follow-up events? </label>
+<input type="text" ng-model="newVolunteer.follow_up" id="follow_up"/><br>
+<label for="why_volunteer">Why are they interested in volunteering with Fix-It? </label>
+<input type="text" ng-model="newVolunteer.why_volunteer" id="why_volunteer"/><br>
+<label for="previous_experience">Do they have previous IT experience? If so, what? </label>
+<input type="text" ng-model="newVolunteer.previous_experience" id="previous_experience"/><br>
 
-<md-button class="md-raised md-primary" ng-click="vc.addVolunteer(volunteer)">Submit</button>
+<h2>What are their current tech skills?</h2>
+  <md-radio-group ng-model="skill.proficiency" layout="row" ng-repeat="skill in vc.skillsObject.skills">
+  <div flex style="max-width:400px;" layout-align="start center">{{skill.skill}}</div>
+  <md-radio-button name="{{skill.skill}}" value="1">High (3 or more years)</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="2">Medium (1 to 3 years)</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="3">Low (1 year or less)</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="4">None</md-radio-button>
+  <md-radio-button name="{{skill.skill}}" value="5">Interested in Learning</md-radio-button>
+</md-radio-group>
+
+<md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdd(newVolunteer, vc.skillsObject.skills)">Add Volunteer</md-button>
 
 </div>

@@ -1,10 +1,40 @@
 var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable']);
 
+myApp.config(function($mdThemingProvider) {
+
+  $mdThemingProvider.definePalette('darkTeal', {
+    '50': '056571',
+    '100': '056571',
+    '200': '056571',
+    '300': '056571',
+    '400': '056571',
+    '500': '056571',
+    '600': '056571',
+    '700': '056571',
+    '800': '056571',
+    '900': '056571',
+    'A100': '056571',
+    'A200': '056571',
+    'A400': '056571',
+    'A700': '056571',
+    'contrastDefaultColor': 'light',
+
+    'contrastDarkColors': ['50', '100',
+     '200', '300', '400', 'A100'],
+    'contrastLightColors': undefined
+  });
+  $mdThemingProvider.theme('default')
+    //.backgroundPalette('white')
+    .primaryPalette('indigo')
+    .accentPalette('indigo')
+    .warnPalette('red');
+});
+
  // Routes
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config');
-  $routeProvider 
+  $routeProvider
   .when('/home', {
     templateUrl: '/views/templates/home.html',
     controller: 'HomeController as hc',

@@ -33,9 +33,13 @@ body, html {
 }
 
 .instructions {
-  background-color: #00B8D4;
+  background-color: #ffc107;
   color: white;
   padding: 15px;
+}
+
+#first_name {
+  margin-right: 20px;
 }
 
 #entryForm {
@@ -71,16 +75,16 @@ body, html {
 }
 
 .navbar {
-  background-color: #00B8D4;
+  /*background-color: #00B8D4;*/
   width: 100%;
   border-radius: 0px;
   font-weight: bold;
 }
 ._md-nav-button-text {
-  color: #00B8D4;
+  /*color: #00B8D4;*/
 }
 md-nav-bar md-nav-ink-bar {
-  background: #00B8D4
+  /*background: #00B8D4*/
 }
 
 .btn:focus,.btn:active {

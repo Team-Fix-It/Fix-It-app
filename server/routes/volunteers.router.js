@@ -92,10 +92,10 @@ router.post('/add', function(req, res){
         //method that passport puts on the req object returns T or F
         // Now we're going to GET things from the db
         var queryText = 'INSERT INTO "volunteers" ("first_name", "last_name", ' +
-        '"email", "phone", "organization", "role", "status")' +
+         '"phone", "organization", "role", "status")' +
             ' VALUES ($1, $2, $3, $4, $5, $6, $7);';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [av.first_name, av.last_name, av.email, av.phone, av.organization, av.role, av.status], function(errorMakingQuery, result){
+        db.query(queryText, [av.first_name, av.last_name, av.phone, av.organization, av.role, av.status], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);

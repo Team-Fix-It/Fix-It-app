@@ -34,6 +34,7 @@ myApp.factory('UserAuthService', function($http, $location){
           if(response.data.email) {
               // user has a curret session on the server
               userObject.email = response.data.email;
+              userObject.role = response.data.role;
               console.log('UserService -- getuser -- User Data: ', userObject.email);
           } else {
               console.log('UserService -- getuser -- failure');
@@ -48,6 +49,7 @@ myApp.factory('UserAuthService', function($http, $location){
 
     logout : function() {
       console.log('UserService -- logout');
+      userObject = {};
       $http.get('/user/logout').then(function(response) {
         console.log('UserService -- logout -- logged out');
         $location.path("/home");

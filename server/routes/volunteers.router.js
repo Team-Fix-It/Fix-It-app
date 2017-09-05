@@ -8,7 +8,8 @@ var USER = 2;
 
 //Get for all events for that user to show up on the DOM
 router.get('/', function(req, res){
-  // if(req.isAuthenticated()) {
+  if(req.isAuthenticated() && req.user.role === USER) {
+    console.log('authentication succeeded');
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -36,9 +37,10 @@ router.get('/', function(req, res){
 
       } // end else
     }); // end pool
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  } else {
+    console.log('authentication failed');
+    res.sendStatus(401);
+  }
 }); // end of GET
 
 //Post for the admin to add a new volunteer to the database

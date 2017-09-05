@@ -36,16 +36,16 @@
       <td>
         <span ng-show="!eventform.$visible" editable-text="event.ending_time" e-class="ending_time" e-form="eventform">{{event.ending_time}}</span>
       </td>
-      <td><button type="button" name="button" ng-click="ec.storeThisEvent(event)">Check In</button></td>
+      <td><md-button type="button" name="button" ng-click="ec.storeThisEvent(event)">Check In</md-button></td>
       <!-- Action Buttons -->
       <td>
         <form onaftersave="ec.editEvent(event)" editable-form name="eventform" ng-show="eventform.$visible" >
-          <button type="submit" ng-disabled="eventform.$waiting" class="btn btn-link">
+          <md-button type="submit" ng-disabled="eventform.$waiting" class="btn btn-link">
             Save
-          </button>
-          <button type="button" ng-disabled="eventform.$waiting" ng-click="eventform.$cancel()" class="btn btn-link">
+          </md-button>
+          <md-button type="button" ng-disabled="eventform.$waiting" ng-click="eventform.$cancel()" class="btn btn-link">
             Cancel
-          </button>
+          </md-button>
         </form>
         <div ng-show="!eventform.$visible">
           <button type="button" class="btn btn-link" ng-click="eventform.$show()">

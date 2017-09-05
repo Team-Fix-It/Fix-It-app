@@ -14,6 +14,8 @@ var eventsRouter = require('./routes/events.router');
 
 var userRouter = require('./routes/user.router');
 
+var skillsRouter = require('./routes/skills.router');
+
 // var customerRouter = require('./routes/customer.router');
 
 
@@ -38,6 +40,7 @@ app.use('/events', eventsRouter);
 // app.use('/customer', customerRouter);
 app.use('/user', userRouter);
 app.use('/volunteers', volunteersRouter);
+app.use('/skills', skillsRouter);
 app.use('/', indexRouter);
 
 

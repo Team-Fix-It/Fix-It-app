@@ -104,7 +104,7 @@ router.put('/edit/', function(req, res){
             res.sendStatus(500);
           } else {
             // console.log(result);
-            // Send back the results here
+            // Send back the results at this point
             var data = {volunteers: result.rows};
             res.send(data);
           }

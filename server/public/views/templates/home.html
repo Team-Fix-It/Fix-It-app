@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="lead">Home Page!</h1>
+  <h1 class="lead">Welcome {{hc.service.userObject.firstName}}!</h1>
    <p>This page will direct volunteers to sign up or login!</p>
    <p>Up coming events will be displayed below the login/sign up info!</p>
    <!-- <div class="g-signin2" data-onsuccess="hc.service.onSignIn()"></div> -->
@@ -47,7 +47,7 @@
           <p>Description: {{event.event_description}}</p>
         </md-card-content>
         <md-card-actions layout="column" layout-align="start">
-          <md-button>Submit A Ticket</md-button>
-          <md-button>Volunteers Login to RSVP</md-button>
+          <md-button href="/auth/google" data-prompt="select_account">Volunteers Login to RSVP</md-button>
+          <md-button ng-click="hc.volunteerRSVP(event)">RSVP</md-button>
         </md-card-actions>
       </md-card>

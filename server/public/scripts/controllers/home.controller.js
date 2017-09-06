@@ -34,7 +34,7 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
     // Get all upcoming events
     function getEvents(){
       console.log( 'in getEvents function' );
-      // ajax call to server to get tasks
+      //call to server to get tasks
       $http.get('/events').then(function(response){
         vm.eventObject = response.data;
         console.log('home.controller vmeventObject', vm.eventObject);
@@ -74,7 +74,12 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
       };
 
 vm.volunteerRSVP = function(){
-  
+  console.log( 'in volunteerRSVP function' );
+  //call to server to get tasks
+  $http.post('/rsvp').then(function(response){
+    vm.rsvpObject = response.data;
+    console.log('home.controller vmeventObject', vm.rsvpObject);
+});
 };
 
 

@@ -201,4 +201,40 @@ router.post('/skill', function(req, res){
   // }
 }); // end of POST
 
+
+//post route for volunteer to add their skill levels
+router.post('/rsvp', function(req, res){
+  var rsvp = req.body;
+  console.log('Post route called to', rsvp);
+  if(req.isAuthenticated()) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.', req.body);
+        res.sendStatus(500);
+      } else {
+        var queryText = 'INSERT INTO "rsvp" ("event_id", "volunteer_id", "response") VALUES ($1, $2, $3);';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [rsvp.event.id, req.user.id, 'attending'], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query:', errorMakingQuery);
+            // res.sendStatus(500);
+          } else {
+            console.log(result);
+            // Send back the results
+            // var data = {skill: result.rows};
+            // res.send(data);
+          }
+        });
+      } // end else
+          res.sendStatus(200);
+    }); // end pool
+  } else {
+    res.sendStatus(401);
+  }
+}); // end of POST
+
 module.exports = router;

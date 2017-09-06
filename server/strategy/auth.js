@@ -42,8 +42,8 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new GoogleStrategy({
-    clientID:     "396924246406-bgm6bms48jd1r6eph6vr6j2ipt20v52r.apps.googleusercontent.com",
-    clientSecret: "BYc0D8vtcrmRfbESq45McDPL",
+    clientID: process.env.GOOGLE_CLIENT_ID || require('../.config.js').GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || require('../.config.js').GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:5000/auth/google/callback",
     passReqToCallback   : true,
     prompt: "select_account"

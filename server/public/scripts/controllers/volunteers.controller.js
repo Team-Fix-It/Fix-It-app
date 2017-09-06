@@ -42,8 +42,6 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
           console.log('volunteer.controller vm.skill');
         });
       });
-
-
     };
 
     function getSkills(){

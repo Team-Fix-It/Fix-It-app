@@ -89,7 +89,7 @@ router.put('/edit/', function(req, res){
     } else {
       // if(req.isAuthenticated()) {
       // We connected to the database!!!
-      // Now we're going to GET things from the db
+      // Now we're going to GET things from the database
       var queryText = 'UPDATE "volunteers" SET "first_name"=$1, "last_name"=$2, "email"=$3, ' +
       '"phone"=$4, "organization"=$5, "role"=$6, "status"=$7, "heard_about"=$8, "follow_up"=$9,' +
        '"why_volunteer"=$10, "previous_experience"=$11 WHERE "id"= $12' ;

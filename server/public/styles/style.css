@@ -11,6 +11,22 @@ body, html {
   color: black;
 }
 
+.rsvpTable {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+#footer {
+    position: fixed;
+    bottom:0px;
+    width: 100%;
+    z-index: 50;
+}
+.footerSpace {
+  padding-top: 80px;
+}
+
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
@@ -69,4 +85,11 @@ body, html {
 }
 md-nav-bar md-nav-ink-bar {
   /*background: #00B8D4*/
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+}
+#warn {
+    color: red !important;
 }

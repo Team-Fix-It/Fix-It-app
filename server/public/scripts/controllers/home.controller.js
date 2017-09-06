@@ -3,6 +3,15 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
     console.log('HomeController created');
 
     var vm = this;
+    vm.userService = UserAuthService;
+    vm.userObject = UserAuthService.userObject;
+    vm.userUpdate = function (role) {
+      if (UserAuthService.userObject.role == role) {
+        return true;
+      } else {
+        return false;
+      }
+    };
 
     vm.service = UserAuthService;
 
@@ -25,7 +34,7 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
     // Get all upcoming events
     function getEvents(){
       console.log( 'in getEvents function' );
-      // ajax call to server to get tasks
+      //call to server to get tasks
       $http.get('/events').then(function(response){
         vm.eventObject = response.data;
         console.log('home.controller vmeventObject', vm.eventObject);
@@ -64,14 +73,24 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
         vm.showNewsletterPrompt();
       };
 
-    // // Post email to email sign-up
-    // vm.addEmail = function (email){
-    //   console.log( 'in addVolunteer function' );
-    //   // ajax call to server to get tasks
-    //   $http.post('/', email).then(function(response){
-    //     console.log('home.controller vm.emailObject');
-    //   }); // end success
-    // };
-
-
+vm.volunteerRSVP = function(selectedEvent){
+  console.log( 'in volunteerRSVP function' );
+  console.log(selectedEvent);
+  swal({
+      title: 'Do you want to RSVP?',
+      text: "RSVP to this event",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#32CD32',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, I am going!'
+    }).then(function () {
+  // call to server to get tasks
+  console.log('going to run RSVP POST');
+  $http.post('/rsvp', selectedEvent).then(function(response){
+    vm.rsvpObject = response.data;
+    console.log('home.controller vmeventObject', vm.rsvpObject);
+});
+});
+};
 });

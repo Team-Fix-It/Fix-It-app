@@ -4,6 +4,7 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
 
   vm.proficiencies = ['High','Medium','Low','None','Interested in Learning'];
   vm.skillsObject = {};
+  vm.skillProfile = {};
 
 
 getVolunteers();

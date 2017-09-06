@@ -47,8 +47,7 @@
           <p>Description: {{event.event_description}}</p>
         </md-card-content>
         <md-card-actions layout="column" layout-align="start">
-          <md-button>Submit A Ticket</md-button>
           <md-button href="/auth/google" data-prompt="select_account">Volunteers Login to RSVP</md-button>
-          <md-button ng-if="hc.userUpdate(2)" ng-click="hc.volunteerRSVP">RSVP</md-button>
+          <md-button ng-click="hc.volunteerRSVP(event)">RSVP</md-button>
         </md-card-actions>
       </md-card>

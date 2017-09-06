@@ -73,14 +73,24 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
         vm.showNewsletterPrompt();
       };
 
-vm.volunteerRSVP = function(){
+vm.volunteerRSVP = function(selectedEvent){
   console.log( 'in volunteerRSVP function' );
-  //call to server to get tasks
-  $http.post('/rsvp').then(function(response){
+  console.log(selectedEvent);
+  swal({
+      title: 'Do you want to RSVP?',
+      text: "RSVP to this event",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#32CD32',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, I am going!'
+    }).then(function () {
+  // call to server to get tasks
+  console.log('going to run RSVP POST');
+  $http.post('/rsvp', selectedEvent).then(function(response){
     vm.rsvpObject = response.data;
     console.log('home.controller vmeventObject', vm.rsvpObject);
 });
+});
 };
-
-
 });

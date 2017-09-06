@@ -197,7 +197,7 @@ router.post('/create/', function(req, res){
           var queryText = 'SELECT "attendance"."id" as id, "volunteer_id",' +
                           '"event_id", "first_name", "last_name", "email" ' +
                           'FROM "attendance" JOIN "volunteers" ' +
-                          'ON "attendance"."volunteer_id" = "volunteers"."id" ' + 
+                          'ON "attendance"."volunteer_id" = "volunteers"."id" ' +
                           'WHERE "event_id" = $1;';
           // errorMakingQuery is a bool, result is an object
           db.query(queryText, [eventId], function(errorMakingQuery, result){

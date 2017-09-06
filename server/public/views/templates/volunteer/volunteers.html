@@ -14,8 +14,8 @@
           <!-- <th>How did they hear about Fix-It?</th>
           <th>Willing to consider follow-up events?</th>
           <th>Why are they interested in volunteering?</th>
-          <th>Previous IT Experience?</th> -->
-          <th>Skills</th>
+          <th>Previous IT Experience?</th>
+          <th>Skills</th> -->
         </tr>
       </thead>
       <tbody>
@@ -53,18 +53,19 @@
           <td>
             <span ng-show="!volunteerform.$visible" editable-text="people.previous_experience" e-class="previous_experience" e-form="volunteerform">{{people.previous_experience}}</span>
           </td> -->
-          <td><button type="button" name="button">Skills</button><td>
-            <form onaftersave="ec.editVolunteer(people)" editable-form name="volunteerform" ng-show="volunteerform.$visible" >
-              <md-button type="submit" ng-disabled="volunteerform.$waiting" class="btn btn-link">
-                Save
-              </md-button>
-              <md-button type="button" ng-disabled="volunteerform.$waiting" ng-click="volunteerform.$cancel()" class="btn btn-link">
-                Cancel
-              </md-button>
+          <td><md-button type="button" name="button">See More</md-button><td>
+            <form onaftersave="vc.editVolunteer(people)" editable-form name="volunteerform" ng-show="volunteerform.$visible" >
+              <button type="submit" class="btn btn-link" ng-disabled="volunteerform.$waiting">
+                <i class="material-icons">save</i>
+              </button>
+              <button type="button" ng-disabled="volunteerform.$waiting" ng-click="volunteerform.$cancel()" id="warn" class="btn btn-link">
+                <i class="material-icons">cancel</i>
+              </button>
             </form>
             <div ng-show="!volunteerform.$visible">
               <button type="button" class="btn btn-link" ng-click="volunteerform.$show()">
-                Edit
+
+                 <i class="material-icons">mode_edit</i>
               </button>
             </tr>
           </tbody>

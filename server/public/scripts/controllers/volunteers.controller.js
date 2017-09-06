@@ -18,7 +18,15 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         vm.volunteersObject = response.data;
         console.log('events.controller vmvolunteersObject', vm.volunteersObject);
       }); // end success
-    } // end getEvents
+    } // end getVolunteers
+
+    //Edit a Volunteer in the Volunteers table
+    vm.editVolunteer = function(people){
+      console.log( 'in editVolunteer functon', people);
+      $http.put('/volunteers/edit', people).then(function(people){
+        getVolunteers();
+      }); // end success
+    }; // end editVolunteer
 
     // vm.addVolunteer = function (volunteer){
     //   console.log( 'in addVolunteer function' );

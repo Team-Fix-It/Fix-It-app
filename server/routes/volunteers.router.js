@@ -123,6 +123,7 @@ router.post('/add', function(req, res){
 router.post('/newVolunteer', function(req, res){
   var newVolunteer = req.body;
   console.log('Post route called to', newVolunteer);
+  console.log('req.user:', req.user);
   // if(req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
@@ -133,11 +134,11 @@ router.post('/newVolunteer', function(req, res){
       } else {
         //method that passport puts on the req object returns T or F
         // Now we're going to GET things from the db
-        var queryText = 'INSERT INTO "volunteers" ("first_name", "last_name", ' +
-        '"email", "phone", "organization", "role", "status", "heard_about", "follow_up", "why_volunteer", "previous_experience")' +
-            ' VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id;';
+        var queryText = 'UPDATE "volunteers" SET "first_name" = $1, "last_name" = $2, ' +
+        '"phone" = $3, "organization" = $4, "status" = $5, "heard_about" = $6, "follow_up" = $7, "why_volunteer" = $8, "previous_experience" = $9' +
+            ' WHERE "id" = $10 RETURNING id;';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [newVolunteer.first_name, newVolunteer.last_name, newVolunteer.email, newVolunteer.phone, newVolunteer.organization, newVolunteer.role, newVolunteer.status, newVolunteer.heard_about, newVolunteer.follow_up, newVolunteer.why_volunteer, newVolunteer.previous_experience], function(errorMakingQuery, result){
+        db.query(queryText, [newVolunteer.first_name, newVolunteer.last_name, newVolunteer.phone, newVolunteer.organization, newVolunteer.status, newVolunteer.heard_about, newVolunteer.follow_up, newVolunteer.why_volunteer, newVolunteer.previous_experience, req.user.id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);

@@ -37,22 +37,16 @@ CREATE TABLE proficiency (
   level character varying(50) NOT NULL
 );
 
-INSERT INTO "proficiency" (level) VALUES
-('High (3+ years)');
-INSERT INTO "proficiency" (level) VALUES
-('Medium (1-3 years)');
-INSERT INTO "proficiency" (level) VALUES
-('Low (Less than a year)');
-INSERT INTO "proficiency" (level) VALUES
-('None');
-INSERT INTO "proficiency" (level) VALUES
-('Interested in Learning');
-
 CREATE TABLE rsvp (
   id serial PRIMARY KEY,
   event_id integer REFERENCES events ON DELETE CASCADE,
   volunteer_id integer REFERENCES volunteers ON DELETE CASCADE,
   response character varying(25) NOT NULL
+);
+
+CREATE TABLE skills (
+  id serial PRIMARY KEY,
+  skill character varying (100) NOT NULL
 );
 
 CREATE TABLE skillsProfile (
@@ -62,9 +56,18 @@ CREATE TABLE skillsProfile (
   proficiency_id integer REFERENCES proficiency
 );
 
-CREATE TABLE skills (
+CREATE TABLE attendance (
   id serial PRIMARY KEY,
-  skill character varying (100) NOT NULL
+  volunteer_id integer REFERENCES volunteers,
+  event_id integer REFERENCES events
+);
+
+CREATE TABLE email (
+  id serial PRIMARY KEY,
+  first_name character varying(35) NOT NULL,
+  last_name character varying(35) NOT NULL,
+  email character varying(50) NOT NULL,
+  added_date timestamp DEFAULT current_timestamp
 );
 
 INSERT INTO "skills" (skill) VALUES('Windows');
@@ -84,26 +87,19 @@ INSERT INTO "skills" (skill) VALUES('Web Development');
 INSERT INTO "skills" (skill) VALUES('Project Management');
 INSERT INTO "skills" (skill) VALUES('Event Management');
 
+INSERT INTO "proficiency" (level) VALUES
+('High (3+ years)');
+INSERT INTO "proficiency" (level) VALUES
+('Medium (1-3 years)');
+INSERT INTO "proficiency" (level) VALUES
+('Low (Less than a year)');
+INSERT INTO "proficiency" (level) VALUES
+('None');
+INSERT INTO "proficiency" (level) VALUES
+('Interested in Learning');
 
-CREATE TABLE attendance (
-  id serial PRIMARY KEY,
-  volunteer_id integer REFERENCES volunteers,
-  event_id integer REFERENCES events
-);
-
-CREATE TABLE email (
-  id serial PRIMARY KEY,
-  first_name character varying(35) NOT NULL,
-  last_name character varying(35) NOT NULL,
-  email character varying(50) NOT NULL,
-  added_date timestamp DEFAULT current_timestamp
-);
-
---Volunteer Dummy Data
 INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
 ('Frodo', 'Baggins', 'fordo@gmail.com', '612-123-4567', 'The Shire', 2, 'active');
 
 INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
 ('Legolas', 'Too good for a last name', 'legolas@yahoo.com', '612-456-4567', 'Elves of Northern Mirkwood', 2, 'inactive');
-
---

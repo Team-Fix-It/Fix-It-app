@@ -5,10 +5,11 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
   vm.proficiencies = ['High','Medium','Low','None','Interested in Learning'];
   vm.skillsObject = {};
   vm.skillProfile = {};
+  vm.userAuthService = UserAuthService;
+  vm.userObject = UserAuthService.userObject;
 
-
-getVolunteers();
-getSkills();
+  getVolunteers();
+  getSkills();
 
   function getVolunteers(){
       console.log( 'in getVolunteers function' );

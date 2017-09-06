@@ -36,6 +36,8 @@ myApp.factory('UserAuthService', function($http, $location){
               // user has a curret session on the server
               userObject.email = response.data.email;
               userObject.role = response.data.role;
+              userObject.firstName = response.data.first_name;
+              userObject.lastName = response.data.last_name;
               console.log('UserService -- getuser -- User Data: ', userObject.email);
               console.log('userObject:', userObject);
           } else {

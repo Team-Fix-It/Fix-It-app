@@ -1,7 +1,5 @@
 <div class="container">
   <h1 class="lead">Welcome {{hc.userObject.firstName}}!</h1>
-   <p>This page will direct volunteers to sign up or login!</p>
-   <p>Up coming events will be displayed below the login/sign up info!</p>
    <!-- <div class="g-signin2" data-onsuccess="hc.service.onSignIn()"></div> -->
    <md-button a href="/auth/google" data-prompt="select_account"><span class="fa fa-google-plus"></span>Google</a>
    <!-- <button type="button" ng-click="hc.googleAuth()">Login with Google</button> -->
@@ -9,16 +7,9 @@
 <!-- <a href="#" ng-click="hc.service.logout();">Sign out</a> -->
 <md-button ng-click="hc.service.logout()">Log Out</md-button>
 
-<!--Landing page Stuff-->
-<h1>Fix-It</h1>
-<md-button class="md-raised md-primary" type="button" name="button">Sign-Up To Volunteer</md-button>
-  <div class="dialog-newsletter-content" layout="row" layout-wrap layout-margin layout-align="center">
-<md-button class="md-raised md-primary" type="button" name="button" ng-click="hc.newsletterSignup(ev)">Subscribe To Our Newsletter</md-button>
-</div>
-
 <!--carousel-->
-  <div class="carousel"
-    data-flickity='{ "imagesLoaded": true, "percentPosition": false }' data-flickity='{ "autoPlay": true }'>
+  <div class="carousel js-flickity"
+    data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": true }'>
     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" alt="orange tree" />
     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" alt="submerged" />
     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" alt="look-out" />
@@ -26,6 +17,13 @@
     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" alt="drizzle" />
     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" alt="cat nose" />
   </div>
+
+<!--Landing page Stuff-->
+<h1>Fix-It</h1>
+<md-button class="md-raised md-primary" type="button" name="button" ng-if="hr.userObject.role = null">Sign-Up To Volunteer</md-button>
+  <div class="dialog-newsletter-content" layout="row" layout-wrap layout-margin layout-align="center">
+</div>
+
 
 <!--Prompt ?-->
 <div style="visibility: hidden">
@@ -62,3 +60,5 @@
           <md-button ng-click="hc.volunteerRSVP(event)">RSVP</md-button>
         </md-card-actions>
       </md-card>
+<!--Newsletter signup-->
+<md-button class="md-raised md-primary" type="button" name="button" ng-click="hc.newsletterSignup(ev)">Subscribe To Our Newsletter</md-button>

@@ -69,7 +69,8 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         console.log('here is the new skill profile:', newSkillProfile);
         $http.post('/volunteers/skill', newSkillProfile).then(function(response){
           volunteerProfileAlert();
-          console.log('volunteer.controller vm.skill');
+          console.log('volunteer.controller vm.skill', newSkillProfile);
+          vm.userAuthService.getuser();
         }).catch(function(err){
          swal(
            'Oops...',
@@ -84,9 +85,18 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         console.log( 'in getVolunteers function' );
         // ajax call to server to get tasks
         $http.get('/volunteers/getSkills').then(function(response){
+          console.log('skills object:', vm.skillsObject);
           vm.skillsObject = response.data;
           for (var i = 0; i < vm.skillsObject.skills.length; i++) {
-            vm.skillsObject.skills[i].proficiency = '4';
+            for (var j = 0; j < vm.userObject.skills.length; j++) {
+              if (vm.userObject.skills[j].skill_id == vm.skillsObject.skills[i].id) {
+                vm.skillsObject.skills[i].proficiency = vm.userObject.skills[j].proficiency_id;
+              }
+            }
+            if (vm.skillsObject.skills[i].proficiency === undefined) {
+              vm.skillsObject.skills[i].proficiency = '4';
+            }
+
           }
           console.log('skills object:', vm.skillsObject);
         }).catch(function(err){

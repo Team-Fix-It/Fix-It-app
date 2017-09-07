@@ -28,8 +28,8 @@ CREATE TABLE events (
   event_location character varying NOT NULL,
   event_description character varying(3000) NOT NULL,
   event_date date NOT NULL,
-  starting_time timestamp NOT NULL,
-  ending_time timestamp NOT NULL
+  starting_time timestamp with time zone NOT NULL,
+  ending_time timestamp with time zone NOT NULL
 );
 
 CREATE TABLE proficiency (

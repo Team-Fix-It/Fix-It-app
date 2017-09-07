@@ -96,6 +96,7 @@ md-nav-bar md-nav-ink-bar {
   /*background: #00B8D4*/
 }
 
+
 .btn:focus,.btn:active {
    outline: none !important;
 }

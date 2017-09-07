@@ -1,13 +1,6 @@
 <div class="container">
   <h1 class="lead">Welcome {{hc.userObject.firstName}}!</h1>
-
-<center><div class="container">
-  <h1 class="lead">Welcome {{hc.service.userObject.firstName}}!</h1>
-   <!-- <div class="g-signin2" data-onsuccess="hc.service.onSignIn()"></div> -->
-   <md-button a href="/auth/google" data-prompt="select_account"><span class="fa fa-google-plus"></span>Google</a>
-   <!-- <button type="button" ng-click="hc.googleAuth()">Login with Google</button> -->
-</div>
-<!-- <a href="#" ng-click="hc.service.logout();">Sign out</a> -->
+   <md-button a href="/auth/google" data-prompt="select_account">Google</a></md-button>
 <md-button ng-click="hc.service.logout()">Log Out</md-button>
 
 <!--carousel-->

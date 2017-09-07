@@ -1,8 +1,3 @@
-
-<p>You can see who has RSVP'd to an event here -->
-  <a href="#events/rsvp">Event RSVP View(WIP)</a>
-</p>
-
 <div class="container">
 <h2 style="text-align:center ">Events Table</h2>
 <p>Our event history can be viewed here</p>
@@ -14,7 +9,7 @@
       <th>Date</th>
       <th>Start Time</th>
       <th>End Time</th>
-      <th>Check In</th>
+      <th>Manage Events</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -41,7 +36,9 @@
         <span ng-show="!eventform.$visible" editable-text="event.ending_time"
         e-class="ending_time" e-form="eventform">{{event.ending_time}}</span>
       </td>
-      <td><button type="button" class="btn btn-link" ng-click="ec.storeThisEvent(event)">Check In</button></td>
+      <td><button type="button" class="btn btn-link" ng-click="ec.storeThisEvent(event)">
+        <i class="material-icons">content_paste</i>
+      </button></td>
       <!-- Action Buttons -->
       <td class="btnLinks">
         <form onaftersave="ec.editEvent(event)" editable-form name="eventform" ng-show="eventform.$visible" >

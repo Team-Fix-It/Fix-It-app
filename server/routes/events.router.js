@@ -19,7 +19,7 @@ router.get('/', function(req, res){
     } else {
       //method that passport puts on the req object returns T or F
       // Now we're going to GET things from the db
-      var queryText = 'SELECT * FROM "events"';
+      var queryText = 'SELECT id, event_name, event_location, event_description, TO_CHAR(event_date, \'MM/DD/YYYY\') as event_date, TO_CHAR(starting_time, \'HH:MI AM\') as starting_time, TO_CHAR(ending_time, \'HH:MI AM\') as ending_time FROM "events";'; 
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, function(errorMakingQuery, result){
         done();

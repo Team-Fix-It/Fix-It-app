@@ -45,8 +45,12 @@ myApp.factory('UserAuthService', function($http, $location){
               userObject.follow_up = response.data.follow_up;
               userObject.why_volunteer = response.data.why_volunteer;
               userObject.previous_experience = response.data.previous_experience;
-              console.log('UserService -- getuser -- User Data: ', userObject.email);
-              console.log('userObject:', userObject);
+              userObject.id = response.data.id;
+              $http.get('/volunteers/getskills/' + userObject.id).then(function(response) {
+                console.log('response on get skills with id:', response);
+                userObject.skills = response.data.skills;
+                console.log('userObject:', userObject);
+              });
           } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page

@@ -43,6 +43,79 @@ router.get('/', function(req, res){
   }
 }); // end of GET
 
+router.get('/getSkills', function(req, res){
+  // if(req.isAuthenticated()) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
+        // Now we're going to GET things from the db
+        var queryText = 'SELECT * FROM "skills"';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            // console.log(result);
+            // Send back the results
+            var data = {skills: result.rows};
+            res.send(data);
+          }
+        }); // end query
+
+      } // end else
+    }); // end pool
+  // } else {
+  //   res.sendStatus(401);
+  // }
+}); // end of GET
+
+router.get('/getSkills/:id', function(req, res){
+  // if(req.isAuthenticated()) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    var userId = req.params.id;
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
+        // Now we're going to GET things from the db
+        var queryText = 'SELECT "skillsprofile"."volunteer_id", "skillsprofile"."skill_id", "skillsprofile"."proficiency_id", "skillsprofile"."id" FROM "skillsprofile" ' +
+        'JOIN "skills" ON "skillsprofile"."skill_id" = "skills"."id" ' +
+        'JOIN "proficiency" ON "skillsprofile"."proficiency_id" = "proficiency"."id" ' +
+        'WHERE "skillsprofile"."volunteer_id" = $1';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [userId], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query', errorMakingQuery);
+            res.sendStatus(500);
+          } else {
+            // console.log(result);
+            // Send back the results
+            var data = {skills: result.rows};
+            res.send(data);
+          }
+        }); // end query
+
+      } // end else
+    }); // end pool
+  // } else {
+  //   res.sendStatus(401);
+  // }
+}); // end of GET
+
+
 router.put('/edit/', function(req, res){
   var volunteer = req.body;
   console.log('Put route called to event of', volunteer);
@@ -143,7 +216,7 @@ router.post('/newVolunteer', function(req, res){
         '"phone" = $3, "organization" = $4, "status" = $5, "heard_about" = $6, "follow_up" = $7, "why_volunteer" = $8, "previous_experience" = $9' +
             ' WHERE "id" = $10 RETURNING id;';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [newVolunteer.first_name, newVolunteer.last_name, newVolunteer.phone, newVolunteer.organization, newVolunteer.status, newVolunteer.heard_about, newVolunteer.follow_up, newVolunteer.why_volunteer, newVolunteer.previous_experience, req.user.id], function(errorMakingQuery, result){
+        db.query(queryText, [newVolunteer.firstName, newVolunteer.lastName, newVolunteer.phone, newVolunteer.organization, newVolunteer.status, newVolunteer.heard_about, newVolunteer.follow_up, newVolunteer.why_volunteer, newVolunteer.previous_experience, req.user.id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
@@ -180,11 +253,28 @@ router.post('/skill', function(req, res){
         res.sendStatus(500);
       } else {
         for (var i = 0; i < skill.proficiency.length; i++) {
+          var queryText = '';
+          var queryObjects = [];
         //method that passport puts on the req object returns T or F
         // Now we're going to GET things from the db
-        var queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
+        // var queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
+
+        // INSERT INTO the_table (id, column_1, column_2)
+        // VALUES (1, 'A', 'X'), (2, 'B', 'Y'), (3, 'C', 'Z')
+        // ON CONFLICT (id) DO UPDATE
+        //   SET column_1 = excluded.column_1,
+        //       column_2 = excluded.column_2;
+        if (skill.proficiency[i].id === undefined) {
+          queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
+          queryObjects = [skill.proficiency[i].id, skill.volunteerId, skill.proficiency[i].proficiency];
+        } else {
+          queryText = 'UPDATE "skillsprofile" ("proficiency_id") VALUES ($3) WHERE "skill_id" = $1 AND "volunteer_id" = $2;';
+          queryObjects = [skill.proficiency[i].id];
+        }
+        // var queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3) ' +
+        // 'ON CONFLICT (UPDATE "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [skill.proficiency[i].id, skill.volunteerId, skill.proficiency[i].proficiency], function(errorMakingQuery, result){
+        db.query(queryText, queryObjects, function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);

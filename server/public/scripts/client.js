@@ -86,6 +86,10 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: '/views/templates/admin/volunteerSkills.html',
     controller: 'SkillsController as sc',
   })
+  .when('/volunteersEdit', {
+    templateUrl: '/views/templates/admin/editVolunteer.html',
+    controller: 'VolunteersController as vc',
+  })
     .otherwise({
       redirectTo: 'home'
     });

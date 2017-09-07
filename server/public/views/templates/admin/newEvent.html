@@ -1,18 +1,40 @@
 <div class="newEvent">
+  <center><h1>Create An Event</h1></center>
+  <md-card class="eventCard">
+    <div layout-gt-sm="row" layout-align="center center">
+<md-input-container class="md-block" flex-gt-sm>
+<label for="title">Title</label>
+<input type="text" ng-model="newEvent.event_name" id="title"/>
+</md-input-container>
+</div>
+<div layout-gt-sm="row" layout-align="center center">
+<md-input-container class="md-block" flex-gt-sm>
+<label for="location">Location</label>
+<input type="text" ng-model="newEvent.event_location" id="location"/>
+</md-input-container>
+<md-input-container class="md-block" flex-gt-sm>
+<label for="date">Date</label>
+<md-datepicker ng-model="newEvent.event_date" id="date"/></md-datepicker
+</md-input-container>
+</div>
+<div layout-gt-sm="row" layout-align="center center">
+<md-input-container class="md-block" flex-gt-sm>
+<label for="starting">Starting Time</label>
+<input type="time" ng-model="newEvent.starting_time" id="starting"/>
+</md-input-container>
+<md-input-container class="md-block" flex-gt-sm>
+<label for="ending">Ending Time</label>
+<input type="time" ng-model="newEvent.ending_time" id="ending"/>
+</md-input-container>
+</div>
+<div layout-gt-sm="row" layout-align="center center">
+<md-input-container class="md-block" flex-gt-sm>
+<label for="description">Description</label>
+<input type="text" ng-model="newEvent.event_description" id="description"/>
+</md-input-container>
+</div>
+</md-card>
 
-<label for="title">Title: </label>
-<input type="text" ng-model="newEvent.event_name" id="title" placeholder="Title"/><br>
-<label for="location">Location: </label>
-<input type="text" ng-model="newEvent.event_location" id="location" placeholder="Location"/><br>
-<label for="date">Date: </label>
-<input type="date" ng-model="newEvent.event_date" id="date" placeholder="Starting Time"/><br>
-<label for="starting">Starting Time: </label>
-<input type="time" ng-model="newEvent.starting_time" id="starting" placeholder="Starting Time"/><br>
-<label for="ending">Ending Time: </label>
-<input type="time" ng-model="newEvent.ending_time" id="ending" placeholder="Ending Time"/><br>
-<label for="description">Description: </label>
-<input type="text" ng-model="newEvent.event_description" id="description" placeholder="Description"/><br>
-
-<md-button class="md-raised md-primary" ng-click="ec.addEvent(newEvent)">Submit</button>
+<center><md-button class="md-raised md-primary" ng-click="ec.addEvent(newEvent)">Submit</button></center>
 
 </div>

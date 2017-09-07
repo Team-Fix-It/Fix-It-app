@@ -1,5 +1,8 @@
 <div class="container">
   <h1 class="lead">Welcome {{hc.userObject.firstName}}!</h1>
+
+<center><div class="container">
+  <h1 class="lead">Welcome {{hc.service.userObject.firstName}}!</h1>
    <!-- <div class="g-signin2" data-onsuccess="hc.service.onSignIn()"></div> -->
    <md-button a href="/auth/google" data-prompt="select_account"><span class="fa fa-google-plus"></span>Google</a>
    <!-- <button type="button" ng-click="hc.googleAuth()">Login with Google</button> -->
@@ -60,5 +63,7 @@
           <md-button ng-click="hc.volunteerRSVP(event)">RSVP</md-button>
         </md-card-actions>
       </md-card>
+
 <!--Newsletter signup-->
 <md-button class="md-raised md-primary" type="button" name="button" ng-click="hc.newsletterSignup(ev)">Subscribe To Our Newsletter</md-button>
+    </center>

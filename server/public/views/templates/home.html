@@ -1,17 +1,25 @@
 <div class="container">
   <h1 class="lead">Welcome {{hc.userObject.firstName}}!</h1>
-   <md-button a href="/auth/google" data-prompt="select_account">Google</a></md-button>
+   <md-button a href="/auth/google" data-prompt="select_account"><img src="assets/Goggle.png" alt="Google Icon">Google</a></md-button>
 <md-button ng-click="hc.service.logout()">Log Out</md-button>
 
 <!--carousel-->
-  <div class="carousel js-flickity"
-    data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": true }'>
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" alt="orange tree" />
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" alt="submerged" />
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" alt="look-out" />
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" alt="One World Trade" />
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" alt="drizzle" />
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" alt="cat nose" />
+  <div class="carousel js-flickity">
+    <div class="carousel-cell">
+        <img src="assets/carousel/HabitatAug2017-49.jpg" alt="Fix-It Tech Bell" />
+    </div>
+    <div class="carousel-cell">
+        <img src="assets/carousel/HabitatAug2017-38.jpg" alt="Laptop Repair" />
+    </div>
+<div class="carousel-cell">
+    <img src="assets/carousel/HabitatAug2017-29.jpg" alt="August Fix-It Tech Group Photo" />
+    </div>
+    <div class="carousel-cell">
+    <img src=assets/carousel/HabitatAug2017-37.jpg alt="Repairs in Progress" />
+</div>
+<div class="carousel-cell">
+    <img src="assets/carousel/StateFairAug2017-6.jpg" alt="Fix-It Tech at the State Fair" />
+  </div>
   </div>
 
 <!--Landing page Stuff-->
@@ -60,3 +68,4 @@
 <!--Newsletter signup-->
 <md-button class="md-raised md-primary" type="button" name="button" ng-click="hc.newsletterSignup(ev)">Subscribe To Our Newsletter</md-button>
     </center>
+  </div>

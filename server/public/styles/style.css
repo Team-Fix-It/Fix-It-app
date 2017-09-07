@@ -107,6 +107,7 @@ md-nav-bar md-nav-ink-bar {
 
 /* external css: flickity.css */
 
+
 * { box-sizing: border-box; }
 
 body { font-family: sans-serif; }
@@ -115,13 +116,18 @@ body { font-family: sans-serif; }
   background: #EEE;
 }
 
-.carousel img {
+.carousel-cell {
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+.carousel-cell img {
   display: block;
   height: 200px;
 }
 
 @media screen and ( min-width: 768px ) {
-  .carousel img {
+  .carousel-cell img {
     height: 400px;
   }
 }

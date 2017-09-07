@@ -1,19 +1,21 @@
+<md-tabs md-dynamic-height md-border-top>
+<md-tab label="Attendance">
 <h1>Who attended this event?</h1>
 <h3>{{ecic.eventService.currentEvent.event_name}}</h3>
 <h5>{{ecic.eventService.currentEvent.event_location}}</h5>
 <md-autocomplete
-    ng-disabled="ecic.isDisabled"
-    md-selected-item="ecic.selectedItem"
-    md-search-text-change="ecic.searchTextChange(ecic.searchText)"
-    md-search-text="ecic.searchText"
-    md-selected-item-change="ecic.selectedItemChange(item)"
-    md-items="item in ecic.querySearch(ecic.searchText)"
-    md-item-text="item.display"
-    md-min-length="0"
-    placeholder="Which volunteer attended this event?">
-  <md-item-template>
-    <span md-highlight-text="ecic.searchText" md-highlight-flags="^i">{{item.display}}</span>
-  </md-item-template>
+ng-disabled="ecic.isDisabled"
+md-selected-item="ecic.selectedItem"
+md-search-text-change="ecic.searchTextChange(ecic.searchText)"
+md-search-text="ecic.searchText"
+md-selected-item-change="ecic.selectedItemChange(item)"
+md-items="item in ecic.querySearch(ecic.searchText)"
+md-item-text="item.display"
+md-min-length="0"
+placeholder="Which volunteer attended this event?">
+<md-item-template>
+  <span md-highlight-text="ecic.searchText" md-highlight-flags="^i">{{item.display}}</span>
+</md-item-template>
 </md-autocomplete>
 <md-button class="md-primary md-raised" ng-click="ecic.addAttendance()">Add Volunteer to Attendance</md-button>
 <table class="table">
@@ -37,5 +39,164 @@
       </td>
     </tr>
   </tbody>
-
 </table>
+</md-tab>
+<md-tab label="RSVP">
+  <div class="">
+  	<h1>Fix-It Tech event on 9/14/2017</h1>
+  </div>
+  <div class="rsvpTable">
+  	<h3>Volunteers for this event</h3>
+  	<table class="table table-hover">
+  		<thead>
+  			<tr>
+  				<th>First Name</th>
+  				<th>Last Name</th>
+  				<th>Email</th>
+  				<th>Phone</th>
+  				<th>Company</th>
+  				<th>Role</th>
+  				<th>Status</th>
+  				<th>Skills</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			<tr ng-repeat="people in vc.volunteersObject.volunteers">
+  				<td>{{people.first_name}}</td>
+  				<td>{{people.last_name}}</td>
+  				<td>{{people.email}}</td>
+  				<td>{{people.phone}}<td>
+  					<td>{{people.organization}}<td>
+  						<td>{{people.role}}<td>
+  							<td>{{people.status}}<td>
+  								<td><button type="button" name="button">Skills</button><td>
+  								</tr>
+  							</tbody>
+  						</table>
+  					</div>
+  					<div class="rsvpTable">
+  						<h3>Technical skills for this event</h3>
+  						<table class="table table-hover">
+  							<tr>
+  								<td></td>
+  								<th>High Experience <br>(3 or more years)</th>
+  								<th>Medium Experience <br>(1 to 3 years)</th>
+  								<th>Low Experience <br>(1 year or less)</th>
+  								<th>Interested in learning</th>
+  							</tr>
+  							<tr>
+  								<th>Windows</th>
+  								<td>2</td>
+  								<td>1</td>
+  								<td></td>
+  								<td></td>
+  							</tr>
+  							<tr>
+  								<th>Mac OS</th>
+  								<td>1</td>
+  								<td>5</td>
+  								<td></td>
+  								<td>3</td>
+  							</tr>
+  							<tr>
+  								<th>Linux</th>
+  								<td></td>
+  								<td>2</td>
+  								<td></td>
+  								<td>3</td>
+  							</tr>
+  							<tr>
+  								<th>Data Back Up and Recovery</th>
+  								<td>1</td>
+  								<td>3</td>
+  								<td>3</td>
+  								<td>2</td>
+  							</tr>
+  							<tr>
+  								<th>Malware, Anti-Virus</th>
+  								<td>2</td>
+  								<td>1</td>
+  								<td></td>
+  								<td></td>
+  							</tr>
+  							<tr>
+  								<th>Security and User Privacy</th>
+  								<td></td>
+  								<td></td>
+  								<td>4</td>
+  								<td>2</td>
+  							</tr>
+  							<tr>
+  								<th>System Performance</th>
+  								<td>2</td>
+  								<td></td>
+  								<td></td>
+  								<td>3</td>
+  							</tr>
+  							<tr>
+  								<th>User Support for Email, Internet, MS Office, Google Apps</th>
+  								<td>2</td>
+  								<td>1</td>
+  								<td></td>
+  								<td></td>
+  							</tr>
+  							<tr>
+  								<th>Hardware Repair and Peripheral Connections</th>
+  								<td></td>
+  								<td></td>
+  								<td>1</td>
+  								<td>2</td>
+  							</tr>
+  							<tr>
+  								<th>Smartphone Repair and User Support</th>
+  								<td></td>
+  								<td>7</td>
+  								<td>2</td>
+  								<td>1</td>
+  							</tr>
+  							<tr>
+  								<th>Network</th>
+  								<td></td>
+  								<td>2</td>
+  								<td></td>
+  								<td>2</td>
+  							</tr>
+  							<tr>
+  								<th>Database</th>
+  								<td></td>
+  								<td>5</td>
+  								<td></td>
+  								<td>4</td>
+  							</tr>
+  							<tr>
+  								<th>Programming</th>
+  								<td>2</td>
+  								<td></td>
+  								<td></td>
+  								<td></td>
+  							</tr>
+  							<tr>
+  								<th>Web Development</th>
+  								<td></td>
+  								<td>1</td>
+  								<td></td>
+  								<td>3</td>
+  							</tr>
+  							<tr>
+  								<th>Project Management</th>
+  								<td></td>
+  								<td>1</td>
+  								<td></td>
+  								<td>1</td>
+  							</tr>
+  							<tr>
+  								<th>Event Management</th>
+  								<td></td>
+  								<td>1</td>
+  								<td>3</td>
+  								<td>5</td>
+  							</tr>
+  						</table>
+  					</div>
+</md-tab>
+</md-tabs>

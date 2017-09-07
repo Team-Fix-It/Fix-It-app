@@ -41,12 +41,11 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
   function ConvertTime(t){
      // Get your time (using a hard-coded year for parsing purposes)
      var time = new Date("0001-01-01 " + t);
-
-     // Output your formatted version (using your DateTime)
-     var formatted = time.getHours() + ':' + ('0' + time.getMinutes()).slice(-2);
-
-     var timestamp = "1970-01-10 " + formatted + ":00";
-     // Return your formatted time
+     // Convert your formatted version to military time (using your DateTime)
+     var military = time.getHours() + ':' + ('0' + time.getMinutes()).slice(-2);
+     // taking military time and inputing it into a timestamp format
+     var timestamp = "1970-01-10 " + military + ":00";
+     // Return date & time that the Date method understands
      return timestamp;
   }
 

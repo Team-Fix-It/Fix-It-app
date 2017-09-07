@@ -17,15 +17,28 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
       $http.get('/volunteers').then(function(response){
         vm.volunteersObject = response.data;
         console.log('events.controller vmvolunteersObject', vm.volunteersObject);
-      }); // end success
+      }).catch(function(err){
+       swal(
+         'Oops...',
+         'Something went wrong!',
+         'error'
+       );
+     });
     } // end getVolunteers
 
     //Edit a Volunteer in the Volunteers table
     vm.editVolunteer = function(people){
       console.log( 'in editVolunteer functon', people);
       $http.put('/volunteers/edit', people).then(function(people){
+        editVolunteerAlert();
         getVolunteers();
-      }); // end success
+      }).catch(function(err){
+       swal(
+         'Oops...',
+         'Something went wrong!',
+         'error'
+       );
+     });
     }; // end editVolunteer
 
     // vm.addVolunteer = function (volunteer){
@@ -48,7 +61,13 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         console.log('here is the new skill profile:', newSkillProfile);
         $http.post('/volunteers/skill', newSkillProfile).then(function(response){
           console.log('volunteer.controller vm.skill');
-        });
+        }).catch(function(err){
+         swal(
+           'Oops...',
+           'Something went wrong!',
+           'error'
+         );
+       });
       });
     };
 
@@ -61,7 +80,24 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
             vm.skillsObject.skills[i].proficiency = '4';
           }
           console.log('skills object:', vm.skillsObject);
-        }); // end success
+        }).catch(function(err){
+         swal(
+           'Oops...',
+           'Something went wrong!',
+           'error'
+         );
+       }); // end success
       } // end getEvents
+
+// SweetAlert2 Functions
+
+function editVolunteerAlert() {
+    swal({
+      title: "Success!",
+      text: "This event has been updated",
+      confirmButtonText: "View Events",
+      type: "success"
+    });
+  }
 
 });

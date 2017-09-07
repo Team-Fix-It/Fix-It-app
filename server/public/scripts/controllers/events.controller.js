@@ -8,6 +8,7 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
   //retrieving the info in the events table when this controller is loaded
   getEvents();
 
+
               ///* CRUD operations *///
 
   //Create a new event to add to the Events table
@@ -36,9 +37,33 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
     }); // end success
   } // end getEvents
 
+
+  function ConvertTime(t){
+     // Get your time (using a hard-coded year for parsing purposes)
+     var time = new Date("0001-01-01 " + t);
+     // Convert your formatted version to military time (using your DateTime)
+     var military = time.getHours() + ':' + ('0' + time.getMinutes()).slice(-2);
+     // taking military time and inputing it into a timestamp format
+     var timestamp = "1970-01-10 " + military + ":00";
+     // Return date & time that the Date method understands
+     return timestamp;
+  }
+
   //Update an event in the Events table
   vm.editEvent = function(selectedEvent){
     console.log( 'in editEvents functon', selectedEvent);
+    //event convert working
+    selectedEvent.event_date = new Date(selectedEvent.event_date);
+    console.log('event_date changed to new Date:', selectedEvent.event_date);
+    //start time
+    selectedEvent.starting_time = ConvertTime(selectedEvent.starting_time);
+    console.log(selectedEvent.starting_time);
+    selectedEvent.starting_time = new Date(selectedEvent.starting_time);
+    console.log('starting_time changed to timestamp:',selectedEvent.starting_time );
+    //end time
+    selectedEvent.ending_time = ConvertTime(selectedEvent.ending_time);
+    selectedEvent.ending_time = new Date(selectedEvent.ending_time);
+    console.log('ending_time changed to timestamp:', selectedEvent.ending_time);
     $http.put('/events/edit', selectedEvent).then(function(selectedEvent){
       editEventAlert();
       getEvents();

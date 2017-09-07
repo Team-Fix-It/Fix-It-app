@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable']);
+var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable', 'md.data.table']);
 
 myApp.config(function($mdThemingProvider) {
 

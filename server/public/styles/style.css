@@ -7,12 +7,18 @@ body, html {
 
 .volunteerProfile {
   margin: 15px;
+  margin-right: 300px;
 }
 
 .eventCard {
   margin-right: 300px;
   margin-left: 300px;
   padding:15px;
+}
+
+.volunteerTable {
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .body {
@@ -59,8 +65,20 @@ body, html {
   margin-top: 10px;
 }
 
+.md-row:hover {
+  background-color: #EEEEEE;
+}
+
+.skill {
+  padding:10px;
+}
+
+.skill:hover {
+  background-color: #EEEEEE;
+}
+
 .container p{
-  margin-top : 14px;
+  /*margin-top : 14px;*/
 }
 
 .message {

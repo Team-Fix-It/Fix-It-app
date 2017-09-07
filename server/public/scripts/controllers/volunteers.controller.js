@@ -1,4 +1,4 @@
-myApp.controller('VolunteersController', function($location, $http, UserAuthService){
+myApp.controller('VolunteersController', function($location, $http, UserAuthService, $mdDialog){
   console.log('VolunteersController loaded.');
   var vm = this;
 
@@ -16,7 +16,7 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
       // ajax call to server to get tasks
       $http.get('/volunteers').then(function(response){
         vm.volunteersObject = response.data;
-        console.log('events.controller vmvolunteersObject', vm.volunteersObject);
+        console.log('volunteers.controller vmvolunteersObject', vm.volunteersObject);
       }).catch(function(err){
        swal(
          'Oops...',
@@ -41,14 +41,19 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
      });
     }; // end editVolunteer
 
-    vm.seeMoreClick = function() {
-      $location.path('/volunteersEdit');
-    };
-
-    vm.goBackClick = function() {
+    vm.goBack = function(){
       $location.path('/volunteers');
     };
 
+//Getting the skills of a volunteer for admin to view
+    vm.volunteerProfileSkills = function(id){
+      $location.path('/viewSkill');
+      $http.get('/volunteers/getSkills/' + id).then(function(response){
+        vm.skillProfileObject = response.data;
+        console.log('volunteers.controller vmskillProfileObject', vm.skillProfileObject);
+      }).catch(function(err){
+      });
+    };
     // vm.addVolunteer = function (volunteer){
     //   console.log( 'in addVolunteer function' );
     //   // ajax call to server to get tasks

@@ -86,8 +86,8 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: '/views/templates/admin/volunteerSkills.html',
     controller: 'SkillsController as sc',
   })
-  .when('/volunteersEdit', {
-    templateUrl: '/views/templates/admin/editVolunteer.html',
+  .when('/viewSkill', {
+    templateUrl: '/views/templates/admin/skillProfile.html',
     controller: 'VolunteersController as vc',
   })
     .otherwise({

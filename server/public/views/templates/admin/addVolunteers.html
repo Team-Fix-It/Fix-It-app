@@ -1,60 +1,68 @@
 <div class="volunteerProfile">
-<h1>Add a New Volunteer</h1>
-<div layout-gt-sm="row" layout-align="center center">
-<md-input-container class="md-block" flex-gt-sm>
-<label for="first_name">First Name</label>
-<input type="text" ng-model="newVolunteer.first_name" id="first_name"/>
-</md-input-container>
-<md-input-container class="md-block" flex-gt-sm>
-<label for="last_name">Last Name</label>
-<input type="text" ng-model="newVolunteer.last_name" id="last_name"/>
-</md-input-container>
-<md-input-container class="md-block" flex-gt-sm>
-<label for="email">Email</label>
-<input type="email" ng-model="newVolunteer.email" id="email"/>
-</md-input-container>
-</div>
-<div layout-gt-sm="row" layout-align="center center">
-<md-input-container class="md-block" flex-gt-sm>
-<label for="phone">Phone</label>
-<input type="text" ng-model="newVolunteer.phone" id="phone"/>
-</md-input-container>
-<md-input-container class="md-block" flex-gt-sm>
-<label for="organization">Organization</label>
-<input type="text" ng-model="newVolunteer.organization" id="organization"/>
-</md-input-container>
-</div>
-<div layout-gt-sm="row" layout-align="center center">
-<md-input-container class="md-block" flex-gt-sm>
-<label for="heard_about">How did they hear about Fix-it? </label>
-<input type="text" ng-model="newVolunteer.heard_about" id="heard_about"/>
-</md-input-container>
-<md-input-container class="md-block" flex-gt-sm>
-<label for="follow_up">Are they willing to consider follow-up events? </label>
-<input type="text" ng-model="newVolunteer.follow_up" id="follow_up"/>
-</md-input-container>
-</div>
-<div layout-gt-sm="row" layout-align="center center">
-<md-input-container class="md-block" flex-gt-sm>
-<label for="why_volunteer">Why are they interested in volunteering with Fix-It? </label>
-<input type="text" ng-model="newVolunteer.why_volunteer" id="why_volunteer"/>
-</md-input-container>
-<md-input-container class="md-block" flex-gt-sm>
-<label for="previous_experience">Do they have previous IT experience? If so, what? </label>
-<input type="text" ng-model="newVolunteer.previous_experience" id="previous_experience"/>
-</md-input-container>
-</div>
+  <h1>Add a New Volunteer</h1>
+  <div layout-gt-sm="row" layout-align="center center">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="first_name">First Name</label>
+      <input type="text" ng-model="newVolunteer.first_name" id="first_name"/>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="last_name">Last Name</label>
+      <input type="text" ng-model="newVolunteer.last_name" id="last_name"/>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="email">Email</label>
+      <input type="email" ng-model="newVolunteer.email" id="email"/>
+    </md-input-container>
+  </div>
+  <div layout-gt-sm="row" layout-align="center center">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="phone">Phone</label>
+      <input type="text" ng-model="newVolunteer.phone" id="phone"/>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="organization">Organization</label>
+      <input type="text" ng-model="newVolunteer.organization" id="organization"/>
+    </md-input-container>
+  </div>
+  <div layout-gt-sm="row" layout-align="center center">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="heard_about">How did they hear about Fix-it? </label>
+      <input type="text" ng-model="newVolunteer.heard_about" id="heard_about"/>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="follow_up">Are they willing to consider follow-up events? </label>
+      <input type="text" ng-model="newVolunteer.follow_up" id="follow_up"/>
+    </md-input-container>
+  </div>
+  <div layout-gt-sm="row" layout-align="center center">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="why_volunteer">Why are they interested in volunteering with Fix-It? </label>
+      <input type="text" ng-model="newVolunteer.why_volunteer" id="why_volunteer"/>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label for="previous_experience">Do they have previous IT experience? If so, what? </label>
+      <input type="text" ng-model="newVolunteer.previous_experience" id="previous_experience"/>
+    </md-input-container>
+  </div>
 
-<h2>What are their current tech skills?</h2>
-  <md-radio-group ng-model="skill.proficiency" layout="row" ng-repeat="skill in vc.skillsObject.skills">
-  <div flex style="max-width:400px;" layout-align="start center">{{skill.skill}}</div>
-  <md-radio-button name="{{skill.skill}}" value="1">High (3 or more years)</md-radio-button>
-  <md-radio-button name="{{skill.skill}}" value="2">Medium (1 to 3 years)</md-radio-button>
-  <md-radio-button name="{{skill.skill}}" value="3">Low (1 year or less)</md-radio-button>
-  <md-radio-button name="{{skill.skill}}" value="4">None</md-radio-button>
-  <md-radio-button name="{{skill.skill}}" value="5">Interested in Learning</md-radio-button>
-</md-radio-group>
+  <h2>What are their current tech skills?</h2>
+  <md-table-container>
+    <table md-table>
+      <tbody md-body>
+        <tr md-row>
+          <md-radio-group class="skill" ng-model="skill.proficiency" layout="row" ng-repeat="skill in vc.skillsObject.skills">
+            <div flex style="max-width:400px;" layout-align="start center">{{skill.skill}}</div>
+            <md-radio-button name="{{skill.skill}}" value="1">High (3 or more years)</md-radio-button>
+            <md-radio-button name="{{skill.skill}}" value="2">Medium (1 to 3 years)</md-radio-button>
+            <md-radio-button name="{{skill.skill}}" value="3">Low (1 year or less)</md-radio-button>
+            <md-radio-button name="{{skill.skill}}" value="4">None</md-radio-button>
+            <md-radio-button name="{{skill.skill}}" value="5">Interested in Learning</md-radio-button>
+          </md-radio-group>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
 
-<center><md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdd(newVolunteer, vc.skillsObject.skills)">Add Volunteer</md-button></center>
+  <center><md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdd(newVolunteer, vc.skillsObject.skills)">Add Volunteer</md-button></center>
 
 </div>

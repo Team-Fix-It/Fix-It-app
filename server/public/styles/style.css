@@ -86,9 +86,7 @@ body, html {
 md-nav-bar md-nav-ink-bar {
   /*background: #00B8D4*/
 }
-md-tabs {
-  text-align: center;
-}
+
 
 .btn:focus,.btn:active {
    outline: none !important;

@@ -17,6 +17,13 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
     .then(function(response){
       addEventAlert();
       console.log('added event', response);
+       }).catch(function(err){
+        swal(
+          'Oops...',
+          'Something went wrong!',
+          'error'
+        );
+
     });
   };
 
@@ -36,7 +43,14 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
       editEventAlert();
       getEvents();
 
-    }); // end success
+    }).catch(function(err){
+     swal(
+       'Oops...',
+       'Something went wrong!',
+       'error'
+     );
+
+ }); // end success
   }; // end editEvent
 
   //Delete an event from the Events table
@@ -60,7 +74,14 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
         'Your event has been deleted.',
         'success'
       );
-  });
+  }).catch(function(err){
+   swal(
+     'Oops...',
+     'Something went wrong!',
+     'error'
+   );
+
+});
   };// end deleteThisEvent
 
 
@@ -87,7 +108,7 @@ function editEventAlert() {
     swal({
       title: "Success!",
       text: "This event has been updated",
-      confirmButtonText: "View All Events",
+      confirmButtonText: "View Events",
       type: "success"
     });
   }

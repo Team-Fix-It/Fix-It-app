@@ -93,4 +93,17 @@ vm.volunteerRSVP = function(selectedEvent){
 });
 });
 };
+
+var flkty = new Flickity( '.carousel', {
+  // options
+  cellAlign: 'left',
+  contain: 'false',
+  imagesLoaded: 'true',
+  percentPosition: 'false',
+  setGallerySize: 'true',
+  resize: 'true',
+  autoPlay: 'true',
+  wrapAround: 'false'
+});
+
 });

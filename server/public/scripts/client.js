@@ -1,4 +1,5 @@
-var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable', "ui.bootstrap"]);
+var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable', 'md.data.table','bc.Flickity']);
+
 
 myApp.config(function($mdThemingProvider) {
 
@@ -85,6 +86,10 @@ myApp.config(function($routeProvider, $locationProvider) {
   .when('/skills', {
     templateUrl: '/views/templates/admin/volunteerSkills.html',
     controller: 'SkillsController as sc',
+  })
+  .when('/volunteersEdit', {
+    templateUrl: '/views/templates/admin/editVolunteer.html',
+    controller: 'VolunteersController as vc',
   })
     .otherwise({
       redirectTo: 'home'

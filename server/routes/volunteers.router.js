@@ -115,6 +115,7 @@ router.get('/getSkills/:id', function(req, res){
   // }
 }); // end of GET
 
+
 router.put('/edit/', function(req, res){
   var volunteer = req.body;
   console.log('Put route called to event of', volunteer);

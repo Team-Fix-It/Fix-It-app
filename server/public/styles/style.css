@@ -93,3 +93,25 @@ md-nav-bar md-nav-ink-bar {
 #warn {
     color: red !important;
 }
+
+
+/* external css: flickity.css */
+
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel img {
+  display: block;
+  height: 200px;
+}
+
+@media screen and ( min-width: 768px ) {
+  .carousel img {
+    height: 400px;
+  }
+}

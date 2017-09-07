@@ -13,6 +13,8 @@ router.get('/', function(req, res) {
     console.log('logged in', req.user);
     var userInfo = {
       email : req.user.email,
+      first_name : req.user.first_name,
+      last_name : req.user.last_name,
       role: req.user.role
     };
     res.send(userInfo);

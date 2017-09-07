@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
       last_name : req.user.last_name,
       role: req.user.role
     };
-    res.send(userInfo);
+    res.send(req.user);
   } else {
     // failure best handled on the server. do redirect here.
     console.log('not logged in');

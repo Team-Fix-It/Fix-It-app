@@ -33,13 +33,24 @@ myApp.factory('UserAuthService', function($http, $location){
       console.log('userObject:', userObject);
       $http.get('/user').then(function(response) {
           if(response.data.email) {
+              console.log('response:', response);
               // user has a curret session on the server
               userObject.email = response.data.email;
               userObject.role = response.data.role;
               userObject.firstName = response.data.first_name;
               userObject.lastName = response.data.last_name;
-              console.log('UserService -- getuser -- User Data: ', userObject.email);
-              console.log('userObject:', userObject);
+              userObject.phone = response.data.phone;
+              userObject.organization = response.data.organization;
+              userObject.heard_about = response.data.heard_about;
+              userObject.follow_up = response.data.follow_up;
+              userObject.why_volunteer = response.data.why_volunteer;
+              userObject.previous_experience = response.data.previous_experience;
+              userObject.id = response.data.id;
+              $http.get('/volunteers/getskills/' + userObject.id).then(function(response) {
+                console.log('response on get skills with id:', response);
+                userObject.skills = response.data.skills;
+                console.log('userObject:', userObject);
+              });
           } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page

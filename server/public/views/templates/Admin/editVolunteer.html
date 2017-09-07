@@ -1,41 +1,37 @@
 <div class="container">
   <div class="row col">
-<md-button name="button" ng-click="vc.seeMoreClick()">See More</md-button>
-
+<md-button name="button" ng-click="vc.goBackClick()">Go Back</md-button>
     <table class="table table-hover">
       <thead>
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Company</th>
-          <th>Role</th>
-          <th>Status</th>
+          <th>How did they hear about Fix-It?</th>
+          <th>Willing to consider follow-up events?</th>
+          <th>Why are they interested in volunteering?</th>
+          <th>Previous IT Experience?</th>
+          <th>Skills</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="people in vc.volunteersObject.volunteers">
           <td>
-            <span ng-show="!volunteerform.$visible" editable-text="people.first_name" e-class="first_name" e-form="volunteerform">{{people.first_name}}</span>
+            <span>{{people.first_name}}</span>
           </td>
           <td>
-            <span ng-show="!volunteerform.$visible" editable-text="people.last_name" e-class="last_name" e-form="volunteerform">{{people.last_name}}</span>
+            <span>{{people.last_name}}</span>
           </td>
           <td>
-            <span ng-show="!volunteerform.$visible" editable-text="people.email" e-class="email" e-form="volunteerform">{{people.email}}</span>
+            <span ng-show="!volunteerform.$visible" editable-text="people.heard_about" e-class="heard_about" e-form="volunteerform">{{people.heard_about}}</span>
           </td>
           <td>
-            <span ng-show="!volunteerform.$visible" editable-text="people.phone" e-class="phone" e-form="volunteerform">{{people.phone}}</span>
+            <span ng-show="!volunteerform.$visible" editable-text="people.follow_up" e-class="follow_up" e-form="volunteerform">{{people.follow_up}}</span>
           </td>
           <td>
-            <span ng-show="!volunteerform.$visible" editable-text="people.organization" e-class="organization" e-form="volunteerform">{{people.organization}}</span>
+            <span ng-show="!volunteerform.$visible" editable-text="people.why_volunteer" e-class="why_volunteer" e-form="volunteerform">{{people.why_volunteer}}</span>
           </td>
           <td>
-            <span ng-show="!volunteerform.$visible" editable-text="people.role" e-class="role" e-form="volunteerform">{{people.role}}</span>
-          </td>
-          <td>
-            <span ng-show="!volunteerform.$visible" editable-text="people.status" e-class="status" e-form="volunteerform">{{people.status}}</span>
+            <span ng-show="!volunteerform.$visible" editable-text="people.previous_experience" e-class="previous_experience" e-form="volunteerform">{{people.previous_experience}}</span>
           </td>
           <td>
             <form onaftersave="vc.editVolunteer(people)" editable-form name="volunteerform" ng-show="volunteerform.$visible" >
@@ -51,7 +47,7 @@
 
                  <i class="material-icons">mode_edit</i>
               </button>
-                  </div>
+            </div>
             </td>
             </tr>
           </tbody>

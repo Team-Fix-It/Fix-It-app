@@ -47,7 +47,7 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         newSkillProfile.volunteerId = response.data.newVolunteer[0].id;
         console.log('here is the new skill profile:', newSkillProfile);
         $http.post('/volunteers/skill', newSkillProfile).then(function(response){
-          console.log('volunteer.controller vm.skill');
+          console.log('volunteer.controller vm.skill: ', newSkillProfile);
           vm.userAuthService.getuser();
         });
       });

@@ -89,7 +89,7 @@ router.get('/getSkills/:id', function(req, res){
       } else {
         //method that passport puts on the req object returns T or F
         // Now we're going to GET things from the db
-        var queryText = 'SELECT * FROM "skillsprofile" ' +
+        var queryText = 'SELECT "skillsprofile"."volunteer_id", "skillsprofile"."skill_id", "skillsprofile"."proficiency_id", "skillsprofile"."id" FROM "skillsprofile" ' +
         'JOIN "skills" ON "skillsprofile"."skill_id" = "skills"."id" ' +
         'JOIN "proficiency" ON "skillsprofile"."proficiency_id" = "proficiency"."id" ' +
         'WHERE "skillsprofile"."volunteer_id" = $1';
@@ -252,11 +252,28 @@ router.post('/skill', function(req, res){
         res.sendStatus(500);
       } else {
         for (var i = 0; i < skill.proficiency.length; i++) {
+          var queryText = '';
+          var queryObjects = [];
         //method that passport puts on the req object returns T or F
         // Now we're going to GET things from the db
-        var queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
+        // var queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
+
+        // INSERT INTO the_table (id, column_1, column_2)
+        // VALUES (1, 'A', 'X'), (2, 'B', 'Y'), (3, 'C', 'Z')
+        // ON CONFLICT (id) DO UPDATE
+        //   SET column_1 = excluded.column_1,
+        //       column_2 = excluded.column_2;
+        if (skill.proficiency[i].id === undefined) {
+          queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
+          queryObjects = [skill.proficiency[i].id, skill.volunteerId, skill.proficiency[i].proficiency];
+        } else {
+          queryText = 'UPDATE "skillsprofile" ("proficiency_id") VALUES ($3) WHERE "skill_id" = $1 AND "volunteer_id" = $2;';
+          queryObjects = [skill.proficiency[i].id];
+        }
+        // var queryText = 'INSERT INTO "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3) ' +
+        // 'ON CONFLICT (UPDATE "skillsprofile" ("skill_id", "volunteer_id", "proficiency_id") VALUES ($1, $2, $3);';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [skill.proficiency[i].id, skill.volunteerId, skill.proficiency[i].proficiency], function(errorMakingQuery, result){
+        db.query(queryText, queryObjects, function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);

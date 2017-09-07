@@ -15,6 +15,7 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
     console.log('addEvent function clicked', newEvent);
     $http.post('/events/create', newEvent)
     .then(function(response){
+      addEventAlert();
       console.log('added event', response);
     });
   };
@@ -32,7 +33,9 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
   vm.editEvent = function(selectedEvent){
     console.log( 'in editEvents functon', selectedEvent);
     $http.put('/events/edit', selectedEvent).then(function(selectedEvent){
+      editEventAlert();
       getEvents();
+
     }); // end success
   }; // end editEvent
 
@@ -40,9 +43,24 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
   vm.deleteThisEvent = function(selectedEvent){
     console.log( 'in deleteEvents function', selectedEvent);
     vm.data.selectedEvent = selectedEvent;
+    swal({
+    title: 'Are you sure?',
+    text: "This will delete this event and data associated with it.",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#32CD32',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then(function () {
     $http.delete('/events/edit/' + selectedEvent.id).then(function(selectedEvent){
       getEvents();
-    }); // end success
+    });
+    swal(
+        'Deleted!',
+        'Your event has been deleted.',
+        'success'
+      );
+  });
   };// end deleteThisEvent
 
 
@@ -53,5 +71,25 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
     $location.url('/events/checkIn');
   };
 
+// SweetAlert2 Functions
+function addEventAlert() {
+  swal({
+    title: "Success!",
+    text: "This event has been added",
+    confirmButtonText: "View All Events",
+    type: "success"
+  }).then(function() {
+    window.location.href = "#/events";
+  });
+}
+
+function editEventAlert() {
+    swal({
+      title: "Success!",
+      text: "This event has been updated",
+      confirmButtonText: "View All Events",
+      type: "success"
+    });
+  }
 
 });

@@ -60,6 +60,7 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         newSkillProfile.volunteerId = response.data.newVolunteer[0].id;
         console.log('here is the new skill profile:', newSkillProfile);
         $http.post('/volunteers/skill', newSkillProfile).then(function(response){
+          volunteerProfileAlert();
           console.log('volunteer.controller vm.skill');
         }).catch(function(err){
          swal(
@@ -90,12 +91,35 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
       } // end getEvents
 
 // SweetAlert2 Functions
+// admin view ? we currently only have one function
+function addVolunteerAlert() {
+  swal({
+    title: "Success!",
+    text: "This volunteer has been added",
+    confirmButtonText: "View All Volunteers",
+    type: "success"
+  }).then(function() {
+    window.location.href = "#/volunteers";
+  });
+}
+
+// for voluteer view
+function volunteerProfileAlert() {
+  swal({
+    title: "Success!",
+    text: "Your profile has been added",
+    confirmButtonText: "View Upcoming Events",
+    type: "success"
+  }).then(function() {
+    window.location.href = "#/home";
+  });
+}
 
 function editVolunteerAlert() {
     swal({
       title: "Success!",
-      text: "This event has been updated",
-      confirmButtonText: "View Events",
+      text: "This volunteer profile has been updated",
+      confirmButtonText: "View profile",
       type: "success"
     });
   }

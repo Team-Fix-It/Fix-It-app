@@ -28,6 +28,14 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
       }); // end success
     }; // end editVolunteer
 
+    vm.seeMoreClick = function() {
+      $location.path('/volunteersEdit');
+    };
+
+    vm.goBackClick = function() {
+      $location.path('/volunteers');
+    };
+
     // vm.addVolunteer = function (volunteer){
     //   console.log( 'in addVolunteer function' );
     //   // ajax call to server to get tasks

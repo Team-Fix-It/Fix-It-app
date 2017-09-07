@@ -1,4 +1,5 @@
-var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable', 'md.data.table']);
+var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable', 'md.data.table','bc.Flickity']);
+
 
 myApp.config(function($mdThemingProvider) {
 

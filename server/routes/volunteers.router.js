@@ -177,7 +177,7 @@ router.post('/newVolunteer', function(req, res){
         '"phone" = $3, "organization" = $4, "status" = $5, "heard_about" = $6, "follow_up" = $7, "why_volunteer" = $8, "previous_experience" = $9' +
             ' WHERE "id" = $10 RETURNING id;';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [newVolunteer.first_name, newVolunteer.last_name, newVolunteer.phone, newVolunteer.organization, newVolunteer.status, newVolunteer.heard_about, newVolunteer.follow_up, newVolunteer.why_volunteer, newVolunteer.previous_experience, req.user.id], function(errorMakingQuery, result){
+        db.query(queryText, [newVolunteer.firstName, newVolunteer.lastName, newVolunteer.phone, newVolunteer.organization, newVolunteer.status, newVolunteer.heard_about, newVolunteer.follow_up, newVolunteer.why_volunteer, newVolunteer.previous_experience, req.user.id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);

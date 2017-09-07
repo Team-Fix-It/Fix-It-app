@@ -17,15 +17,28 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
       $http.get('/volunteers').then(function(response){
         vm.volunteersObject = response.data;
         console.log('events.controller vmvolunteersObject', vm.volunteersObject);
-      }); // end success
+      }).catch(function(err){
+       swal(
+         'Oops...',
+         'Something went wrong!',
+         'error'
+       );
+     });
     } // end getVolunteers
 
     //Edit a Volunteer in the Volunteers table
     vm.editVolunteer = function(people){
       console.log( 'in editVolunteer functon', people);
       $http.put('/volunteers/edit', people).then(function(people){
+        editVolunteerAlert();
         getVolunteers();
-      }); // end success
+      }).catch(function(err){
+       swal(
+         'Oops...',
+         'Something went wrong!',
+         'error'
+       );
+     });
     }; // end editVolunteer
 
     // vm.addVolunteer = function (volunteer){
@@ -47,8 +60,15 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         newSkillProfile.volunteerId = response.data.newVolunteer[0].id;
         console.log('here is the new skill profile:', newSkillProfile);
         $http.post('/volunteers/skill', newSkillProfile).then(function(response){
+          volunteerProfileAlert();
           console.log('volunteer.controller vm.skill');
-        });
+        }).catch(function(err){
+         swal(
+           'Oops...',
+           'Something went wrong!',
+           'error'
+         );
+       });
       });
     };
 
@@ -61,7 +81,47 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
             vm.skillsObject.skills[i].proficiency = '4';
           }
           console.log('skills object:', vm.skillsObject);
-        }); // end success
+        }).catch(function(err){
+         swal(
+           'Oops...',
+           'Something went wrong!',
+           'error'
+         );
+       }); // end success
       } // end getEvents
+
+// SweetAlert2 Functions
+// admin view ? we currently only have one function
+function addVolunteerAlert() {
+  swal({
+    title: "Success!",
+    text: "This volunteer has been added",
+    confirmButtonText: "View All Volunteers",
+    type: "success"
+  }).then(function() {
+    window.location.href = "#/volunteers";
+  });
+}
+
+// for voluteer view
+function volunteerProfileAlert() {
+  swal({
+    title: "Success!",
+    text: "Your profile has been added",
+    confirmButtonText: "View Upcoming Events",
+    type: "success"
+  }).then(function() {
+    window.location.href = "#/home";
+  });
+}
+
+function editVolunteerAlert() {
+    swal({
+      title: "Success!",
+      text: "This volunteer profile has been updated",
+      confirmButtonText: "View profile",
+      type: "success"
+    });
+  }
 
 });

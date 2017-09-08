@@ -1,6 +1,6 @@
 <div class="container">
-  <h1 class="lead">Welcome {{hc.userObject.firstName}}!</h1>
-   <md-button a href="/auth/google" data-prompt="select_account" class="google">Login With Google</a></md-button>
+  <h1 class="lead" ng-if="nc.userUpdate(2)">Welcome {{hc.userObject.firstName}}!</h1>
+  <h1 class="lead" ng-if="nc.userUpdate(1)">Welcome Admin {{hc.userObject.firstName}}!</h1>
 
 <!--carousel-->
   <div class="carousel js-flickity">
@@ -20,10 +20,15 @@
     <img src="assets/carousel/StateFairAug2017-6.jpg" alt="Fix-It Tech at the State Fair" />
   </div>
   </div>
+  <br>
+  <br>
+  <div><center><h2>Fix-It Tech is a free community technology education event providing
+    computer repair, education and resources.</h2></center></div>
 
 <!--Landing page Stuff-->
-<h1>Fix-It</h1>
-<md-button class="md-raised md-primary" type="button" name="button" ng-if="hr.userObject.role = null">Sign-Up To Volunteer</md-button>
+<h1>Fix-It Events</h1>
+
+<md-button class="md-raised md-primary" type="button" name="button" ng-if="hr.userObject.role = undefined">Sign-Up To Volunteer</md-button>
   <div class="dialog-newsletter-content" layout="row" layout-wrap layout-margin layout-align="center">
 </div>
 
@@ -60,7 +65,7 @@
         </md-card-content>
         <md-card-actions layout="column" layout-align="start">
           <md-button href="/auth/google" data-prompt="select_account">Volunteers Login to RSVP</md-button>
-          <md-button ng-click="hc.volunteerRSVP(event)">RSVP</md-button>
+          <md-button ng-click="hc.volunteerRSVP(event)" ng-if="nc.userUpdate(2)">RSVP</md-button>
         </md-card-actions>
       </md-card>
 

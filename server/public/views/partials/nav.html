@@ -4,6 +4,7 @@
       md-selected-nav-item="currentNavItem"
       nav-bar-aria-label="navigation links">
       <md-nav-item md-nav-href="#home" name="page1">Home</md-nav-item>
+      <md-button a href="/auth/google" data-prompt="select_account" class="google" ng-if="nc.userUpdate(undefined)">Login With Google</a></md-button>
       <md-nav-item ng-if="nc.userUpdate(1)" md-nav-href="#events/add" name="page2">Create a Event</md-nav-item>
       <md-nav-item ng-if="nc.userUpdate(1)" md-nav-href="#events" name="page3">Events</md-nav-item>
       <md-nav-item ng-if="nc.userUpdate(1)" md-nav-href="#volunteers/add" name="page4">Add a Volunteer</md-nav-item>

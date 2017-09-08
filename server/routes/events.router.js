@@ -249,6 +249,7 @@ router.post('/create/', function(req, res){
       }); // end of DELETE - admin event delete
     });
 
+
     router.get('/rsvp/manage/:eventid', function(req, res) {
       var eventId = req.params.eventid;
       console.log('getting attendance:', eventId);
@@ -260,6 +261,7 @@ router.post('/create/', function(req, res){
           //method that passport puts on the req object returns T or F
           // Now we're going to GET things from the db
           // var queryText = 'SELECT * FROM "attendance" WHERE "event_id" = $1;';
+
           var queryText = 'SELECT "skillsprofile"."skill_id", "skills"."skill", "skillsprofile"."proficiency_id", ' +
           'count("skillsprofile"."volunteer_id") FROM "rsvp" JOIN "skillsprofile" ' +
           'ON "rsvp"."volunteer_id" = "skillsprofile"."volunteer_id" JOIN "skills" ON "skills"."id" = "skillsprofile"."skill_id" ' +
@@ -302,5 +304,42 @@ router.post('/create/', function(req, res){
         } // end else
       }); // end pool
     });
+
+
+    router.get('/rsvp/:id', function(req, res) {
+      var eventId = req.params.id;
+      console.log('getting rsvp attendance:', eventId);
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          //method that passport puts on the req object returns T or F
+          // Now we're going to GET things from the db
+          // var queryText = 'SELECT * FROM "attendance" WHERE "event_id" = $1;';
+          var queryText = 'SELECT "rsvp"."id" as id, "volunteer_id",' +
+                          '"event_id", "first_name", "last_name", "email", "phone", "organization", "role", "status" ' +
+                          'FROM "rsvp" JOIN "volunteers" ' +
+                          'ON "rsvp"."volunteer_id" = "volunteers"."id" ' +
+                          'WHERE "event_id" = $1;';
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText, [eventId], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query:', errorMakingQuery);
+              res.sendStatus(500);
+            } else {
+              // console.log(result);
+              // Send back the results
+              var data = {events: result.rows};
+              res.send(data);
+            }
+          }); // end query
+
+        } // end else
+      }); // end pool
+    });
+
 
     module.exports = router;

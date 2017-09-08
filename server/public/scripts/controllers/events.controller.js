@@ -114,6 +114,10 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
   vm.storeThisEvent = function(selectedEvent){
 
     vm.eventService.currentEvent = selectedEvent;
+    $http.get('/events/rsvp/' + selectedEvent.id).then(function(response) {
+      console.log('rsvp response:', response);
+      vm.eventService.currentEvent.rsvp = response.data.events;
+    });
     manageRSVP(selectedEvent.id);
     console.log('in storeThisEvent function', selectedEvent);
     $location.url('/events/checkIn');

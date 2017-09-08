@@ -61,15 +61,15 @@ placeholder="Which volunteer attended this event?">
   			</tr>
   		</thead>
   		<tbody>
-  			<tr ng-repeat="people in vc.volunteersObject.volunteers">
+  			<tr ng-repeat="people in ecic.eventService.currentEvent.rsvp">
   				<td>{{people.first_name}}</td>
   				<td>{{people.last_name}}</td>
   				<td>{{people.email}}</td>
-  				<td>{{people.phone}}<td>
-  					<td>{{people.organization}}<td>
-  						<td>{{people.role}}<td>
-  							<td>{{people.status}}<td>
-  								<td><button type="button" name="button">Skills</button><td>
+  				<td>{{people.phone}}</td>
+  					<td>{{people.organization}}</td>
+  						<td>{{people.role}}</td>
+  							<td>{{people.status}}</td>
+  								<td><button type="button" name="button">Skills</button></td>
   								</tr>
   							</tbody>
   						</table>

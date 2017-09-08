@@ -19,7 +19,7 @@ router.get('/', function(req, res){
     } else {
       //method that passport puts on the req object returns T or F
       // Now we're going to GET things from the db
-      var queryText = 'SELECT id, event_name, event_location, event_description, TO_CHAR(event_date, \'MM/DD/YYYY\') as event_date, TO_CHAR(starting_time, \'HH:MI AM\') as starting_time, TO_CHAR(ending_time, \'HH:MI AM\') as ending_time FROM "events";'; 
+      var queryText = 'SELECT id, event_name, event_location, event_description, TO_CHAR(event_date, \'MM/DD/YYYY\') as event_date, TO_CHAR(starting_time, \'HH:MI AM\') as starting_time, TO_CHAR(ending_time, \'HH:MI AM\') as ending_time FROM "events";';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, function(errorMakingQuery, result){
         done();
@@ -248,5 +248,41 @@ router.post('/create/', function(req, res){
         } // end if
       }); // end of DELETE - admin event delete
     });
+
+    router.get('/rsvp/:id', function(req, res) {
+      var eventId = req.params.id;
+      console.log('getting rsvp attendance:', eventId);
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          //method that passport puts on the req object returns T or F
+          // Now we're going to GET things from the db
+          // var queryText = 'SELECT * FROM "attendance" WHERE "event_id" = $1;';
+          var queryText = 'SELECT "rsvp"."id" as id, "volunteer_id",' +
+                          '"event_id", "first_name", "last_name", "email", "phone", "organization", "role", "status" ' +
+                          'FROM "rsvp" JOIN "volunteers" ' +
+                          'ON "rsvp"."volunteer_id" = "volunteers"."id" ' +
+                          'WHERE "event_id" = $1;';
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText, [eventId], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query:', errorMakingQuery);
+              res.sendStatus(500);
+            } else {
+              // console.log(result);
+              // Send back the results
+              var data = {events: result.rows};
+              res.send(data);
+            }
+          }); // end query
+
+        } // end else
+      }); // end pool
+    });
+
 
     module.exports = router;

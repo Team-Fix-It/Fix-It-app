@@ -7,6 +7,9 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
   vm.skillProfile = {};
   vm.userAuthService = UserAuthService;
   vm.userObject = UserAuthService.userObject;
+  vm.skillProfileObject = UserAuthService.skillProfileObject;
+
+  console.log('vm.skillProfileObject:', vm.skillProfileObject);
 
   getVolunteers();
   getSkills();
@@ -47,10 +50,11 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
 
 //Getting the skills of a volunteer for admin to view
     vm.volunteerProfileSkills = function(id){
-      $location.path('/viewSkill');
+
       $http.get('/volunteers/getSkills/' + id).then(function(response){
-        vm.skillProfileObject = response.data;
-        console.log('volunteers.controller vmskillProfileObject', vm.skillProfileObject);
+        vm.skillProfileObject.profile = response.data;
+        console.log('here is the profile skills being sent back based on the specific id', vm.skillProfileObject);
+        $location.path('/viewSkill');
       }).catch(function(err){
       });
     };

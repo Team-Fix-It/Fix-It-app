@@ -1,6 +1,7 @@
 myApp.factory('UserAuthService', function($http, $location){
   console.log('UserAuthService Loaded');
   var userObject = {};
+  var skillProfileObject = {};
 
   return {
     // onSignIn: function(googleUser) {
@@ -27,6 +28,7 @@ myApp.factory('UserAuthService', function($http, $location){
     // },
 
     userObject : userObject,
+    skillProfileObject : skillProfileObject,
 
     getuser : function(){
       console.log('UserService -- getuser');

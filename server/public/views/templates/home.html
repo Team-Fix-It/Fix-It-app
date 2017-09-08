@@ -1,6 +1,6 @@
 <div class="container">
-  <h1 class="lead" ng-if="nc.userUpdate(2)">Welcome {{hc.userObject.firstName}}!</h1>
-  <h1 class="lead" ng-if="nc.userUpdate(1)">Welcome Admin {{hc.userObject.firstName}}!</h1>
+  <h1 class="lead" ng-if="hc.userUpdate(2)">Welcome {{hc.userObject.firstName}}!</h1>
+  <h1 class="lead" ng-if="hc.userUpdate(1)">Welcome Admin {{hc.userObject.firstName}}!</h1>
 
 <!--carousel-->
   <div class="carousel js-flickity">
@@ -64,12 +64,10 @@
           <p>Description: {{event.event_description}}</p>
         </md-card-content>
         <md-card-actions layout="column" layout-align="start">
-          <md-button href="/auth/google" data-prompt="select_account">Volunteers Login to RSVP</md-button>
-          <md-button ng-click="hc.volunteerRSVP(event)" ng-if="nc.userUpdate(2)">RSVP</md-button>
+          <md-button href="/auth/google" data-prompt="select_account" ng-if="hc.userUpdate(undefined)">Volunteers Login to RSVP</md-button>
+          <md-button ng-click="hc.volunteerRSVP(event)" ng-if="hc.userUpdate(2)">RSVP</md-button>
         </md-card-actions>
       </md-card>
 
-<!--Newsletter signup-->
-<md-button class="md-raised md-primary" type="button" name="button" ng-click="hc.newsletterSignup(ev)">Subscribe To Our Newsletter</md-button>
     </center>
   </div>

@@ -2,7 +2,27 @@ var myApp = angular.module('myApp', ['ngRoute','ngMaterial','xeditable', 'md.dat
 
 
 myApp.config(function($mdThemingProvider) {
+  $mdThemingProvider.definePalette('white', {
+    '50': 'ffffff',
+    '100': 'ffffff',
+    '200': 'ffffff',
+    '300': 'ffffff',
+    '400': 'ffffff',
+    '500': 'ffffff',
+    '600': 'ffffff',
+    '700': 'ffffff',
+    '800': 'ffffff',
+    '900': '37474f',
+    'A100': 'ffffff',
+    'A200': '37474f',
+    'A400': 'ffffff',
+    'A700': 'ffffff',
+    'contrastDefaultColor': 'light',
 
+    'contrastDarkColors': ['50', '100',
+     '200', '300', '400', 'A100'],
+    'contrastLightColors': undefined
+  });
   $mdThemingProvider.definePalette('darkTeal', {
     '50': '056571',
     '100': '056571',
@@ -27,6 +47,7 @@ myApp.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     //.backgroundPalette('white')
     .primaryPalette('indigo')
+    .backgroundPalette('white')
     .accentPalette('indigo')
     .warnPalette('red');
 });

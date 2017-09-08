@@ -2,4 +2,23 @@
   <i class="material-icons">keyboard_backspace</i>
 </button>
 
-<h1>View Volunteer Skills Here</h1>
+<h2>{{}}'s Skill Profile</h2>
+
+<md-table-container>
+  <table md-table>
+    <tbody md-body>
+      <tr md-row>
+        <md-radio-group class="skill" ng-model="skill.proficiency" layout="row" ng-repeat="skill in vc.skillsObject.skills">
+          <div flex style="max-width:400px;" layout-align="start center">{{skill.skill}}</div>
+          <md-radio-button name="{{skill.skill}}" value="1">High (3 or more years)</md-radio-button>
+          <md-radio-button name="{{skill.skill}}" value="2">Medium (1 to 3 years)</md-radio-button>
+          <md-radio-button name="{{skill.skill}}" value="3">Low (1 year or less)</md-radio-button>
+          <md-radio-button name="{{skill.skill}}" value="4">None</md-radio-button>
+          <md-radio-button name="{{skill.skill}}" value="5">Interested in Learning</md-radio-button>
+        </md-radio-group>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>
+
+<md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdminAdd(vc.skillsObject.skills)">Update Volunteer Skills</md-button>

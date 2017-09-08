@@ -1,46 +1,45 @@
-<div class="container">
 <h2 style="text-align:center ">Events Table</h2>
-<p>Our event history can be viewed here</p>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Location</th>
-      <th>Date</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>Manage Events</th>
-      <th>Actions</th>
+<md-table-container class="volunteerTable">
+  <table md-table>
+    <thead md-head>
+      <tr md-row>
+      <th md-column md-numeric>Title</th>
+      <th md-column md-numeric>Location</th>
+      <th md-column md-numeric>Date</th>
+      <th md-column md-numeric>Start Time</th>
+      <th md-column md-numeric>End Time</th>
+      <th md-column md-numeric>Manage Events</th>
+      <th md-column md-numeric>Actions</th>
     </tr>
   </thead>
-  <tbody>
-    <tr ng-repeat="event in ec.eventObject.events">
+  <tbody md-body>
+    <tr md-row ng-repeat="event in ec.eventObject.events">
       <!-- Table Columns using Xeditable -->
-      <td>
+      <td md-cell>
         <span ng-show="!eventform.$visible" editable-text="event.event_name"
         e-class="event_name" e-form="eventform">{{event.event_name}}</span>
       </td>
-      <td>
+      <td md-cell>
         <span ng-show="!eventform.$visible" editable-text="event.event_location"
         e-class="event_location" e-form="eventform">{{event.event_location}}</span>
       </td>
-      <td>
+      <td md-cell>
         <span ng-show="!eventform.$visible" editable-text="event.event_date"
         e-class="event_date" e-form="eventform">{{event.event_date}}</span>
       </td>
-      <td>
+      <td md-cell>
         <span ng-show="!eventform.$visible" editable-text="event.starting_time"
         e-class="starting_time" e-form="eventform">{{event.starting_time}}</span>
       </td>
-      <td>
+      <td md-cell>
         <span ng-show="!eventform.$visible" editable-text="event.ending_time"
         e-class="ending_time" e-form="eventform">{{event.ending_time}}</span>
       </td>
-      <td><button type="button" class="btn btn-link" ng-click="ec.storeThisEvent(event)">
+      <td md-cell><button type="button" class="btn btn-link" ng-click="ec.storeThisEvent(event)">
         <i class="material-icons">content_paste</i>
       </button></td>
       <!-- Action Buttons -->
-      <td class="btnLinks">
+      <td md-cell class="btnLinks">
         <form onaftersave="ec.editEvent(event)" editable-form name="eventform" ng-show="eventform.$visible" >
           <button type="submit" class="btn btn-link" ng-disabled="eventform.$waiting">
             <i class="material-icons">save</i>
@@ -62,4 +61,4 @@
       </tr>
     </tbody>
   </table>
-</div>
+</md-table-container>

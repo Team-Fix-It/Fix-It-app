@@ -249,6 +249,63 @@ router.post('/create/', function(req, res){
       }); // end of DELETE - admin event delete
     });
 
+
+    router.get('/rsvp/manage/:eventid', function(req, res) {
+      var eventId = req.params.eventid;
+      console.log('getting attendance:', eventId);
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          //method that passport puts on the req object returns T or F
+          // Now we're going to GET things from the db
+          // var queryText = 'SELECT * FROM "attendance" WHERE "event_id" = $1;';
+
+          var queryText = 'SELECT "skillsprofile"."skill_id", "skills"."skill", "skillsprofile"."proficiency_id", ' +
+          'count("skillsprofile"."volunteer_id") FROM "rsvp" JOIN "skillsprofile" ' +
+          'ON "rsvp"."volunteer_id" = "skillsprofile"."volunteer_id" JOIN "skills" ON "skills"."id" = "skillsprofile"."skill_id" ' +
+          'WHERE "rsvp"."event_id" = $1 GROUP BY "skillsprofile"."skill_id", ' +
+          '"skillsprofile"."proficiency_id", "skills"."skill";';
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText, [eventId], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query:', errorMakingQuery);
+              res.sendStatus(500);
+            } else {
+              // console.log(result);
+              // Send back the results
+              var data = {events: result.rows};
+              var newArray = [];
+              for (var i = 0; i < 16; i++) {
+                newArray.push({skill_id : (i + 1)});
+              }
+              for (var j = 0; j < data.events.length; j++) {
+                if (data.events[j].proficiency_id == 1) {
+                  newArray[data.events[j].skill_id - 1].one = data.events[j].count;
+                } else if (data.events[j].proficiency_id == 2) {
+                  newArray[data.events[j].skill_id - 1].two = data.events[j].count;
+                } else if (data.events[j].proficiency_id == 3) {
+                  newArray[data.events[j].skill_id - 1].three = data.events[j].count;
+                } else if (data.events[j].proficiency_id == 4) {
+                  newArray[data.events[j].skill_id - 1].four = data.events[j].count;
+                } else if (data.events[j].proficiency_id == 5) {
+                  newArray[data.events[j].skill_id - 1].five = data.events[j].count;
+                }
+                newArray[data.events[j].skill_id - 1].skill = data.events[j].skill;
+              }
+              console.log('newArray:', newArray);
+              res.send(newArray);
+            }
+          }); // end query
+
+        } // end else
+      }); // end pool
+    });
+
+
     router.get('/rsvp/:id', function(req, res) {
       var eventId = req.params.id;
       console.log('getting rsvp attendance:', eventId);

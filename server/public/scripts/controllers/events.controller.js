@@ -112,12 +112,14 @@ myApp.controller('EventController', function($location, $http, UserAuthService, 
 
   //passing the selectedEvent into the variable called currentEvent which is located in the EventService.
   vm.storeThisEvent = function(selectedEvent){
-    console.log('in storeThisEvent function', selectedEvent);
+
     vm.eventService.currentEvent = selectedEvent;
     $http.get('/events/rsvp/' + selectedEvent.id).then(function(response) {
       console.log('rsvp response:', response);
       vm.eventService.currentEvent.rsvp = response.data.events;
     });
+    manageRSVP(selectedEvent.id);
+    console.log('in storeThisEvent function', selectedEvent);
     $location.url('/events/checkIn');
   };
 
@@ -141,5 +143,13 @@ function editEventAlert() {
       type: "success"
     });
   }
+
+function manageRSVP(eventId) {
+  $http.get('/events/rsvp/manage/' + eventId).then(function(response) {
+    console.log('rsvp manager response:', response);
+    vm.eventService.currentEvent.manageRSVP = response.data;
+    console.log('currentEvent after manage:', vm.eventService.currentEvent.manageRSVP);
+  });
+}
 
 });

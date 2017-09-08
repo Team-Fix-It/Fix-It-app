@@ -84,117 +84,12 @@ placeholder="Which volunteer attended this event?">
   								<th>Low Experience <br>(1 year or less)</th>
   								<th>Interested in learning</th>
   							</tr>
-  							<tr>
-  								<th>Windows</th>
-  								<td>2</td>
-  								<td>1</td>
-  								<td></td>
-  								<td></td>
-  							</tr>
-  							<tr>
-  								<th>Mac OS</th>
-  								<td>1</td>
-  								<td>5</td>
-  								<td></td>
-  								<td>3</td>
-  							</tr>
-  							<tr>
-  								<th>Linux</th>
-  								<td></td>
-  								<td>2</td>
-  								<td></td>
-  								<td>3</td>
-  							</tr>
-  							<tr>
-  								<th>Data Back Up and Recovery</th>
-  								<td>1</td>
-  								<td>3</td>
-  								<td>3</td>
-  								<td>2</td>
-  							</tr>
-  							<tr>
-  								<th>Malware, Anti-Virus</th>
-  								<td>2</td>
-  								<td>1</td>
-  								<td></td>
-  								<td></td>
-  							</tr>
-  							<tr>
-  								<th>Security and User Privacy</th>
-  								<td></td>
-  								<td></td>
-  								<td>4</td>
-  								<td>2</td>
-  							</tr>
-  							<tr>
-  								<th>System Performance</th>
-  								<td>2</td>
-  								<td></td>
-  								<td></td>
-  								<td>3</td>
-  							</tr>
-  							<tr>
-  								<th>User Support for Email, Internet, MS Office, Google Apps</th>
-  								<td>2</td>
-  								<td>1</td>
-  								<td></td>
-  								<td></td>
-  							</tr>
-  							<tr>
-  								<th>Hardware Repair and Peripheral Connections</th>
-  								<td></td>
-  								<td></td>
-  								<td>1</td>
-  								<td>2</td>
-  							</tr>
-  							<tr>
-  								<th>Smartphone Repair and User Support</th>
-  								<td></td>
-  								<td>7</td>
-  								<td>2</td>
-  								<td>1</td>
-  							</tr>
-  							<tr>
-  								<th>Network</th>
-  								<td></td>
-  								<td>2</td>
-  								<td></td>
-  								<td>2</td>
-  							</tr>
-  							<tr>
-  								<th>Database</th>
-  								<td></td>
-  								<td>5</td>
-  								<td></td>
-  								<td>4</td>
-  							</tr>
-  							<tr>
-  								<th>Programming</th>
-  								<td>2</td>
-  								<td></td>
-  								<td></td>
-  								<td></td>
-  							</tr>
-  							<tr>
-  								<th>Web Development</th>
-  								<td></td>
-  								<td>1</td>
-  								<td></td>
-  								<td>3</td>
-  							</tr>
-  							<tr>
-  								<th>Project Management</th>
-  								<td></td>
-  								<td>1</td>
-  								<td></td>
-  								<td>1</td>
-  							</tr>
-  							<tr>
-  								<th>Event Management</th>
-  								<td></td>
-  								<td>1</td>
-  								<td>3</td>
-  								<td>5</td>
+  							<tr ng-repeat="skill in ecic.eventService.currentEvent.manageRSVP">
+  								<th>{{skill.skill}}</th>
+  								<td>{{skill.one}}</td>
+  								<td>{{skill.two}}</td>
+  								<td>{{skill.three}}</td>
+  								<td>{{skill.five}}</td>
   							</tr>
   						</table>
   					</div>

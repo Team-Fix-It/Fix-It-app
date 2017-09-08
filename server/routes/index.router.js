@@ -87,7 +87,6 @@ router.post('/rsvp', function(req, res){
           }
         });
       } // end else
-          res.sendStatus(200);
     }); // end pool
   } else {
     res.sendStatus(401);

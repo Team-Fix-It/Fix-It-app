@@ -31,6 +31,9 @@ body, html {
   margin: 0 auto;
   padding-top: 30px;
 }
+.centerText {
+text-align: center; 
+}
 
 #footer {
     position: fixed;

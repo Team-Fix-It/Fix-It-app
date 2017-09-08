@@ -1,8 +1,9 @@
-<md-tabs md-dynamic-height md-border-top>
-<md-tab label="Attendance">
-<h1>Who attended this event?</h1>
-<h3>{{ecic.eventService.currentEvent.event_name}}</h3>
-<h5>{{ecic.eventService.currentEvent.event_location}}</h5>
+<md-tabs md-dynamic-height md-border-top >
+<md-tab label=" Manage Attendance" >
+<h1 class="centerText">{{ecic.eventService.currentEvent.event_name}}</h1>
+<div class="rsvpTable">
+  <h3 class="centerText">Who attended this event?</h3>
+  <div style="text-align:center;">
 <md-autocomplete
 ng-disabled="ecic.isDisabled"
 md-selected-item="ecic.selectedItem"
@@ -12,12 +13,13 @@ md-selected-item-change="ecic.selectedItemChange(item)"
 md-items="item in ecic.querySearch(ecic.searchText)"
 md-item-text="item.display"
 md-min-length="0"
-placeholder="Which volunteer attended this event?">
+placeholder="Which volunteer attended this event?" style="display:inline-block;min-width: 22%;">
 <md-item-template>
   <span md-highlight-text="ecic.searchText" md-highlight-flags="^i">{{item.display}}</span>
 </md-item-template>
 </md-autocomplete>
-<md-button class="md-primary md-raised" ng-click="ecic.addAttendance()">Add Volunteer to Attendance</md-button>
+<md-button style="display:inline-block" class="md-primary md-raised" ng-click="ecic.addAttendance()">Add Volunteer to Attendance</md-button>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -33,20 +35,19 @@ placeholder="Which volunteer attended this event?">
       <td>{{volunteer.last_name}}</td>
       <td>{{volunteer.email}}</td>
       <td>
-        <md-button type="button" class="btn btn-link" name="button" ng-click="ecic.removeAttendance(volunteer)">
-          Remove
+        <md-button type="button" class="btn btn-link" name="button" ng-click="ecic.removeAttendance(volunteer)" id="warn">
+          <i class="material-icons">delete</i>
         </md-button>
       </td>
     </tr>
   </tbody>
 </table>
+</div>
 </md-tab>
-<md-tab label="RSVP">
-  <div class="">
-  	<h1>Fix-It Tech event on 9/14/2017</h1>
-  </div>
+<md-tab label="Manage RSVP's">
+  	<h1 class="centerText">{{ecic.eventService.currentEvent.event_name}}</h1>
   <div class="rsvpTable">
-  	<h3>Volunteers for this event</h3>
+  	<h3 class="centerText">Volunteers for this event</h3>
   	<table class="table table-hover">
   		<thead>
   			<tr>
@@ -75,7 +76,7 @@ placeholder="Which volunteer attended this event?">
   						</table>
   					</div>
   					<div class="rsvpTable">
-  						<h3>Technical skills for this event</h3>
+  						<h3 class="centerText">Technical skills for this event</h3>
   						<table class="table table-hover">
   							<tr>
   								<td></td>

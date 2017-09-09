@@ -340,4 +340,45 @@ router.post('/skill', function(req, res){
   // }
 }); // end of POST
 
+//Get for all events for that user to show up on the DOM
+router.get('/filter/:skill_id', function(req, res){
+  if(req.isAuthenticated() && ((req.user.role === USER) || (req.user.role === ADMIN))) {
+    console.log('authentication succeeded');
+    var skill_id = req.params.skill_id;
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
+        // Now we're going to GET things from the db
+        var queryText = 'SELECT * FROM "skillsprofile" ' +
+        'JOIN "volunteers" ON "volunteers"."id" = "skillsprofile"."volunteer_id" ' +
+        'WHERE "skillsprofile"."skill_id" = $1 AND "skillsprofile"."proficiency_id" ' +
+        'between 1 AND 2;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [skill_id], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            // console.log(result);
+            // Send back the results
+            var data = {volunteers: result.rows};
+            res.send(data);
+          }
+        }); // end query
+
+      } // end else
+    }); // end pool
+  } else {
+    console.log('authentication failed');
+    res.sendStatus(401);
+  }
+}); // end of GET
+
 module.exports = router;

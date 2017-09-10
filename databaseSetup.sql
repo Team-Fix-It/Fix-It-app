@@ -1,6 +1,6 @@
 Database Name: fix-it_tech
 
-Last Updated: 8/31 @ 10:07pm
+Last Updated: 9/8 @ 3:10pm
 
 CREATE TABLE volunteers (
   id serial PRIMARY KEY,
@@ -9,8 +9,8 @@ CREATE TABLE volunteers (
   email character varying(45) NOT NULL UNIQUE,
   phone character varying (20),
   organization character varying (35),
-  role integer,
-  status character varying,
+  role integer DEFAULT 2,
+  status character varying DEFAULT 'active',
   created timestamp DEFAULT current_timestamp,
   modified timestamp DEFAULT current_timestamp,
   heard_about character varying(200),
@@ -99,7 +99,7 @@ INSERT INTO "proficiency" (level) VALUES
 ('Interested in Learning');
 
 INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
-('Frodo', 'Baggins', 'fordo@gmail.com', '612-123-4567', 'The Shire', 2, 'active');
+('Frodo', 'Baggins', 'frodo@gmail.com', '612-123-4567', 'The Shire', 2, 'active');
 
 INSERT INTO "volunteers" (first_name, last_name, email, phone, organization, role, status) VALUES
 ('Legolas', 'Too good for a last name', 'legolas@yahoo.com', '612-456-4567', 'Elves of Northern Mirkwood', 2, 'inactive');

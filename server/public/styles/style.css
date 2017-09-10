@@ -164,7 +164,7 @@ vertical-align: middle;
   align-content: center;
   margin-left: 10px;
   background-color: #74e774;
-  padding: 10px;
+  padding: 7px;
   border-radius: 2px;
   align-items: center;
   text-align: center;
@@ -174,4 +174,7 @@ vertical-align: middle;
   font-style: inherit;
   font-variant: inherit;
   font-family: inherit;
+}
+.going{
+  padding-right: 5px;
 }

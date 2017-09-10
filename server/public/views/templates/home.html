@@ -65,8 +65,8 @@
         </md-card-content>
         <md-card-actions layout="column" layout-align="start">
           <md-button href="/auth/google" data-prompt="select_account" ng-if="hc.userUpdate(undefined)">Volunteers Login to RSVP</md-button>
-          <md-button ng-click="hc.volunteerRSVP(event)" ng-if="hc.userUpdate(2)">RSVP</md-button>
-          <div><i class="material-icons" ng-if="hc.volunteerEvent.rsvp.response = 'attending'">I'm Going!</i></div>
+          <md-button ng-click="hc.volunteerRSVP(event)" ng-if="hc.userUpdate(2)" ng-hide="hc.volunteerEvent.rsvp.response = 'attending'">RSVP</md-button>
+          <div id="rsvp-going"><md-icon ng_bind="'thumb_up'" ng-if="hc.volunteerEvent.rsvp.response = 'attending'"></md-icon>I'm Going!</div>
         </md-card-actions>
       </md-card>
 

@@ -97,6 +97,7 @@ vm.volunteerRSVP = function(selectedEvent){
   // call to server to get tasks
   console.log('going to run RSVP POST');
   $http.post('/rsvp', selectedEvent).then(function(response){
+    vm.rsvpObject.response = 'not going';
     vm.rsvpObject = response.data;
     console.log('home.controller vmeventObject', vm.rsvpObject);
 });

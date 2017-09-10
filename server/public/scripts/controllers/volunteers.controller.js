@@ -7,15 +7,19 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
   vm.skillProfile = {};
   vm.userAuthService = UserAuthService;
   vm.userObject = UserAuthService.userObject;
+  vm.skillProfileObject = UserAuthService.skillProfileObject;
 
-  getVolunteers();
+  console.log('vm.skillProfileObject:', vm.skillProfileObject);
+
+
   getSkills();
 
-  function getVolunteers(){
+  vm.getVolunteers = function() {
       console.log( 'in getVolunteers function' );
       // ajax call to server to get tasks
       $http.get('/volunteers').then(function(response){
         vm.volunteersObject = response.data;
+        convertToEmailArray(vm.volunteersObject.volunteers);
         console.log('volunteers.controller vmvolunteersObject', vm.volunteersObject);
       }).catch(function(err){
        swal(
@@ -24,14 +28,16 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
          'error'
        );
      });
-    } // end getVolunteers
+   }; // end getVolunteers
+
+    vm.getVolunteers();
 
     //Edit a Volunteer in the Volunteers table
     vm.editVolunteer = function(people){
       console.log( 'in editVolunteer functon', people);
       $http.put('/volunteers/edit', people).then(function(people){
         editVolunteerAlert();
-        getVolunteers();
+        vm.getVolunteers();
       }).catch(function(err){
        swal(
          'Oops...',
@@ -47,10 +53,11 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
 
 //Getting the skills of a volunteer for admin to view
     vm.volunteerProfileSkills = function(id){
-      $location.path('/viewSkill');
+
       $http.get('/volunteers/getSkills/' + id).then(function(response){
-        vm.skillProfileObject = response.data;
-        console.log('volunteers.controller vmskillProfileObject', vm.skillProfileObject);
+        vm.skillProfileObject.profile = response.data;
+        console.log('here is the profile skills being sent back based on the specific id', vm.skillProfileObject);
+        $location.path('/viewSkill');
       }).catch(function(err){
       });
     };
@@ -98,7 +105,9 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         console.log('here is the new skill profile:', newSkillProfile);
         $http.post('/volunteers/skill', newSkillProfile).then(function(response){
           console.log('volunteer.controller vm.skill: ', newSkillProfile);
+
           vm.userAuthService.getuser();
+          addVolunteerAlert();
         });
       });
     };
@@ -108,7 +117,6 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
         // ajax call to server to get tasks
         $http.get('/volunteers/getSkills').then(function(response){
           vm.skillsObject = response.data;
-          console.log('skills object before proficiencies:', vm.skillObject);
           for (var i = 0; i < vm.skillsObject.skills.length; i++) {
             for (var j = 0; j < vm.userObject.skills.length; j++) {
               if (vm.userObject.skills[j].skill_id == vm.skillsObject.skills[i].id) {
@@ -164,6 +172,27 @@ function editVolunteerAlert() {
       confirmButtonText: "View profile",
       type: "success"
     });
+  }
+
+  vm.filterVolunteers = function(skillId) {
+    console.log('Filter volunteers with the skill ID:', skillId);
+    $http.get('/volunteers/filter/' + skillId).then(function(response) {
+      console.log('Filter response:', response);
+      vm.volunteersObject.volunteers = response.data.volunteers;
+      convertToEmailArray(vm.volunteersObject.volunteers);
+    });
+  };
+
+  function convertToEmailArray (array) {
+    newArray = [];
+    for (var i = 0; i < array.length; i++) {
+      var newObject = {};
+      newObject.email = array[i].email;
+      newObject.first_name = array[i].first_name;
+      newObject.last_name = array[i].last_name;
+      newArray.push(newObject);
+    }
+    vm.csvObject = newArray;
   }
 
 });

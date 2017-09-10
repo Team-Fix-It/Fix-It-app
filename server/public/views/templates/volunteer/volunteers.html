@@ -1,3 +1,14 @@
+<md-menu>
+ <!-- Trigger element is a md-button with an icon -->
+ <md-button ng-click="$mdMenu.open($event)" aria-label="Open sample menu">
+   Filter Volunteers by Skill
+ </md-button>
+ <md-menu-content>
+   <md-menu-item ng-repeat="skill in vc.skillsObject.skills"><md-button ng-click="vc.filterVolunteers(skill.id)">{{skill.skill}}</md-button></md-menu-item>
+ </md-menu-content>
+</md-menu>
+<md-button ng-click="vc.getVolunteers()">Remove Filter</md-button>
+<md-button type="button" ng-csv="vc.csvObject" filename="test.csv">Export CSV</md-button>
 <md-card>
 <md-tabs md-dynamic-height md-border-top>
     <md-tab label="Basic Profile Information">

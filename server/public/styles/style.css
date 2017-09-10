@@ -152,7 +152,32 @@ body { font-family: sans-serif; }
     height: 400px;
   }
 }
-button .google {
+#google {
 font-family: 'Roboto', sans-serif;
-
+text-transform: none;
+vertical-align: middle;
+}
+.google-image{
+width: 18px;
+height: auto;
+padding-right: 5px;
+vertical-align: middle;
+}
+#rsvp-going{
+  align-content: center;
+  margin-left: 10px;
+  background-color: #74e774;
+  padding: 7px;
+  border-radius: 2px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  font-style: inherit;
+  font-variant: inherit;
+  font-family: inherit;
+}
+.going{
+  padding-right: 5px;
 }

@@ -30,6 +30,7 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
 
     //Main Landing Page Routes/Functions
     getEvents();
+    volunteerEventRSVP();
 
     // Get all upcoming events
     function getEvents(){
@@ -41,7 +42,15 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
       }); // end success
     } // end getEvents
 
-
+    function volunteerEventRSVP(){
+      console.log( 'in volunteerEventRSVP function' );
+      // call to server to get tasks
+      console.log('going to run RSVP GET');
+      $http.get('/rsvp/volunteer').then(function(response){
+        vm.volunteerEvent = response.data;
+        console.log('home.controller vmvolunteerEventRSVP', vm.volunteerEvent);
+    });
+    }
 
     vm.newsletterSignup = function(email) {
         console.log('adding to newsletter', email);
@@ -93,6 +102,8 @@ vm.volunteerRSVP = function(selectedEvent){
 });
 });
 };
+
+
 
 var flkty = new Flickity( '.carousel', {
   // options

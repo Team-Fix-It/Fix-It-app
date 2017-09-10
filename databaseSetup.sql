@@ -9,7 +9,7 @@ CREATE TABLE volunteers (
   email character varying(45) NOT NULL UNIQUE,
   phone character varying (20),
   organization character varying (35),
-  role integer,
+  role integer DEFAULT 2,
   status character varying DEFAULT 'active',
   created timestamp DEFAULT current_timestamp,
   modified timestamp DEFAULT current_timestamp,

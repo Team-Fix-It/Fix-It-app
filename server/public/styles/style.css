@@ -149,7 +149,14 @@ body { font-family: sans-serif; }
     height: 400px;
   }
 }
-button .google {
+#google {
 font-family: 'Roboto', sans-serif;
-
+text-transform: none;
+vertical-align: middle;
+}
+.google-image{
+width: 18px;
+height: auto;
+padding-right: 5px;
+vertical-align: middle;
 }

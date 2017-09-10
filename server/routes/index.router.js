@@ -93,6 +93,42 @@ router.post('/rsvp', function(req, res){
   }
 }); // end of POST
 
+//Get route for volunteer rsvp'd events
+router.get('/rsvp/volunteer', function(req, res){
+  var rsvp = req.body;
+  console.log('Get route called to', rsvp);
+  console.log('req.user.id', req.user.id);
+  if(req.isAuthenticated()) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.', errorConnectingToDatabase);
+        res.sendStatus(500);
+      } else {
+        var queryText = 'SELECT * FROM "rsvp" JOIN "events" ' +
+        'ON "events"."id" = "rsvp"."event_id" JOIN "volunteers" ' +
+        'ON "volunteers"."id" = "rsvp"."volunteer_id" WHERE "volunteers"."id" = $1;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [req.user.id], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query:', errorMakingQuery);
+            // res.sendStatus(500);
+          } else {
+            console.log(result);
+            // Send back the results
+            var data = {rsvp: result.rows};
+            res.send(data);
+          }
+        });
+      } // end else
+    }); // end pool
+  } else {
+    res.sendStatus(401);
+  }
+}); // end of GET
 
 // Handle index file separately
 // Also catches any other request not explicitly matched elsewhere

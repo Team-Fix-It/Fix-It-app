@@ -86,6 +86,9 @@ myApp.controller('EventCheckInController', function($location, $http, EventServi
         console.log('Recieved a response from the attendance POST route:', response);
       }
       getCurrentAttendance();
+      //Clearing the search input
+          vm.searchText = '';
+          vm.selectedItem= undefined;
     });
   }
 

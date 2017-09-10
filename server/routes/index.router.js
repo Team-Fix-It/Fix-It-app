@@ -73,7 +73,7 @@ router.post('/rsvp', function(req, res){
       } else {
         var queryText = 'INSERT INTO "rsvp" ("event_id", "volunteer_id", "response") VALUES ($1, $2, $3)';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [rsvp.id, req.user.id, rsvp.response], function(errorMakingQuery, result){
+        db.query(queryText, [rsvp.id, req.user.id, 'attending'], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);

@@ -32,7 +32,7 @@ body, html {
   padding-top: 30px;
 }
 .centerText {
-text-align: center; 
+text-align: center;
 }
 
 #footer {
@@ -44,17 +44,24 @@ text-align: center;
 .footerSpace {
   padding-top: 80px;
 }
-
+.instructions .container img {
+float: left;
+margin-top: 8px;
+margin-right: 5px; 
+}
 .instructions .container h1 {
-  font-size: 32px;
+  font-family: 'Nunito', sans-serif;
+  color: #0a77bd;
+  font-size: 80px;
   font-weight: 600;
+  float: left;
 }
 
 .instructions {
   background-color: #ffc107;
-  /*color: white;*/
   padding: 15px;
 }
+
 
 #first_name {
   margin-right: 20px;
@@ -162,6 +169,12 @@ width: 18px;
 height: auto;
 padding-right: 5px;
 vertical-align: middle;
+}
+
+.Fix-It-Logo{
+  width: 80px;
+  height: auto;
+  padding-right: 5px;
 }
 #rsvp-going{
   align-content: center;

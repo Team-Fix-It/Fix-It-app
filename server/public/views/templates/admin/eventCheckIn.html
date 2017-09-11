@@ -1,6 +1,11 @@
 <md-tabs md-dynamic-height md-border-top >
 <md-tab label=" Manage Attendance" >
-<h1 class="centerText">{{ecic.eventService.currentEvent.event_name}}</h1>
+  <div class="centerText">
+<h1>{{ecic.eventService.currentEvent.event_name}}</h1>
+<h3>{{ecic.eventService.currentEvent.event_location}}</h3>
+<h4>{{ecic.eventService.currentEvent.event_date | date}}</h4>
+<h5>{{ecic.eventService.currentEvent.starting_time}} - {{ecic.eventService.currentEvent.ending_time}}</h5>
+</div>
 <div class="rsvpTable">
   <h3 class="centerText">Who attended this event?</h3>
   <div style="text-align:center;">
@@ -45,7 +50,12 @@ placeholder="Search by name" style="display:inline-block;min-width: 22%;">
 </div>
 </md-tab>
 <md-tab label="Manage RSVP's">
-  	<h1 class="centerText">{{ecic.eventService.currentEvent.event_name}}</h1>
+  <div class="centerText">
+<h1>{{ecic.eventService.currentEvent.event_name}}</h1>
+<h3>{{ecic.eventService.currentEvent.event_location}}</h3>
+<h4>{{ecic.eventService.currentEvent.event_date | date}}</h4>
+<h5>{{ecic.eventService.currentEvent.starting_time}} - {{ecic.eventService.currentEvent.ending_time}}</h5>
+</div>
   <div class="rsvpTable">
   	<h3 class="centerText">Volunteers for this event</h3>
   	<table class="table table-hover">

@@ -47,7 +47,7 @@ text-align: center;
 .instructions .container img {
 float: left;
 margin-top: 8px;
-margin-right: 5px; 
+margin-right: 5px;
 }
 .instructions .container h1 {
   font-family: 'Nunito', sans-serif;
@@ -193,4 +193,12 @@ vertical-align: middle;
 }
 .going{
   padding-right: 5px;
+}
+#resources {
+align-content: center;
+}
+.resource-image{
+  height: 200px;
+  width: auto;
+  align-content: center;
 }

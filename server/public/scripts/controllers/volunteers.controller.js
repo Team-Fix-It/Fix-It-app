@@ -14,6 +14,17 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
 
   getSkills();
 
+  vm.roles = [
+    {value: 1, text: 'Admin'},
+    {value: 2, text: 'Volunteer'}
+  ];
+
+  vm.statuses = [
+    {value: 'active', text: 'active'},
+    {value: 'inactive', text: 'inactive'}
+  ];
+
+
   vm.getVolunteers = function() {
       console.log( 'in getVolunteers function' );
       // ajax call to server to get tasks

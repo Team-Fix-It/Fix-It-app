@@ -3,6 +3,8 @@ myApp.controller('HomeController', function($http, $location, $mdDialog, UserAut
     console.log('HomeController created');
 
     var vm = this;
+    vm.hideRSVP = false;
+    vm.hideGoBar = true;
     vm.userService = UserAuthService;
     vm.userObject = UserAuthService.userObject;
     vm.userUpdate = function (role) {

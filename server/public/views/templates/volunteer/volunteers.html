@@ -16,40 +16,40 @@
         <table md-table>
           <thead md-head>
             <tr md-row>
-              <th md-column md-numeric>First Name</th>
-              <th md-column md-numeric>Last Name</th>
-              <th md-column md-numeric>Email Address</th>
-              <th md-column md-numeric>Phone Number</th>
-              <th md-column md-numeric>Organization</th>
-              <th md-column md-numeric>Role</th>
-              <th md-column md-numeric>Status</th>
-              <th md-column md-numeric>Edit</th>
+              <th id="textAlign" md-column md-numeric>First Name</th>
+              <th id="textAlign" md-column md-numeric>Last Name</th>
+              <th id="textAlign" md-column md-numeric>Email Address</th>
+              <th id="textAlign" md-column md-numeric>Phone Number</th>
+              <th id="textAlign" md-column md-numeric>Organization</th>
+              <th id="textAlign" md-column md-numeric>Role</th>
+              <th id="textAlign" md-column md-numeric>Status</th>
+              <th id="textAlign" md-column md-numeric>Edit</th>
             </tr>
           </thead>
           <tbody md-body>
             <tr md-row ng-repeat="people in vc.volunteersObject.volunteers">
-              <td md-cell>
+              <td md-cell id="textAlign">
                 <span ng-show="!volunteerform.$visible" editable-text="people.first_name" e-class="first_name" e-form="volunteerform">{{people.first_name}}</span>
               </td>
-              <td md-cell>
+              <td md-cell id="textAlign">
                 <span ng-show="!volunteerform.$visible" editable-text="people.last_name" e-class="last_name" e-form="volunteerform">{{people.last_name}}</span>
               </td>
-              <td md-cell>
+              <td md-cell id="textAlign">
                 <span ng-show="!volunteerform.$visible" editable-text="people.email" e-class="email" e-form="volunteerform">{{people.email}}</span>
               </td>
-              <td md-cell>
-                <span ng-show="!volunteerform.$visible" editable-text="people.phone" e-class="phone" e-form="volunteerform">{{people.phone}}</span>
+              <td md-cell id="textAlign">
+                <span ng-show="!volunteerform.$visible" editable-text="people.phone" e-style="width:95px;" e-class="phone" e-form="volunteerform">{{people.phone}}</span>
               </td>
-              <td md-cell>
+              <td md-cell id="textAlign">
                 <span ng-show="!volunteerform.$visible" editable-text="people.organization" e-class="organization" e-form="volunteerform">{{people.organization}}</span>
               </td>
-              <td md-cell>
+              <td md-cell id="textAlign">
                 <span ng-show="!volunteerform.$visible" e-ng-options="v.value as v.text for v in vc.roles" editable-select="people.role" e-name="role" e-class="role" e-form="volunteerform">{{ (vc.roles | filter:{value: people.role})[0].text || 'Not set' }}</span>
               </td>
-              <td md-cell>
+              <td md-cell id="textAlign">
                 <span ng-show="!volunteerform.$visible" e-ng-options="v.value as v.text for v in vc.statuses" editable-select="people.status" e-name="status" e-class="status" e-form="volunteerform">{{people.status}}</span>
               </td>
-              <td md-cell>
+              <td md-cell id="textAlign">
                 <form onaftersave="vc.editVolunteer(people)" editable-form name="volunteerform" ng-show="volunteerform.$visible" >
                   <button type="submit" class="btn btn-link" ng-disabled="volunteerform.$waiting">
                     <i class="material-icons">save</i>
@@ -76,42 +76,42 @@
           <table md-table>
             <thead md-head>
               <tr md-row>
-                <th md-column md-numeric>First Name</th>
-                <th md-column md-numeric>Last Name</th>
-                <th md-column md-numeric>How did they hear about Fix-It?</th>
-                <th md-column md-numeric>Willing to consider follow-up events?</th>
-                <th md-column md-numeric>Why are they interested in volunteering?</th>
-                <th md-column md-numeric>Previous IT Experience?</th>
-                <th md-column md-numeric>Skills</th>
-                <th md-column md-numeric>Edit</th>
+                <th id="textAlign" md-column md-numeric>First Name</th>
+                <th id="textAlign" md-column md-numeric>Last Name</th>
+                <th id="textAlign" md-column md-numeric>How did they hear about Fix-It?</th>
+                <th id="textAlign" md-column md-numeric>Willing to consider follow-up events?</th>
+                <th id="textAlign" md-column md-numeric>Why are they interested in volunteering?</th>
+                <th id="textAlign" md-column md-numeric>Previous IT Experience? If so, what?</th>
+                <th id="textAlign" md-column md-numeric>Skills</th>
+                <th id="textAlign" md-column md-numeric>Edit</th>
               </tr>
             </thead>
             <tbody md-body>
               <tr md-row ng-repeat="people in vc.volunteersObject.volunteers">
-                <td md-cell>
+                <td md-cell id="textAlign">
                   <span>{{people.first_name}}</span>
                 </td>
-                <td md-cell>
+                <td md-cell id="textAlign">
                   <span>{{people.last_name}}</span>
                 </td>
-                <td md-cell>
+                <td md-cell id="textAlign">
                   <span ng-show="!volunteerform.$visible" editable-text="people.heard_about" e-class="heard_about" e-form="volunteerform">{{people.heard_about}}</span>
                 </td>
-                <td md-cell>
-                  <span ng-show="!volunteerform.$visible" editable-text="people.follow_up" e-class="follow_up" e-form="volunteerform">{{people.follow_up}}</span>
+                <td md-cell id="textAlign">
+                  <span ng-show="!volunteerform.$visible" e-ng-options="v.value as v.text for v in vc.follow_up" editable-select="people.follow_up" e-name="follow_up" e-class="follow_up" e-form="volunteerform">{{people.follow_up}}</span>
                 </td>
-                <td md-cell>
+                <td md-cell id="textAlign">
                   <span ng-show="!volunteerform.$visible" editable-text="people.why_volunteer" e-class="why_volunteer" e-form="volunteerform">{{people.why_volunteer}}</span>
                 </td>
-                <td md-cell>
+                <td md-cell id="textAlign">
                   <span ng-show="!volunteerform.$visible" editable-text="people.previous_experience" e-class="previous_experience" e-form="volunteerform">{{people.previous_experience}}</span>
                 </td>
-                <td md-cell>
+                <td md-cell id="textAlign">
                   <button type="button" class="btn btn-link" ng-click="vc.volunteerProfileSkills(people.id)">
 
                     <i class="material-icons">visibility</i>
                   </td>
-                  <td md-cell>
+                  <td md-cell id="textAlign" class="btnLinks">
                     <form onaftersave="vc.editVolunteer(people)" editable-form name="volunteerform" ng-show="volunteerform.$visible" >
                       <button type="submit" class="btn btn-link" ng-disabled="volunteerform.$waiting">
                         <i class="material-icons">save</i>

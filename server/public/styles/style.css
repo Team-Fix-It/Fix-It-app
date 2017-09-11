@@ -10,6 +10,10 @@ body, html {
   margin-right: 300px;
 }
 
+#textAlign {
+  text-align: left;
+}
+
 .eventCard {
   margin-right: 300px;
   margin-left: 300px;

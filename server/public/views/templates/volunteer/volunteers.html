@@ -44,10 +44,10 @@
                 <span ng-show="!volunteerform.$visible" editable-text="people.organization" e-class="organization" e-form="volunteerform">{{people.organization}}</span>
               </td>
               <td md-cell>
-                <span ng-show="!volunteerform.$visible" editable-text="people.role" e-class="role" e-form="volunteerform">{{people.role}}</span>
+                <span ng-show="!volunteerform.$visible" e-ng-options="v.value as v.text for v in vc.roles" editable-select="people.role" e-name="role" e-class="role" e-form="volunteerform">{{ (vc.roles | filter:{value: people.role})[0].text || 'Not set' }}</span>
               </td>
               <td md-cell>
-                <span ng-show="!volunteerform.$visible" editable-text="people.status" e-class="status" e-form="volunteerform">{{people.status}}</span>
+                <span ng-show="!volunteerform.$visible" e-ng-options="v.value as v.text for v in vc.statuses" editable-select="people.status" e-name="status" e-class="status" e-form="volunteerform">{{people.status}}</span>
               </td>
               <td md-cell>
                 <form onaftersave="vc.editVolunteer(people)" editable-form name="volunteerform" ng-show="volunteerform.$visible" >

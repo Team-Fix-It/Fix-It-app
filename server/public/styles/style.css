@@ -10,6 +10,10 @@ body, html {
   margin-right: 300px;
 }
 
+#textAlign {
+  text-align: left;
+}
+
 .eventCard {
   margin-right: 300px;
   margin-left: 300px;
@@ -47,7 +51,7 @@ text-align: center;
 .instructions .container img {
 float: left;
 margin-top: 8px;
-margin-right: 5px; 
+margin-right: 5px;
 }
 .instructions .container h1 {
   font-family: 'Nunito', sans-serif;

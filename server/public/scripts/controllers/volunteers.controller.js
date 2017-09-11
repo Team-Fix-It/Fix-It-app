@@ -24,6 +24,11 @@ myApp.controller('VolunteersController', function($location, $http, UserAuthServ
     {value: 'inactive', text: 'inactive'}
   ];
 
+  vm.follow_up = [
+    {value: 'Yes', text: 'Yes'},
+    {value: 'No', text: 'No'}
+  ];
+
 
   vm.getVolunteers = function() {
       console.log( 'in getVolunteers function' );

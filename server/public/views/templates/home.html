@@ -66,12 +66,11 @@
         <md-card-actions layout="column" layout-align="start">
           <md-button href="/auth/google" data-prompt="select_account"
           ng-if="hc.userUpdate(undefined)">Volunteers Login to RSVP</md-button>
-          <md-button ng-click="hc.volunteerRSVP(event)" ng-if="hc.userUpdate(2)"
-          ng-hide="hc.rsvpObject.rsvp.response = attending">
+          <md-button ng-hide="hideRSVP" ng-click="hc.volunteerRSVP(event);hideRSVP = !hideRSVP" ng-if="hc.userUpdate(2)">
             RSVP</md-button>
-          <div id="rsvp-going"><md-icon class="going" ng_bind="'thumb_up'"
+          <!-- <div ng-hide="hideGoBar" id="rsvp-going"><md-icon class="going" ng_bind="'thumb_up'"
             ng-if="hc.userUpdate(2)" aria-label="thumbs up">
-          </md-icon>I'm Going!</div>
+          </md-icon>I'm Going!</div> -->
         </md-card-actions>
       </md-card>
 

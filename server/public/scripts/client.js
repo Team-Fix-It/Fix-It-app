@@ -94,15 +94,12 @@ myApp.config(function($routeProvider, $locationProvider) {
   })
   .when('/about', {
     templateUrl: '/views/templates/Footer/about.html',
-    controller: 'VolunteersController as vc',
   })
   .when('/resources', {
     templateUrl: '/views/templates/Footer/resources.html',
-    controller: 'VolunteersController as vc',
   })
   .when('/sponsors', {
     templateUrl: '/views/templates/Footer/sponsors.html',
-    controller: 'VolunteersController as vc',
   })
   .when('/skills', {
     templateUrl: '/views/templates/admin/volunteerSkills.html',

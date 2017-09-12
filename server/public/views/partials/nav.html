@@ -12,6 +12,7 @@
       <md-nav-item ng-if="nc.userUpdate(1)" md-nav-href="#volunteers/add" name="page4">Add a Volunteer</md-nav-item>
       <md-nav-item ng-if="nc.userUpdate(1)" md-nav-href="#volunteers" name="page5">Volunteers</md-nav-item>
       <md-nav-item ng-if="nc.userUpdate(2)" md-nav-href="#volunteerProfile" name="page6">Volunteer Profile</md-nav-item>
+      <md-nav-item ng-if="nc.userUpdate(2)" md-nav-href="#resources" name="page7">Resources</md-nav-item>
       <md-button ng-click="nc.userService.logout()" ng-if="nc.userUpdate(1) || nc.userUpdate(2)">Logout</md-button>
     </md-nav-bar>
   </md-content>

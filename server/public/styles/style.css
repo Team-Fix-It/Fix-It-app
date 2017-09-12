@@ -202,12 +202,12 @@ vertical-align: middle;
   height: 200px;
   width: auto;
   margin: 10px;
-  
+
 }
 .resource-image:hover{
 border: 3px solid #FEBF2F ;
 }
 .resource-button{
   text-align: center;
-  position: absolute;
+  position: relative !important;
 }

@@ -1,66 +1,67 @@
+<!--Here the admin can view all events, as well as update and delete any event.  -->
 <h2 style="text-align:center ">All Events</h2>
 <md-table-container class="volunteerTable">
   <div class="rsvpTable">
-  <table md-table>
-    <thead md-head>
-      <tr md-row>
-      <th id="textAlign" md-column md-numeric>Title</th>
-      <th id="textAlign" md-column md-numeric>Location</th>
-      <th id="textAlign" md-column md-numeric>Date</th>
-      <th id="textAlign" md-column md-numeric>Start Time</th>
-      <th id="textAlign" md-column md-numeric>End Time</th>
-      <th id="textAlign" md-column md-numeric>Manage Events</th>
-      <th id="textAlign" md-column md-numeric>Actions</th>
-    </tr>
-  </thead>
-  <tbody md-body>
-    <tr md-row ng-repeat="event in ec.eventObject.events">
-      <!-- Table Columns using Xeditable -->
-      <td md-cell id="textAlign">
-        <span ng-show="!eventform.$visible" editable-text="event.event_name"
-        e-class="event_name" e-form="eventform">{{event.event_name}}</span>
-      </td>
-      <td md-cell id="textAlign">
-        <span ng-show="!eventform.$visible" editable-text="event.event_location"
-        e-class="event_location" e-form="eventform">{{event.event_location}}</span>
-      </td>
-      <td md-cell id="textAlign">
-        <span ng-show="!eventform.$visible" editable-text="event.event_date"
-        e-class="event_date" e-form="eventform">{{event.event_date}}</span>
-      </td>
-      <td md-cell id="textAlign">
-        <span ng-show="!eventform.$visible" editable-text="event.starting_time"
-        e-class="starting_time" e-form="eventform">{{event.starting_time}}</span>
-      </td>
-      <td md-cell id="textAlign">
-        <span ng-show="!eventform.$visible" editable-text="event.ending_time"
-        e-class="ending_time" e-form="eventform">{{event.ending_time}}</span>
-      </td>
-      <td md-cell id="textAlign"><button type="button" class="btn btn-link" ng-click="ec.storeThisEvent(event)">
-        <i class="material-icons">content_paste</i>
-      </button></td>
-      <!-- Action Buttons -->
-      <td md-cell id="textAlign" class="btnLinks">
-        <form onaftersave="ec.editEvent(event)" editable-form name="eventform" ng-show="eventform.$visible" >
-          <button type="submit" class="btn btn-link" ng-disabled="eventform.$waiting">
-            <i class="material-icons">save</i>
-          </button>
-          <button type="button" ng-disabled="eventform.$waiting" ng-click="eventform.$cancel()" id="warn" class="btn btn-link">
-            <i class="material-icons">cancel</i>
-          </button>
-        </form>
-        <div ng-show="!eventform.$visible">
-          <button type="button" class="btn btn-link" ng-click="eventform.$show()">
-            <i class="material-icons">mode_edit</i>
-          </button>
-            <button type="button" class="btn btn-link" id="warn" ng-click="ec.deleteThisEvent(event)">
+    <table md-table>
+      <thead md-head>
+        <tr md-row>
+          <th id="textAlign" md-column md-numeric>Title</th>
+          <th id="textAlign" md-column md-numeric>Location</th>
+          <th id="textAlign" md-column md-numeric>Date</th>
+          <th id="textAlign" md-column md-numeric>Start Time</th>
+          <th id="textAlign" md-column md-numeric>End Time</th>
+          <th id="textAlign" md-column md-numeric>Manage Events</th>
+          <th id="textAlign" md-column md-numeric>Actions</th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row ng-repeat="event in ec.eventObject.events">
+          <!-- Table Columns using Xeditable -->
+          <td md-cell id="textAlign">
+            <span ng-show="!eventform.$visible" editable-text="event.event_name"
+            e-class="event_name" e-form="eventform">{{event.event_name}}</span>
+          </td>
+          <td md-cell id="textAlign">
+            <span ng-show="!eventform.$visible" editable-text="event.event_location"
+            e-class="event_location" e-form="eventform">{{event.event_location}}</span>
+          </td>
+          <td md-cell id="textAlign">
+            <span ng-show="!eventform.$visible" editable-text="event.event_date"
+            e-class="event_date" e-form="eventform">{{event.event_date}}</span>
+          </td>
+          <td md-cell id="textAlign">
+            <span ng-show="!eventform.$visible" editable-text="event.starting_time"
+            e-class="starting_time" e-form="eventform">{{event.starting_time}}</span>
+          </td>
+          <td md-cell id="textAlign">
+            <span ng-show="!eventform.$visible" editable-text="event.ending_time"
+            e-class="ending_time" e-form="eventform">{{event.ending_time}}</span>
+          </td>
+          <td md-cell id="textAlign"><button type="button" class="btn btn-link" ng-click="ec.storeThisEvent(event)">
+            <i class="material-icons">content_paste</i>
+          </button></td>
+          <!-- Action Buttons -->
+          <td md-cell id="textAlign" class="btnLinks">
+            <form onaftersave="ec.editEvent(event)" editable-form name="eventform" ng-show="eventform.$visible" >
+              <button type="submit" class="btn btn-link" ng-disabled="eventform.$waiting">
+                <i class="material-icons">save</i>
+              </button>
+              <button type="button" ng-disabled="eventform.$waiting" ng-click="eventform.$cancel()" id="warn" class="btn btn-link">
+                <i class="material-icons">cancel</i>
+              </button>
+            </form>
+            <div ng-show="!eventform.$visible">
+              <button type="button" class="btn btn-link" ng-click="eventform.$show()">
+                <i class="material-icons">mode_edit</i>
+              </button>
+              <button type="button" class="btn btn-link" id="warn" ng-click="ec.deleteThisEvent(event)">
 
-              <i class="material-icons">delete</i>
-             </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                <i class="material-icons">delete</i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </md-table-container>

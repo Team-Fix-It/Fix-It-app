@@ -82,7 +82,9 @@
           <td>{{people.organization}}</td>
           <td>{{people.role}}</td>
           <td>{{people.status}}</td>
-          <td><button type="button" name="button">Skills</button></td>
+          <td><button type="button" class="btn btn-link" ng-click="vc.volunteerProfileSkills(people.id)">
+
+            <i class="material-icons">visibility</i></td>
         </tr>
       </tbody>
     </table>

@@ -1,108 +1,110 @@
+<!--This is the tab where admins can see which volunteers rsvp'd for the event and check in those who actually attended -->
 <md-tabs md-dynamic-height md-border-top >
-<md-tab label=" Manage Attendance" >
-  <div class="centerText">
-<h1>{{ecic.eventService.currentEvent.event_name}}</h1>
-<h3>{{ecic.eventService.currentEvent.event_location}}</h3>
-<h4>{{ecic.eventService.currentEvent.event_date | date}}</h4>
-<h5>{{ecic.eventService.currentEvent.starting_time}} - {{ecic.eventService.currentEvent.ending_time}}</h5>
-</div>
-<div class="rsvpTable">
-  <h3 class="centerText">Volunteer Check In</h3>
-  <div style="text-align:center;">
-<md-autocomplete
-ng-disabled="ecic.isDisabled"
-md-selected-item="ecic.selectedItem"
-md-search-text-change="ecic.searchTextChange(ecic.searchText)"
-md-search-text="ecic.searchText"
-md-selected-item-change="ecic.selectedItemChange(item)"
-md-items="item in ecic.querySearch(ecic.searchText)"
-md-item-text="item.display"
-md-min-length="0"
-placeholder="Search by name" style="display:inline-block;min-width: 22%;">
-<md-item-template>
-  <span md-highlight-text="ecic.searchText" md-highlight-flags="^i">{{item.display}}</span>
-</md-item-template>
-</md-autocomplete>
-<md-button style="display:inline-block" class="md-primary md-raised" ng-click="ecic.addAttendance()">Add Volunteer to Attendance</md-button>
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="volunteer in ecic.currentAttendance.events">
-      <td>{{volunteer.first_name}}</td>
-      <td>{{volunteer.last_name}}</td>
-      <td>{{volunteer.email}}</td>
-      <td>
-        <md-button type="button" class="btn btn-link" name="button" ng-click="ecic.removeAttendance(volunteer)" id="warn">
-          <i class="material-icons">delete</i>
-        </md-button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div>
+  <md-tab label=" Manage Attendance" >
+    <div class="centerText">
+      <h1>{{ecic.eventService.currentEvent.event_name}}</h1>
+      <h3>{{ecic.eventService.currentEvent.event_location}}</h3>
+      <h4>{{ecic.eventService.currentEvent.event_date | date}}</h4>
+      <h5>{{ecic.eventService.currentEvent.starting_time}} - {{ecic.eventService.currentEvent.ending_time}}</h5>
+    </div>
+    <div class="rsvpTable">
+      <h3 class="centerText">Volunteer Check In</h3>
+      <div style="text-align:center;">
+        <md-autocomplete
+        ng-disabled="ecic.isDisabled"
+        md-selected-item="ecic.selectedItem"
+        md-search-text-change="ecic.searchTextChange(ecic.searchText)"
+        md-search-text="ecic.searchText"
+        md-selected-item-change="ecic.selectedItemChange(item)"
+        md-items="item in ecic.querySearch(ecic.searchText)"
+        md-item-text="item.display"
+        md-min-length="0"
+        placeholder="Search by name" style="display:inline-block;min-width: 22%;">
+        <md-item-template>
+          <span md-highlight-text="ecic.searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+      </md-autocomplete>
+      <md-button style="display:inline-block" class="md-primary md-raised" ng-click="ecic.addAttendance()">Add Volunteer to Attendance</md-button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="volunteer in ecic.currentAttendance.events">
+          <td>{{volunteer.first_name}}</td>
+          <td>{{volunteer.last_name}}</td>
+          <td>{{volunteer.email}}</td>
+          <td>
+            <md-button type="button" class="btn btn-link" name="button" ng-click="ecic.removeAttendance(volunteer)" id="warn">
+              <i class="material-icons">delete</i>
+            </md-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </md-tab>
+<!--On this tab the admin can see volunteers who rsvp'd and view the skill distribution at the given event-->
 <md-tab label="Manage RSVP's">
   <div class="centerText">
-<h1>{{ecic.eventService.currentEvent.event_name}}</h1>
-<h3>{{ecic.eventService.currentEvent.event_location}}</h3>
-<h4>{{ecic.eventService.currentEvent.event_date | date}}</h4>
-<h5>{{ecic.eventService.currentEvent.starting_time}} - {{ecic.eventService.currentEvent.ending_time}}</h5>
-</div>
+    <h1>{{ecic.eventService.currentEvent.event_name}}</h1>
+    <h3>{{ecic.eventService.currentEvent.event_location}}</h3>
+    <h4>{{ecic.eventService.currentEvent.event_date | date}}</h4>
+    <h5>{{ecic.eventService.currentEvent.starting_time}} - {{ecic.eventService.currentEvent.ending_time}}</h5>
+  </div>
   <div class="rsvpTable">
-  	<h3 class="centerText">Volunteers for this event</h3>
-  	<table class="table table-hover">
-  		<thead>
-  			<tr>
-  				<th>First Name</th>
-  				<th>Last Name</th>
-  				<th>Email</th>
-  				<th>Phone</th>
-  				<th>Company</th>
-  				<th>Role</th>
-  				<th>Status</th>
-  				<th>Skills</th>
-  			</tr>
-  		</thead>
-  		<tbody>
-  			<tr ng-repeat="people in ecic.eventService.currentEvent.rsvp">
-  				<td>{{people.first_name}}</td>
-  				<td>{{people.last_name}}</td>
-  				<td>{{people.email}}</td>
-  				<td>{{people.phone}}</td>
-  					<td>{{people.organization}}</td>
-  						<td>{{people.role}}</td>
-  							<td>{{people.status}}</td>
-  								<td><button type="button" name="button">Skills</button></td>
-  								</tr>
-  							</tbody>
-  						</table>
-  					</div>
-  					<div class="rsvpTable">
-  						<h3 class="centerText">Technical skills for this event</h3>
-  						<table class="table table-hover">
-  							<tr>
-  								<td></td>
-  								<th>High Experience <br>(3 or more years)</th>
-  								<th>Medium Experience <br>(1 to 3 years)</th>
-  								<th>Low Experience <br>(1 year or less)</th>
-  								<th>Interested in learning</th>
-  							</tr>
-  							<tr ng-repeat="skill in ecic.eventService.currentEvent.manageRSVP">
-  								<th>{{skill.skill}}</th>
-  								<td>{{skill.one}}</td>
-  								<td>{{skill.two}}</td>
-  								<td>{{skill.three}}</td>
-  								<td>{{skill.five}}</td>
-  							</tr>
-  						</table>
-  					</div>
+    <h3 class="centerText">Volunteers for this event</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Company</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Skills</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="people in ecic.eventService.currentEvent.rsvp">
+          <td>{{people.first_name}}</td>
+          <td>{{people.last_name}}</td>
+          <td>{{people.email}}</td>
+          <td>{{people.phone}}</td>
+          <td>{{people.organization}}</td>
+          <td>{{people.role}}</td>
+          <td>{{people.status}}</td>
+          <td><button type="button" name="button">Skills</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="rsvpTable">
+    <h3 class="centerText">Technical skills for this event</h3>
+    <table class="table table-hover">
+      <tr>
+        <td></td>
+        <th>High Experience <br>(3 or more years)</th>
+        <th>Medium Experience <br>(1 to 3 years)</th>
+        <th>Low Experience <br>(1 year or less)</th>
+        <th>Interested in learning</th>
+      </tr>
+      <tr ng-repeat="skill in ecic.eventService.currentEvent.manageRSVP">
+        <th>{{skill.skill}}</th>
+        <td>{{skill.one}}</td>
+        <td>{{skill.two}}</td>
+        <td>{{skill.three}}</td>
+        <td>{{skill.five}}</td>
+      </tr>
+    </table>
+  </div>
 </md-tab>
 </md-tabs>

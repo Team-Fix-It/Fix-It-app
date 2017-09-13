@@ -1,16 +1,19 @@
+<!--The Admin can filter volunteers by skill here-->
 <md-menu>
- <!-- Trigger element is a md-button with an icon -->
- <md-button ng-click="$mdMenu.open($event)" aria-label="Open sample menu">
-   Filter Volunteers by Skill
- </md-button>
- <md-menu-content>
-   <md-menu-item ng-repeat="skill in vc.skillsObject.skills"><md-button ng-click="vc.filterVolunteers(skill.id)">{{skill.skill}}</md-button></md-menu-item>
- </md-menu-content>
+  <!-- Trigger element is a md-button with an icon -->
+  <md-button ng-click="$mdMenu.open($event)" aria-label="Open sample menu">
+    Filter Volunteers by Skill
+  </md-button>
+  <md-menu-content>
+    <md-menu-item ng-repeat="skill in vc.skillsObject.skills"><md-button ng-click="vc.filterVolunteers(skill.id)">{{skill.skill}}</md-button></md-menu-item>
+  </md-menu-content>
 </md-menu>
 <md-button ng-click="vc.getVolunteers()">Remove Filter</md-button>
+<!--The admin van export a csv of volunteer emails here-->
 <md-button type="button" ng-csv="vc.csvObject" filename="test.csv">Export CSV</md-button>
+<!--The admin can view a list of volunteers here, as well as edit-->
 <md-card>
-<md-tabs md-dynamic-height md-border-top>
+  <md-tabs md-dynamic-height md-border-top>
     <md-tab label="Basic Profile Information">
       <md-table-container class="volunteerTable">
         <table md-table>
@@ -70,6 +73,7 @@
         </table>
       </md-table-container>
     </md-tab>
+    <!--The Admin can view additional information filled out by the volunteer here, as well as click to view skills and edit additional information-->
     <md-tab label="Additional Questions and Skills">
       <div class="row col">
         <md-table-container class="volunteerTable">
@@ -134,5 +138,5 @@
         </md-table-container>
       </div>
     </md-tab>
-</md-tabs>
+  </md-tabs>
 </md-card>

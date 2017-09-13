@@ -70,7 +70,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     controller: 'EventCheckInController as ecic',
   })
   .when('/volunteers', {
-    templateUrl: '/views/templates/volunteer/volunteers.html',
+    templateUrl: '/views/templates/admin/volunteers.html',
     controller: 'VolunteersController as vc',
   })
   .when('/customers', {

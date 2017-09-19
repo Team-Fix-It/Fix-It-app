@@ -78,7 +78,7 @@ router.get('/getSkills', function(req, res){
 }); // end of GET
 
 router.get('/getSkills/:id', function(req, res){
-  // if(req.isAuthenticated()) {
+  if(req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     var userId = req.params.id;
@@ -110,9 +110,9 @@ router.get('/getSkills/:id', function(req, res){
 
       } // end else
     }); // end pool
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  } else {
+    res.sendStatus(401);
+  }
 }); // end of GET
 
 
@@ -184,16 +184,12 @@ router.post('/add', function(req, res){
             res.send(data);
           }
         }); // end query
-
       } // end else
     }); // end pool
   } else {
     res.sendStatus(401);
   }
 }); // end of POST
-
-
-//Post for the admin to add a new volunteer to the database
 
 //post route for volunteer to add their own profile
 router.post('/newVolunteer', function(req, res){
@@ -236,12 +232,12 @@ router.post('/newVolunteer', function(req, res){
   }
 }); // end of POST
 
-//post route for volunteer to add their own profile
+//post route for volunteer to add their own profile  -- Is this an ADMIN route?
 router.post('/newVolunteer/admin', function(req, res){
+  if(req.isAuthenticated()&& req.user.role === ADMIN) {
   var newVolunteer = req.body;
   console.log('Post route called to', newVolunteer);
   console.log('req.user:', req.user);
-  // if(req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -265,25 +261,23 @@ router.post('/newVolunteer/admin', function(req, res){
             console.log('result:', result);
             // console.log(result);
             // Send back the results
-
             var data = {newVolunteer: result.rows};
-
             res.send(data);
           }
         }); // end query
-
       } // end else
     }); // end pool
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  } else {
+    res.sendStatus(401);
+  }
 }); // end of POST
 
-//post route for volunteer to add their skill levels
+//post route for volunteer to add/update their skill levels
 router.post('/skill', function(req, res){
+  if(req.isAuthenticated()&& req.user.role === USER) {
   var skill = req.body;
   console.log('Post route called to', skill);
-  // if(req.isAuthenticated()) {
+
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -331,9 +325,9 @@ router.post('/skill', function(req, res){
 
       } // end else
     }); // end pool
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  } else {
+    res.sendStatus(401);
+  }
 }); // end of POST
 
 //Get for all events for that user to show up on the DOM

@@ -6,11 +6,12 @@ var pool = require('../modules/pool.js');
 var ADMIN = 1;
 var USER = 2;
 
-// POST a new skill
+// POST a new skill - this route is functional but not linked in
+//the nav for the admin
 router.post('/add', function(req, res){
+  if(req.isAuthenticated()&& req.user.role === ADMIN) {
   var as = req.body;
   console.log('Post route called to', as);
-  // if(req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -38,9 +39,9 @@ router.post('/add', function(req, res){
 
       } // end else
     }); // end pool
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  } else {
+    res.sendStatus(401);
+  }
 }); // end of POST
 
 // Get all skills

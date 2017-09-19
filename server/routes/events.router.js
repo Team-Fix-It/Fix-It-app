@@ -36,6 +36,7 @@ router.get('/', function(req, res){
 // Create a new event - admin only
 router.post('/create/', function(req, res){
   if(req.isAuthenticated() && req.user.role === ADMIN) {
+    console.log('user role', req.user.role);
     var ev = req.body;
     console.log('Post route called to event of', ev);
     // errorConnecting is bool, db is what we query against,

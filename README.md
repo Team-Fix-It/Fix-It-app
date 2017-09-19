@@ -23,8 +23,7 @@ Fix-It Tech is a full-stack web application to schedule events and manage attend
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-1. Run [npm install] in the terminal.
-2. Use the databaseSetup.sql file to create the necessary tables.
+
 
 ### Prerequisites
 
@@ -35,11 +34,19 @@ Link to software that is required to install the app.
 
 ### Installing
 
-Steps to get the development environment running. what is this field area for?
+1. Run '$npm install' in the terminal.
+2. Use the databaseSetup.sql file to create the necessary tables.
+3. Create a duplicate of the '.config-dist.js' file and rename it '.config.js'.
+4. In the '.config.js' add in your own database and google authentication details.
+5. Run '$npm start' to run the server.
 
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+Home Page.
+![Image of topic selection page](screenshots/home.jpeg)
+
+Admin Demo.
+![Image of topic selection page](screenshots/out.gif)
 
 ## Documentation
 Below is a link to our project scope.

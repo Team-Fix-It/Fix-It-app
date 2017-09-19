@@ -1,3 +1,5 @@
+
+<!--Here the admin can add basic volunteer information-->
 <div class="volunteerProfile">
   <h1>Add a New Volunteer</h1>
   <div layout-gt-sm="row" layout-align="center center">
@@ -44,7 +46,7 @@
       <input type="text" ng-model="newVolunteer.previous_experience" id="previous_experience"/>
     </md-input-container>
   </div>
-
+  <!--The admin can add the volunteer skill profile  -->
   <h2>What are their current tech skills?</h2>
   <md-table-container>
     <table md-table>
@@ -62,8 +64,8 @@
       </tbody>
     </table>
   </md-table-container>
-
-<center><md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdminAdd(newVolunteer, vc.skillsObject.skills)">Add Volunteer</md-button></center>
+  
+  <center><md-button class="md-raised md-primary" ng-click="vc.volunteerProfileAdminAdd(newVolunteer, vc.skillsObject.skills)">Add Volunteer</md-button></center>
 
 
 </div>

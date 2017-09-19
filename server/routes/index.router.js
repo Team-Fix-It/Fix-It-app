@@ -63,7 +63,7 @@ router.post('/rsvp', function(req, res){
   var rsvp = req.body;
   console.log('Post route called to', rsvp);
   console.log('req.user.id', req.user.id);
-  if(req.isAuthenticated()) {
+  if(req.isAuthenticated()&& req.user.role === USER) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -94,11 +94,12 @@ router.post('/rsvp', function(req, res){
 }); // end of POST
 
 //Get route for volunteer rsvp'd events
+/* Not currently being used*/
 router.get('/rsvp/volunteer', function(req, res){
   var rsvp = req.body;
   console.log('Get route called to', rsvp);
   console.log('req.user.id', req.user.id);
-  if(req.isAuthenticated()) {
+  if(req.isAuthenticated()&& req.user.role === USER) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){

@@ -117,6 +117,7 @@ router.get('/getSkills/:id', function(req, res){
 
 
 router.put('/edit/', function(req, res){
+  if(req.isAuthenticated()) {
   var volunteer = req.body;
   console.log('Put route called to event of', volunteer);
   // errorConnecting is bool, db is what we query against,
@@ -126,9 +127,6 @@ router.put('/edit/', function(req, res){
       console.log('Error connecting to the database.', people);
       res.sendStatus(500);
     } else {
-      // if(req.isAuthenticated()) {
-      // We connected to the database!!!
-      // Now we're going to GET things from the database
       var queryText = 'UPDATE "volunteers" SET "first_name"=$1, "last_name"=$2, "email"=$3, ' +
       '"phone"=$4, "organization"=$5, "role"=$6, "status"=$7, "heard_about"=$8, "follow_up"=$9,' +
        '"why_volunteer"=$10, "previous_experience"=$11 WHERE "id"= $12' ;
@@ -148,18 +146,18 @@ router.put('/edit/', function(req, res){
             res.send(data);
           }
         }); // end query
-        // } else {
-        //   res.sendStatus(401);
-        // }
-      } // end if
+        } // end if
     }); // end pool
+  } else {
+      res.sendStatus(401);
+    }
   }); // end of PUT - edit event admin
 
 //Post for the admin to add a new volunteer to the database
 router.post('/add', function(req, res){
   var av = req.body;
   console.log('Post route called to', av);
-  if(req.isAuthenticated()) {
+  if(req.isAuthenticated()&& req.user.role === ADMIN) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -199,10 +197,11 @@ router.post('/add', function(req, res){
 
 //post route for volunteer to add their own profile
 router.post('/newVolunteer', function(req, res){
+  if(req.isAuthenticated()&& req.user.role === USER) {
   var newVolunteer = req.body;
   console.log('Post route called to', newVolunteer);
   console.log('req.user:', req.user);
-  // if(req.isAuthenticated()) {
+
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -226,18 +225,15 @@ router.post('/newVolunteer', function(req, res){
             console.log('result:', result);
             // console.log(result);
             // Send back the results
-
             var data = {newVolunteer: result.rows};
-
             res.send(data);
           }
         }); // end query
-
       } // end else
     }); // end pool
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  } else {
+    res.sendStatus(401);
+  }
 }); // end of POST
 
 //post route for volunteer to add their own profile

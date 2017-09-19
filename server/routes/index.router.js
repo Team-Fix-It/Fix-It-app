@@ -18,14 +18,11 @@ router.get('/auth/google/callback',
 
 //Landing Page Stuff
 
+// **This route is correct, but is missing the client side to input information**
 //Post to add email to database to get the newsletter
-//Post for the admin to add a new volunteer to the database
 router.post('/newsletter', function(req, res){
   var newsletter = req.body;
   console.log('Post route called to', email);
-  // if(req.isAuthenticated()) {
-    // errorConnecting is bool, db is what we query against,
-    // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
         console.log('Error connecting to the database.', req.body);
@@ -50,12 +47,8 @@ router.post('/newsletter', function(req, res){
             res.send(data);
           }
         }); // end query
-
       } // end else
     }); // end pool
-  // } else {
-  //   res.sendStatus(401);
-  // }
 }); // end of POST
 
 //post route for volunteer will post rsvp
